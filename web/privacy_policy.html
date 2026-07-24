@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OralAI - Privacy and Policy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0b111a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header i {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .policy-card {
+            background-color: #151e2b;
+            border-radius: 12px;
+            padding: 25px 20px;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #7b8e9f;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .policy-item {
+            display: flex;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+        
+        .policy-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .icon-wrapper {
+            margin-right: 15px;
+            color: #10b981; /* Green color for the check circle */
+            margin-top: 2px;
+        }
+        
+        .icon-wrapper i {
+            width: 20px;
+            height: 20px;
+        }
+
+        .content-wrapper {
+            flex: 1;
+        }
+
+        .item-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .item-desc {
+            font-size: 14px;
+            color: #7b8e9f;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <i data-lucide="arrow-left" onclick="history.back()"></i>
+        Privacy and Policy
+    </div>
+
+    <div class="container">
+        <div class="policy-card">
+            <div class="title">Your Privacy is our Priority</div>
+            <div class="subtitle">Please read the following carefully to understand how your data is handled.</div>
+
+            <div class="policy-item">
+                <div class="icon-wrapper"><i data-lucide="check-circle"></i></div>
+                <div class="content-wrapper">
+                    <div class="item-title">1. Data Collection</div>
+                    <div class="item-desc">We only collect necessary patient information and scan images required for accurate AI analysis.</div>
+                </div>
+            </div>
+
+            <div class="policy-item">
+                <div class="icon-wrapper"><i data-lucide="check-circle"></i></div>
+                <div class="content-wrapper">
+                    <div class="item-title">2. Secure Storage</div>
+                    <div class="item-desc">All medical data is securely encrypted and stored following strict compliance guidelines.</div>
+                </div>
+            </div>
+
+            <div class="policy-item">
+                <div class="icon-wrapper"><i data-lucide="check-circle"></i></div>
+                <div class="content-wrapper">
+                    <div class="item-title">3. No Third-Party Sharing</div>
+                    <div class="item-desc">We do not sell, share, or distribute any patient or diagnostic data to third-party marketing companies.</div>
+                </div>
+            </div>
+
+            <div class="policy-item">
+                <div class="icon-wrapper"><i data-lucide="check-circle"></i></div>
+                <div class="content-wrapper">
+                    <div class="item-title">4. Data Deletion</div>
+                    <div class="item-desc">You have the right to request permanent deletion of any saved reports or your entire account at any time.</div>
+                </div>
+            </div>
+
+            <div class="policy-item">
+                <div class="icon-wrapper"><i data-lucide="check-circle"></i></div>
+                <div class="content-wrapper">
+                    <div class="item-title">5. AI Model Training</div>
+                    <div class="item-desc">Uploaded scans may be anonymized and used to improve the diagnostic accuracy of our AI models, unless you opt-out.</div>
+                </div>
+            </div>
+
+            <div class="policy-item">
+                <div class="icon-wrapper"><i data-lucide="check-circle"></i></div>
+                <div class="content-wrapper">
+                    <div class="item-title">6. Transparency</div>
+                    <div class="item-desc">Any changes to our privacy practices will be communicated clearly and require your explicit consent.</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

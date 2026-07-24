@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OralAI - Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="settings.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="brand">
+            <div class="logo-circle">
+                <svg viewBox="0 0 100 100" style="width: 60%; height: 60%;">
+                    <path d="M 20 50 L 35 50 L 45 30 L 55 70 L 65 50 L 80 50" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="brand-text">OralAI</div>
+        </div>
+        <div class="user-actions">
+            <div class="profile-avatar" style="cursor: pointer;" onclick="window.location.href='profile.html'">
+                👨‍⚕️
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+        <div class="settings-card">
+            <h2 class="settings-header">Settings</h2>
+            
+            <div class="settings-profile-section" style="cursor: pointer;" onclick="window.location.href='profile.html'">
+                <div class="settings-avatar">
+                    👨‍⚕️
+                </div>
+                <div class="settings-user-info">
+                    <div id="settings-user-name" class="settings-user-name">Doctor</div>
+                    <div id="settings-user-email" class="settings-user-email">Loading...</div>
+                </div>
+            </div>
+            
+            <div class="settings-divider"></div>
+            
+            <div class="settings-list">
+                <div class="settings-item" onclick="window.location.href='profile.html'">
+                    <div class="settings-icon-wrapper">
+                        <i data-lucide="user" class="icon-blue"></i>
+                    </div>
+                    <div class="settings-item-text">Profile</div>
+                    <i data-lucide="chevron-right" class="settings-item-chevron"></i>
+                </div>
+                
+                <div class="settings-item" onclick="window.location.href='privacy_policy.html'">
+                    <div class="settings-icon-wrapper">
+                        <i data-lucide="shield" class="icon-green"></i>
+                    </div>
+                    <div class="settings-item-text">Privacy and Policy</div>
+                    <i data-lucide="chevron-right" class="settings-item-chevron"></i>
+                </div>
+                
+                <div class="settings-item" onclick="window.location.href='change_password.html'">
+                    <div class="settings-icon-wrapper">
+                        <i data-lucide="key" class="icon-orange"></i>
+                    </div>
+                    <div class="settings-item-text">Change Password</div>
+                    <i data-lucide="chevron-right" class="settings-item-chevron"></i>
+                </div>
+                
+                <div class="settings-item" onclick="window.location.href='help_support.html'">
+                    <div class="settings-icon-wrapper">
+                        <i data-lucide="help-circle" class="icon-purple"></i>
+                    </div>
+                    <div class="settings-item-text">Help and Support</div>
+                    <i data-lucide="chevron-right" class="settings-item-chevron"></i>
+                </div>
+                
+                <div class="settings-item settings-item-logout" onclick="logout()">
+                    <div class="settings-icon-wrapper">
+                        <i data-lucide="log-out" class="icon-red"></i>
+                    </div>
+                    <div class="settings-item-text">Logout</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="dashboard.html" class="nav-item">
+            <i data-lucide="layout-grid"></i>
+            <span>Home</span>
+        </a>
+        <a href="upload.html" class="nav-item">
+            <i data-lucide="cloud-upload"></i>
+            <span>Upload</span>
+        </a>
+
+        <a href="patients.html" class="nav-item">
+            <i data-lucide="users"></i>
+            <span>Patients</span>
+        </a>
+        <a href="settings.html" class="nav-item active">
+            <i data-lucide="settings"></i>
+            <span>Settings</span>
+        </a>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        lucide.createIcons();
+
+        // Initialize Supabase
+        const supabaseUrl = 'https://gduqgsxwcnrzdjqkextl.supabase.co';
+        const supabaseKey = 'sb_publishable_1V-1Pqu_6ZKe4I3MDadz1w_0fUURFdo';
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function fetchUserProfile() {
+            try {
+                let doctorName = localStorage.getItem('oralai_user_name');
+                let doctorEmail = localStorage.getItem('oralai_user_email');
+                
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                if (session && session.user) {
+                    doctorName = session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || doctorName;
+                    doctorEmail = session.user.email || doctorEmail;
+                }
+                
+                if (!doctorName) doctorName = "Doctor";
+                if (!doctorEmail) doctorEmail = "doctor@hospital.com";
+
+                const displayName = doctorName.toLowerCase().startsWith('dr') ? doctorName : `Dr. ${doctorName}`;
+                document.getElementById('settings-user-name').innerText = displayName;
+                document.getElementById('settings-user-email').innerText = doctorEmail;
+            } catch (error) {
+                console.error("Error fetching user profile:", error);
+            }
+        }
+
+        fetchUserProfile();
+
+        async function logout() {
+            try {
+                localStorage.removeItem('oralai_user_name');
+                localStorage.removeItem('oralai_user_email');
+                await supabaseClient.auth.signOut();
+                window.location.href = 'login.html';
+            } catch (error) {
+                console.error("Logout failed:", error);
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>

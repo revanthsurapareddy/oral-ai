@@ -1,0 +1,24 @@
+# Dependencies & Build artifacts
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+build/
+.gradle/
+.idea/
+.vscode/
+
+# Outputs & Cache
+runs/
+demo_outputs/
+test_cases_cache.json
+*.apk
+*.mp4
+*.pt
+
+# Environment
+.env
+.env.local
+local.properties
+.DS_Store

@@ -1,0 +1,12 @@
+# Dependencies & Logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment & IDE
+.env
+.env.local
+.DS_Store
+.idea/
+.vscode/

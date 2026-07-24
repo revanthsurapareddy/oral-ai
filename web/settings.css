@@ -1,0 +1,140 @@
+/* settings.css */
+.settings-card {
+    background-color: #151e2b;
+    border: 1px solid #1f2c3b;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 160px);
+}
+
+.settings-header {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #ffffff;
+}
+
+.settings-profile-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.settings-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #ffe0b2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    margin-right: 16px;
+    border: 2px solid #1f2c3b;
+}
+
+.settings-user-info {
+    flex: 1;
+}
+
+.settings-user-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.settings-user-email {
+    font-size: 14px;
+    color: #7b8e9f;
+}
+
+.settings-divider {
+    border-bottom: 1px solid #1f2c3b;
+    margin-bottom: 24px;
+}
+
+.settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+}
+
+/* Custom scrollbar for webkit */
+.settings-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.settings-list::-webkit-scrollbar-thumb {
+    background-color: #1f2c3b;
+    border-radius: 4px;
+}
+
+.settings-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background-color: #1a2536;
+    border: 1px solid #1f2c3b;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.settings-item:hover {
+    background-color: #1f2c3b;
+}
+
+.settings-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #0b111a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 16px;
+}
+
+.settings-icon-wrapper i {
+    width: 20px;
+    height: 20px;
+}
+
+.icon-blue { color: #3b82f6; }
+.icon-green { color: #10b981; }
+.icon-orange { color: #f59e0b; }
+.icon-purple { color: #8b5cf6; }
+.icon-red { color: #ef4444; }
+
+.settings-item-text {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.settings-item-chevron {
+    color: #7b8e9f;
+}
+
+.settings-item-logout {
+    margin-top: 12px; 
+    background-color: rgba(239, 68, 68, 0.05);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.settings-item-logout:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+.settings-item-logout .settings-item-text {
+    color: #ef4444;
+}
+
+.settings-item-logout .settings-icon-wrapper {
+    background-color: transparent;
+}

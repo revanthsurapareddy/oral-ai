@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OralAI - Analysis Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0b111a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-bottom: 30px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header i {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .container {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .scan-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .scan-label {
+            color: #7b8e9f;
+            font-size: 13px;
+        }
+
+        .scan-image {
+            width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .result-card {
+            background-color: #151e2b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        .risk-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .risk-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .risk-icon.high {
+            background-color: rgba(255, 75, 75, 0.15);
+            color: #ff4b4b;
+        }
+        
+        .risk-icon.low {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+
+        .risk-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .risk-title.high { color: #ff4b4b; }
+        .risk-title.low { color: #10b981; }
+
+        .risk-subtitle {
+            font-size: 13px;
+            color: #7b8e9f;
+            margin-top: 2px;
+        }
+
+        .details-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .details-text {
+            font-size: 14px;
+            color: #7b8e9f;
+            line-height: 1.6;
+        }
+
+        .action-btn {
+            width: 100%;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-dashboard {
+            background-color: #0b111a;
+            color: #ffffff;
+            border: 1px solid #1f2c3b;
+            margin-top: 10px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .btn-save {
+            flex: 1;
+            background-color: #4ade80;
+            color: white;
+            border: none;
+        }
+
+        .btn-share {
+            flex: 1;
+            background-color: #f59e0b;
+            color: white;
+            border: none;
+        }
+
+        @media print {
+            .action-btn, .btn-row, .header i {
+                display: none !important;
+            }
+            body {
+                padding-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <i data-lucide="arrow-left" onclick="window.location.href='dashboard.html'"></i>
+        Analysis Result
+    </div>
+
+    <div class="container">
+        <div class="scan-section">
+            <div class="scan-label">Original Scan</div>
+            <img id="original-scan" class="scan-image" src="" alt="Original">
+        </div>
+
+        <div class="scan-section">
+            <div class="scan-label">Analyzed Scan</div>
+            <img id="analyzed-scan" class="scan-image" src="" alt="Analyzed">
+        </div>
+
+        <div class="result-card">
+            <div class="risk-header">
+                <div class="risk-icon" id="risk-icon">
+                    <i data-lucide="alert-triangle"></i>
+                </div>
+                <div>
+                    <div class="risk-title" id="risk-title">Processing...</div>
+                    <div class="risk-subtitle" id="risk-subtitle">--</div>
+                </div>
+            </div>
+
+            <div class="details-title">Details</div>
+            <div class="details-text" id="details-text">
+                Waiting for AI analysis results...
+            </div>
+        </div>
+
+        <a href="dashboard.html" class="action-btn btn-dashboard">Dashboard</a>
+        
+        <div class="btn-row">
+            <button class="action-btn btn-save">Save PDF</button>
+            <button class="action-btn btn-share">Share</button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Load data from sessionStorage
+        const scannedImage = sessionStorage.getItem('scannedImage');
+        const apiResultStr = sessionStorage.getItem('apiResult');
+
+        if (scannedImage) {
+            document.getElementById('original-scan').src = scannedImage;
+        } else {
+            alert("No image data found. Redirecting to upload.");
+            window.location.href = 'upload.html';
+        }
+
+        if (apiResultStr) {
+            const result = JSON.parse(apiResultStr);
+            document.getElementById('analyzed-scan').src = result.image_base64;
+            
+            const riskIcon = document.getElementById('risk-icon');
+            const riskTitle = document.getElementById('risk-title');
+            
+            if (result.has_cancer) {
+                // High Risk Styling
+                riskIcon.className = 'risk-icon high';
+                riskIcon.innerHTML = '<i data-lucide="alert-triangle"></i>';
+                
+                riskTitle.className = 'risk-title high';
+                riskTitle.textContent = 'Cancer Detected';
+                
+                document.getElementById('risk-subtitle').textContent = `High Risk (${result.risk_percentage || 96}%)`;
+                
+                document.getElementById('details-text').textContent = 
+                    result.message || "The AI model has detected anomalous tissue structures in the highlighted region. Based on the confidence score, this represents a High risk. Immediate clinical evaluation and biopsy are recommended.";
+            } else {
+                // Low Risk Styling
+                riskIcon.className = 'risk-icon low';
+                riskIcon.innerHTML = '<i data-lucide="check-circle"></i>';
+                
+                riskTitle.className = 'risk-title low';
+                riskTitle.textContent = 'No Anomalies Detected';
+                
+                document.getElementById('risk-subtitle').textContent = `Low Risk (${result.risk_percentage || 5}%)`;
+                
+                document.getElementById('details-text').textContent = 
+                    result.message || "The AI model did not detect any immediate signs of oral cancer in the provided scan. Routine checkups are recommended to maintain oral health.";
+            }
+            
+            lucide.createIcons(); // Re-render icons if we changed innerHTML
+        }
+
+        // PDF Save functionality
+        document.querySelector('.btn-save').addEventListener('click', () => {
+            window.print();
+        });
+
+        // Share functionality
+        document.querySelector('.btn-share').addEventListener('click', async () => {
+            if (navigator.share) {
+                try {
+                    const title = document.getElementById('risk-title').textContent;
+                    const details = document.getElementById('details-text').textContent;
+                    await navigator.share({
+                        title: 'OralAI Scan Result',
+                        text: `Scan Result: ${title}\n\n${details}`,
+                        url: window.location.href
+                    });
+                } catch (error) {
+                    console.log('Error sharing:', error);
+                }
+            } else {
+                alert("The Web Share API is not supported on this browser. Try copying the URL instead.");
+            }
+        });
+    </script>
+</body>
+</html>

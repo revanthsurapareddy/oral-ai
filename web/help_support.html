@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OralAI - Help and Support</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0b111a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header i {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .support-card {
+            background-color: #151e2b;
+            border-radius: 12px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .faq-item {
+            display: flex;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+        
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .icon-wrapper {
+            margin-right: 15px;
+            color: #a855f7; /* Purple color for info circle */
+            margin-top: 2px;
+        }
+        
+        .icon-wrapper i {
+            width: 20px;
+            height: 20px;
+        }
+
+        .content-wrapper {
+            flex: 1;
+        }
+
+        .item-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .item-desc {
+            font-size: 14px;
+            color: #7b8e9f;
+            line-height: 1.6;
+        }
+        
+        .contact-card {
+            background-color: #151e2b;
+            border-radius: 12px;
+            padding: 25px 20px;
+        }
+        
+        .contact-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .contact-desc {
+            font-size: 14px;
+            color: #7b8e9f;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .btn-email {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background-color: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        
+        .btn-email i {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .btn-email:hover {
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <i data-lucide="arrow-left" onclick="history.back()"></i>
+        Help and Support
+    </div>
+
+    <div class="container">
+        <div class="support-card">
+            <div class="title">How can we assist you?</div>
+
+            <div class="faq-item">
+                <div class="icon-wrapper"><i data-lucide="info"></i></div>
+                <div class="content-wrapper">
+                    <div class="item-title">1. General Navigation</div>
+                    <div class="item-desc">Use the bottom bar to switch between Home, Upload, Patients, and Settings easily.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="icon-wrapper"><i data-lucide="info"></i></div>
+                <div class="content-wrapper">
+                    <div class="item-title">2. Uploading a Scan</div>
+                    <div class="item-desc">Click 'Upload', select an image, fill in patient details, and hit Analyze.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="icon-wrapper"><i data-lucide="info"></i></div>
+                <div class="content-wrapper">
+                    <div class="item-title">3. AI Confidence Score</div>
+                    <div class="item-desc">The percentage shows how confident the AI is in detecting anomalies. It is a diagnostic aid, not a definitive conclusion.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="icon-wrapper"><i data-lucide="info"></i></div>
+                <div class="content-wrapper">
+                    <div class="item-title">4. Managing Patients</div>
+                    <div class="item-desc">In the Patients tab, you can view past reports. Click any report to view or permanently delete it.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="icon-wrapper"><i data-lucide="info"></i></div>
+                <div class="content-wrapper">
+                    <div class="item-title">5. Updating Profile</div>
+                    <div class="item-desc">Navigate to Settings &gt; Profile to view your details. You can change your password via the Settings menu.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-card">
+            <div class="contact-title">Still need help?</div>
+            <div class="contact-desc">Contact our support team directly via email.</div>
+            
+            <a href="mailto:support@oralai.com?subject=OralAI Support Request" class="btn-email">
+                <i data-lucide="mail"></i>
+                Email Support
+            </a>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
