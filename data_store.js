@@ -131,8 +131,8 @@
     }
 
     function syncWithBackend() {
-        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const backendBase = isLocal ? 'http://localhost:8000' : 'https://oral-ai-backend.onrender.com';
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.') || window.location.hostname.startsWith('172.');
+        const backendBase = isLocal ? 'http://' + window.location.hostname + ':8000' : 'https://oral-ai-backend.onrender.com';
 
         const localPatients = JSON.parse(localStorage.getItem(STORAGE_PATIENTS_KEY) || '[]');
         const localReports = JSON.parse(localStorage.getItem(STORAGE_REPORTS_KEY) || '[]');
@@ -282,8 +282,8 @@
             localStorage.setItem(STORAGE_ACTIVITIES_KEY, JSON.stringify(localActivities.slice(0, 50)));
 
             // POST TO SHARED BACKEND SERVER FOR ANDROID SYNC
-            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-            const backendBase = isLocal ? 'http://localhost:8000' : 'https://oral-ai-backend.onrender.com';
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.') || window.location.hostname.startsWith('172.');
+            const backendBase = isLocal ? 'http://' + window.location.hostname + ':8000' : 'https://oral-ai-backend.onrender.com';
             
             fetch(backendBase + '/api/reports', {
                 method: 'POST',
