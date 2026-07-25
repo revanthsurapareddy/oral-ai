@@ -171,14 +171,7 @@
             margin-bottom: 6px;
         }
 
-        @media print {
-            .btn-delete, .btn-row, .header i {
-                display: none !important;
-            }
-            body {
-                padding-bottom: 0;
-            }
-        }
+        .loading-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(11, 17, 26, 0.9);
@@ -201,7 +194,6 @@
     </div>
 
     <div class="container">
-        <!-- In the past report, we only have the analyzed scan saved in DB to save space -->
         <div class="scan-section">
             <div class="scan-label">Analyzed Scan</div>
             <img id="analyzed-scan" class="scan-image" src="" alt="No Image Available">
@@ -244,6 +236,8 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="data_store.js"></script>
     <script>
         lucide.createIcons();
 
@@ -263,17 +257,43 @@
             }
 
             try {
-                // Fetch the specific report and join patient data
-                const { data: report, error } = await supabaseClient
-                    .from('reports')
-                    .select('*, patients(mrn, full_name, age, gender)')
-                    .eq('id', reportId)
-                    .single();
+                let report = null;
+
+                // 1. Check currentViewReport in sessionStorage
+                const currentViewReportStr = sessionStorage.getItem('currentViewReport');
+                if (currentViewReportStr) {
+                    try {
+                        const cachedRep = JSON.parse(currentViewReportStr);
+                        if (cachedRep && (cachedRep.id === reportId || cachedRep.mrn === reportId)) {
+                            report = cachedRep;
+                        }
+                    } catch(e){}
+                }
+
+                // 2. Check OralAIDataStore
+                if (!report) {
+                    const allLocalReports = OralAIDataStore.getReports();
+                    report = allLocalReports.find(r => r.id === reportId || r.mrn === reportId);
+                }
+
+                // 3. Try fetching from Supabase if not found locally
+                if (!report) {
+                    try {
+                        const { data: sbReport } = await supabaseClient
+                            .from('reports')
+                            .select('*, patients(mrn, full_name, age, gender)')
+                            .eq('id', reportId)
+                            .single();
+                        if (sbReport) report = sbReport;
+                    } catch(e){}
+                }
 
                 document.getElementById('loading-overlay').style.display = 'none';
 
-                if (error || !report) {
-                    throw error || new Error("Report not found");
+                if (!report) {
+                    alert("Report details not found.");
+                    window.location.href = 'patients.html';
+                    return;
                 }
 
                 if (report.scan_image_url) {
@@ -289,23 +309,28 @@
                     riskTitle.className = 'risk-title high';
                     riskTitle.textContent = 'Cancer Detected (High Risk)';
                     document.getElementById('risk-subtitle').textContent = `High Risk (${report.risk_percentage || 96}%)`;
-                    document.getElementById('details-text').textContent = "The AI model has detected anomalous tissue structures in the highlighted region. Based on the confidence score, this represents a High risk. Immediate clinical evaluation and biopsy are recommended.";
+                    document.getElementById('details-text').textContent = report.message || "The AI model has detected anomalous tissue structures in the highlighted region. Based on the confidence score, this represents a High risk. Immediate clinical evaluation and biopsy are recommended.";
                 } else {
                     riskIcon.className = 'risk-icon low';
                     riskIcon.innerHTML = '<i data-lucide="check-circle"></i>';
                     riskTitle.className = 'risk-title low';
                     riskTitle.textContent = 'No Anomalies Detected';
                     document.getElementById('risk-subtitle').textContent = `Low Risk (${report.risk_percentage || 5}%)`;
-                    document.getElementById('details-text').textContent = "The AI model did not detect any immediate signs of oral cancer in the provided scan. Routine checkups are recommended to maintain oral health.";
+                    document.getElementById('details-text').textContent = report.message || "The AI model did not detect any immediate signs of oral cancer in the provided scan. Routine checkups are recommended to maintain oral health.";
                 }
 
                 // Populate Patient Info
-                if (report.patients) {
-                    document.getElementById('info-id').textContent = `ID: ${report.patients.mrn}`;
-                    document.getElementById('info-name').textContent = `Name: ${report.patients.full_name}`;
-                    document.getElementById('info-age').textContent = `Age: ${report.patients.age}`;
-                    document.getElementById('info-gender').textContent = `Gender: ${report.patients.gender}`;
-                }
+                const patInfo = report.patients || {
+                    mrn: report.mrn || report.patient_id,
+                    full_name: report.patient_name || 'Patient',
+                    age: report.age || 42,
+                    gender: report.gender || 'Unspecified'
+                };
+
+                document.getElementById('info-id').textContent = `ID: ${patInfo.mrn || 'N/A'}`;
+                document.getElementById('info-name').textContent = `Name: ${patInfo.full_name || 'Patient'}`;
+                document.getElementById('info-age').textContent = `Age: ${patInfo.age || '--'}`;
+                document.getElementById('info-gender').textContent = `Gender: ${patInfo.gender || '--'}`;
 
                 if (report.analysis_date) {
                     const dateObj = new Date(report.analysis_date);
@@ -321,11 +346,17 @@
                         try {
                             document.getElementById('loading-overlay').style.display = 'flex';
                             document.getElementById('loading-overlay').textContent = 'Deleting...';
-                            const { error: delError } = await supabaseClient.from('reports').delete().eq('id', reportId);
-                            if (delError) throw delError;
                             
-                            // Navigate back to the patient's reports list
-                            window.location.href = `patient_reports.html?patient_id=${report.patient_id}`;
+                            // Delete locally
+                            let localReports = JSON.parse(localStorage.getItem('oralai_local_reports') || '[]');
+                            localReports = localReports.filter(r => r.id !== reportId);
+                            localStorage.setItem('oralai_local_reports', JSON.stringify(localReports));
+
+                            try {
+                                await supabaseClient.from('reports').delete().eq('id', reportId);
+                            } catch(e){}
+
+                            window.location.href = `patient_reports.html?patient_id=${report.patient_id || report.mrn}`;
                         } catch (err) {
                             console.error(err);
                             alert("Failed to delete report.");
@@ -345,19 +376,20 @@
                             const title = document.getElementById('risk-title').textContent;
                             await navigator.share({
                                 title: 'OralAI Scan Report',
-                                text: `Scan Report for ${report.patients ? report.patients.full_name : 'Patient'}:\n${title}`,
+                                text: `Scan Report for ${patInfo.full_name || 'Patient'}:\n${title}`,
                                 url: window.location.href
                             });
                         } catch (err) {}
                     } else {
-                        alert("The Web Share API is not supported on this browser.");
+                        navigator.clipboard.writeText(window.location.href);
+                        alert("Report link copied to clipboard!");
                     }
                 });
 
             } catch (err) {
                 console.error(err);
                 document.getElementById('loading-overlay').style.display = 'none';
-                alert("Failed to load report from database.");
+                alert("Failed to load report details.");
             }
         }
 

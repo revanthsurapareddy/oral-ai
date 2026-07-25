@@ -45,9 +45,9 @@
                 <div class="icon-wrapper icon-blue">
                     <i data-lucide="users"></i>
                 </div>
-                <div id="total-patients-value" class="stat-value">...</div>
+                <div id="total-patients-value" class="stat-value">0</div>
                 <div class="stat-label">Total Patients</div>
-                <div class="stat-sublabel">+12 this week</div>
+                <div class="stat-sublabel" id="total-patients-sub">Active Patients</div>
             </div>
 
             <!-- Card 2 -->
@@ -55,8 +55,8 @@
                 <div class="icon-wrapper icon-cyan">
                     <i data-lucide="scan"></i>
                 </div>
-                <div id="scans-today-value" class="stat-value">...</div>
-                <div class="stat-label">Scans Today</div>
+                <div id="scans-today-value" class="stat-value">0</div>
+                <div class="stat-label">Scans Performed</div>
             </div>
 
             <!-- Card 3 -->
@@ -66,7 +66,20 @@
                 </div>
                 <div class="stat-value">96.5%</div>
                 <div class="stat-label">Detection Accuracy</div>
-                <div class="stat-sublabel">+0.2% vs last month</div>
+                <div class="stat-sublabel">YOLOv8 Model</div>
+            </div>
+        </div>
+
+        <!-- Recent Activities Feed on Dashboard -->
+        <div style="margin-top: 25px; background: #151e2b; border-radius: 12px; padding: 20px; border: 1px solid #1f2c3b;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="font-size: 16px; font-weight: 600; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+                    <i data-lucide="clock"></i> Recent Activity Logs
+                </h3>
+                <a href="profile.html" style="color: #00c6ff; font-size: 13px; text-decoration: none;">View All</a>
+            </div>
+            <div id="dashboard-activity-list" style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="color: #7b8e9f; font-size: 13px; text-align: center; padding: 10px;">Loading recent activities...</div>
             </div>
         </div>
     </main>
@@ -93,6 +106,7 @@
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="data_store.js?v=2.0"></script>
     <script>
         lucide.createIcons();
 
@@ -105,10 +119,12 @@
             try {
                 // Determine doctor name from Supabase Session or localStorage
                 let doctorName = localStorage.getItem('oralai_user_name');
-                const { data: { session } } = await supabaseClient.auth.getSession();
-                if (session && session.user) {
-                    doctorName = session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || doctorName;
-                }
+                try {
+                    const { data: { session } } = await supabaseClient.auth.getSession();
+                    if (session && session.user) {
+                        doctorName = session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || doctorName;
+                    }
+                } catch(e){}
                 
                 if (!doctorName || doctorName.trim() === '') {
                     doctorName = 'Doctor';
@@ -117,33 +133,53 @@
                 const displayName = doctorName.toLowerCase().startsWith('dr') ? doctorName : `Dr. ${doctorName}`;
                 document.getElementById('welcome-user-name').innerText = `Welcome back, ${displayName}`;
 
-                // Fetch Total Patients count
-                const { count: patientsCount, error: patientsError } = await supabaseClient
-                    .from('patients')
-                    .select('*', { count: 'exact', head: true });
-                
-                if (!patientsError && patientsCount !== null) {
-                    document.getElementById('total-patients-value').innerText = patientsCount.toLocaleString();
+                // Fetch unified stats from OralAIDataStore
+                const stats = OralAIDataStore.getStats();
+                document.getElementById('total-patients-value').innerText = stats.totalPatients.toLocaleString();
+                document.getElementById('scans-today-value').innerText = stats.totalScans.toLocaleString();
+
+                // Render Dashboard Activity Feed
+                const activityContainer = document.getElementById('dashboard-activity-list');
+                const activitiesToDisplay = OralAIDataStore.getActivities();
+
+                if (activitiesToDisplay.length === 0) {
+                    activityContainer.innerHTML = `
+                        <div style="color: #7b8e9f; font-size: 13px; text-align: center; padding: 10px;">
+                            No recent activities on localhost. Start an AI scan!
+                        </div>`;
+                } else {
+                    activityContainer.innerHTML = '';
+                    activitiesToDisplay.slice(0, 5).forEach(act => {
+                        const actDiv = document.createElement('div');
+                        const isHigh = act.type === 'high_risk' || (act.description && act.description.includes('High Risk'));
+                        actDiv.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: #0b111a; border-radius: 8px; font-size: 13px;';
+                        actDiv.innerHTML = `
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <i data-lucide="${isHigh ? 'alert-triangle' : 'check-circle'}" style="color: ${isHigh ? '#ff4b4b' : '#10b981'}; width: 18px; height: 18px;"></i>
+                                <div>
+                                    <div style="color: #ffffff; font-weight: 600;">${act.title}</div>
+                                    <div style="color: #7b8e9f; font-size: 12px;">${act.description}</div>
+                                </div>
+                            </div>
+                            <div style="color: #526377; font-size: 11px;">${act.timestamp || 'Recently'}</div>
+                        `;
+                        activityContainer.appendChild(actDiv);
+                    });
+                    lucide.createIcons();
                 }
 
-                // Fetch Scans Today count
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-                const { count: scansCount, error: scansError } = await supabaseClient
-                    .from('reports')
-                    .select('*', { count: 'exact', head: true })
-                    .gte('analysis_date', today.toISOString());
-                
-                if (!scansError && scansCount !== null) {
-                    document.getElementById('scans-today-value').innerText = scansCount.toLocaleString();
-                }
             } catch (error) {
                 console.error("Error fetching stats:", error);
             }
         }
 
-        // Call the fetch function on load
+        // Call the fetch function on load and on navigation lifecycle events (BFCache / Back navigation)
         fetchDashboardStats();
+        window.addEventListener('pageshow', fetchDashboardStats);
+        window.addEventListener('focus', fetchDashboardStats);
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) fetchDashboardStats();
+        });
     </script>
 </body>
 </html>
