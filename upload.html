@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OralAI - Upload Scan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="upload.css">
+    <!-- Using Lucide Icons for clean SVGs -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="brand">
+            <div class="logo-circle">
+                <svg viewBox="0 0 100 100" style="width: 60%; height: 60%;">
+                    <path d="M 20 50 L 35 50 L 45 30 L 55 70 L 65 50 L 80 50" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="brand-text">OralAI</div>
+        </div>
+        <div class="user-actions">
+            <div class="profile-avatar" style="cursor: pointer;" onclick="window.location.href='profile.html'">
+                👨‍⚕️
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+        <section class="welcome-section">
+            <h1 class="welcome-title">Upload Scan</h1>
+            <p class="welcome-subtitle">Select modality and upload medical imagery for AI analysis.</p>
+        </section>
+
+        <div class="upload-card">
+            <div class="drag-drop-area" id="drop-area">
+                <input type="file" id="gallery-input" accept="image/*" style="display: none;">
+                <input type="file" id="camera-input" accept="image/*" capture="environment" style="display: none;">
+
+                <div id="upload-prompt" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+                    <div class="upload-icon-wrapper" id="click-upload-trigger" style="cursor: pointer;">
+                        <i data-lucide="cloud-upload"></i>
+                    </div>
+                    <div class="upload-text" id="click-text-trigger" style="cursor: pointer;"><span class="highlight">Click to upload</span> or drag and drop</div>
+                    <div class="upload-subtext">DICOM, JPEG, PNG, or TIFF (MAX. 50MB)</div>
+                    
+                    <div class="divider">
+                        <span>OR</span>
+                    </div>
+                    
+                    <button class="capture-btn" id="capture-btn">
+                        <i data-lucide="camera"></i> Capture from Device
+                    </button>
+                </div>
+
+                <img id="image-preview" style="display: none; max-width: 100%; max-height: 250px; border-radius: 8px; object-fit: contain; cursor: pointer;" title="Click to change image">
+            </div>
+            
+            <div class="analyze-btn-container">
+                <button class="analyze-btn" id="analyze-btn" disabled>
+                    Analyze Scan
+                </button>
+            </div>
+            
+
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="dashboard.html" class="nav-item">
+            <i data-lucide="layout-grid"></i>
+            <span>Home</span>
+        </a>
+        <a href="upload.html" class="nav-item active">
+            <i data-lucide="cloud-upload"></i>
+            <span>Upload</span>
+        </a>
+
+        <a href="patients.html" class="nav-item">
+            <i data-lucide="users"></i>
+            <span>Patients</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+            <i data-lucide="settings"></i>
+            <span>Settings</span>
+        </a>
+    </nav>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        const galleryInput = document.getElementById('gallery-input');
+        const cameraInput = document.getElementById('camera-input');
+        const uploadPrompt = document.getElementById('upload-prompt');
+        const imagePreview = document.getElementById('image-preview');
+        const captureBtn = document.getElementById('capture-btn');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const clickUploadTrigger = document.getElementById('click-upload-trigger');
+        const clickTextTrigger = document.getElementById('click-text-trigger');
+
+
+        function triggerGallery(e) {
+            e.stopPropagation();
+            galleryInput.click();
+        }
+
+        clickUploadTrigger.addEventListener('click', triggerGallery);
+        clickTextTrigger.addEventListener('click', triggerGallery);
+        imagePreview.addEventListener('click', triggerGallery);
+
+        captureBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            cameraInput.click();
+        });
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    sessionStorage.setItem('originalImageForMD5', e.target.result);
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+                        
+                        // Max dimensions for AI (YOLOv8 uses 640x640, so 800 is plenty safe and avoids OOM)
+                        const MAX_SIZE = 800;
+                        if (width > height) {
+                            if (width > MAX_SIZE) {
+                                height *= MAX_SIZE / width;
+                                width = MAX_SIZE;
+                            }
+                        } else {
+                            if (height > MAX_SIZE) {
+                                width *= MAX_SIZE / height;
+                                height = MAX_SIZE;
+                            }
+                        }
+                        
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        // Compress to JPEG with 80% quality (shrinks 5MB -> ~100KB)
+                        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+                        
+                        imagePreview.src = compressedDataUrl;
+                        imagePreview.style.display = 'block';
+                        uploadPrompt.style.display = 'none';
+                        analyzeBtn.disabled = false;
+                        analyzeBtn.style.opacity = '1';
+                        analyzeBtn.textContent = 'Next';
+                    };
+                    img.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        galleryInput.addEventListener('change', handleFileSelect);
+        cameraInput.addEventListener('change', handleFileSelect);
+
+        analyzeBtn.addEventListener('click', () => {
+            const file = galleryInput.files[0] || cameraInput.files[0];
+            if (!file) return;
+
+            // Save the base64 image string to sessionStorage for the next screen
+            sessionStorage.setItem('scannedImage', imagePreview.src);
+            
+            // Navigate to patient info screen
+            window.location.href = 'patient_info.html';
+        });
+    </script>
+</body>
+</html>

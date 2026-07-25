@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OralAI - Patients</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="patients.css">
+    <link rel="stylesheet" href="patients.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="brand">
+            <div class="logo-circle">
+                <svg viewBox="0 0 100 100" style="width: 60%; height: 60%;">
+                    <path d="M 20 50 L 35 50 L 45 30 L 55 70 L 65 50 L 80 50" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="brand-text">OralAI</div>
+        </div>
+        <div class="user-actions">
+            <div class="profile-avatar" style="cursor: pointer;" onclick="window.location.href='profile.html'">
+                👨‍⚕️
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+        <div class="patients-card">
+            <h2 class="patients-header">Patients</h2>
+            
+            <div class="search-filter-container">
+                <div class="search-bar">
+                    <i data-lucide="search"></i>
+                    <input type="text" id="patient-search-input" placeholder="Search MRN or name...">
+                </div>
+                <button class="filter-btn" id="filter-btn" title="Sort Patients A-Z / Z-A">
+                    <i data-lucide="filter"></i>
+                </button>
+            </div>
+            
+            <div class="patients-divider"></div>
+            
+            <div class="patients-list" id="patients-container">
+                <div style="text-align: center; color: #7B8E9F; padding: 20px;">
+                    Loading patients...
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="dashboard.html" class="nav-item">
+            <i data-lucide="layout-grid"></i>
+            <span>Home</span>
+        </a>
+        <a href="upload.html" class="nav-item">
+            <i data-lucide="cloud-upload"></i>
+            <span>Upload</span>
+        </a>
+
+        <a href="patients.html" class="nav-item active">
+            <i data-lucide="users"></i>
+            <span>Patients</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+            <i data-lucide="settings"></i>
+            <span>Settings</span>
+        </a>
+    </nav>
+
+    <script>
+        lucide.createIcons();
+
+        // Initialize Supabase Client
+        const SUPABASE_URL = 'https://gduqgsxwcnrzdjqkextl.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_1V-1Pqu_6ZKe4I3MDadz1w_0fUURFdo';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const patientsContainer = document.getElementById('patients-container');
+        const searchInput = document.getElementById('patient-search-input');
+        const filterBtn = document.getElementById('filter-btn');
+
+        let allPatients = [];
+        let sortAsc = true;
+
+        // Helper for random avatars
+        const avatars = ['🧑🏼‍🦲', '🧑🏽', '👩🏻‍🦰', '🧔🏾‍♂️', '👱🏼‍♀️'];
+        const colors = ['#ffcdd2', '#e0f2f1', '#fff9c4', '#e1bee7', '#bbdefb'];
+
+        function renderPatients(patientsToRender) {
+            if (!patientsToRender || patientsToRender.length === 0) {
+                patientsContainer.innerHTML = '<div style="color: #7B8E9F; padding: 20px; text-align: center;">No matching patients found.</div>';
+                return;
+            }
+
+            patientsContainer.innerHTML = '';
+            
+            patientsToRender.forEach((patient, index) => {
+                const avatar = avatars[index % avatars.length];
+                const color = colors[index % colors.length];
+                const statusColors = ['status-green', 'status-yellow', 'status-red'];
+                const statusClass = statusColors[index % statusColors.length];
+
+                const patientDiv = document.createElement('div');
+                patientDiv.className = 'patient-item';
+                patientDiv.onclick = () => {
+                    window.location.href = `patient_reports.html?patient_id=${patient.id}`;
+                };
+                patientDiv.innerHTML = `
+                    <div class="patient-avatar" style="background-color: ${color};">
+                        ${avatar}
+                    </div>
+                    <div class="patient-info" style="flex: 1;">
+                        <div class="patient-name">${patient.full_name}</div>
+                        <div class="patient-mrn">${patient.mrn}</div>
+                    </div>
+                    <div class="status-dot ${statusClass}" style="margin-right: 15px;"></div>
+                    <div class="delete-patient-btn" style="color: #ff4b4b; padding: 10px; border-radius: 8px; transition: background 0.2s;" onclick="deletePatient(event, '${patient.id}')">
+                        <i data-lucide="trash-2"></i>
+                    </div>
+                `;
+                patientsContainer.appendChild(patientDiv);
+            });
+            
+            lucide.createIcons();
+        }
+
+        async function loadPatients() {
+            const { data: patients, error } = await supabaseClient.from('patients').select('*').order('created_at', { ascending: false });
+            
+            if (error) {
+                console.error("Error fetching patients:", error);
+                patientsContainer.innerHTML = '<div style="color: #ff4b4b; padding: 20px;">Failed to load patients.</div>';
+                return;
+            }
+
+            allPatients = patients || [];
+            renderPatients(allPatients);
+        }
+
+        // Live Search Handler
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                const filtered = allPatients.filter(p => 
+                    (p.full_name && p.full_name.toLowerCase().includes(query)) ||
+                    (p.mrn && p.mrn.toLowerCase().includes(query))
+                );
+                renderPatients(filtered);
+            });
+        }
+
+        // Filter / Sort Handler
+        if (filterBtn) {
+            filterBtn.addEventListener('click', () => {
+                sortAsc = !sortAsc;
+                allPatients.sort((a, b) => {
+                    const nameA = (a.full_name || '').toLowerCase();
+                    const nameB = (b.full_name || '').toLowerCase();
+                    return sortAsc ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+                });
+                const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+                const filtered = allPatients.filter(p => 
+                    (p.full_name && p.full_name.toLowerCase().includes(query)) ||
+                    (p.mrn && p.mrn.toLowerCase().includes(query))
+                );
+                renderPatients(filtered);
+            });
+        }
+
+        window.deletePatient = async (event, patientId) => {
+            event.stopPropagation();
+            if (confirm("Are you sure you want to permanently delete this patient and all their historical reports?")) {
+                try {
+                    const { error } = await supabaseClient.from('patients').delete().eq('id', patientId);
+                    if (error) throw error;
+                    loadPatients();
+                } catch (err) {
+                    console.error("Error deleting patient:", err);
+                    alert("Failed to delete patient.");
+                }
+            }
+        };
+
+        loadPatients();
+    </script>
+</body>
+</html>

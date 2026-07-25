@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OralAI - Saved Reports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0b111a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 600;
+            border-bottom: 1px solid #1f2c3b;
+        }
+
+        .header i {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .container {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .report-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .report-item {
+            display: flex;
+            align-items: center;
+            background-color: #151e2b;
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .report-item:hover {
+            background-color: #1f2c3b;
+        }
+
+        .report-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e0f2fe;
+            color: #0284c7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        .report-details {
+            flex: 1;
+        }
+
+        .report-date {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .report-id {
+            font-size: 13px;
+            color: #7b8e9f;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .status-high { background-color: #ff4b4b; }
+        .status-low { background-color: #10b981; }
+
+        .loading-text {
+            color: #7b8e9f;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <i data-lucide="arrow-left" onclick="history.back()"></i>
+        <span id="page-title">Loading...</span>
+    </div>
+
+    <div class="container">
+        <div class="section-title">Saved Reports</div>
+        
+        <div class="report-list" id="report-list">
+            <div class="loading-text">Loading reports...</div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Initialize Supabase Client
+        const SUPABASE_URL = 'https://gduqgsxwcnrzdjqkextl.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_1V-1Pqu_6ZKe4I3MDadz1w_0fUURFdo';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        async function loadReports() {
+            const params = new URLSearchParams(window.location.search);
+            const patientId = params.get('patient_id');
+
+            if (!patientId) {
+                alert("No patient ID provided.");
+                window.location.href = 'patients.html';
+                return;
+            }
+
+            try {
+                // Fetch patient name
+                const { data: patientData } = await supabaseClient
+                    .from('patients')
+                    .select('full_name')
+                    .eq('id', patientId)
+                    .single();
+
+                if (patientData) {
+                    document.getElementById('page-title').textContent = `${patientData.full_name}'s Reports`;
+                } else {
+                    document.getElementById('page-title').textContent = `Patient Reports`;
+                }
+
+                // Fetch reports
+                const { data: reports, error } = await supabaseClient
+                    .from('reports')
+                    .select('*')
+                    .eq('patient_id', patientId)
+                    .order('analysis_date', { ascending: false });
+
+                const listContainer = document.getElementById('report-list');
+
+                if (error) throw error;
+
+                if (!reports || reports.length === 0) {
+                    listContainer.innerHTML = '<div class="loading-text">No reports saved for this patient.</div>';
+                    return;
+                }
+
+                listContainer.innerHTML = '';
+
+                reports.forEach(report => {
+                    const dateObj = new Date(report.analysis_date);
+                    const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    
+                    // Short ID for display
+                    const shortId = report.id.substring(0, 8);
+                    
+                    const statusClass = (report.has_cancer || report.risk_level === 'High') ? 'status-high' : 'status-low';
+
+                    const item = document.createElement('div');
+                    item.className = 'report-item';
+                    item.onclick = () => {
+                        window.location.href = `view_report.html?report_id=${report.id}`;
+                    };
+
+                    item.innerHTML = `
+                        <div class="report-icon">
+                            <i data-lucide="file-text"></i>
+                        </div>
+                        <div class="report-details">
+                            <div class="report-date">${formattedDate}</div>
+                            <div class="report-id">${shortId}</div>
+                        </div>
+                        <div class="status-dot ${statusClass}"></div>
+                    `;
+                    listContainer.appendChild(item);
+                });
+
+                lucide.createIcons();
+            } catch (err) {
+                console.error("Error loading reports:", err);
+                document.getElementById('report-list').innerHTML = '<div class="loading-text" style="color:#ff4b4b;">Failed to load reports.</div>';
+            }
+        }
+
+        loadReports();
+    </script>
+</body>
+</html>

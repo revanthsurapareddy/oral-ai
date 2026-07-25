@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OralAI - Patient Information</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0b111a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 600;
+            border-bottom: 1px solid #1f2c3b;
+        }
+
+        .header i {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .container {
+            padding: 30px 20px;
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            color: #7b8e9f;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            background-color: #151e2b;
+            border: 1px solid #1f2c3b;
+            border-radius: 8px;
+            padding: 16px;
+            color: #ffffff;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-input::placeholder {
+            color: #6a7c92;
+        }
+
+        .form-input:focus {
+            border-color: #00c6ff;
+        }
+
+        .proceed-btn {
+            width: 100%;
+            background-color: #151e2b;
+            color: #ffffff;
+            border: 1px solid #1f2c3b;
+            border-radius: 8px;
+            padding: 18px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.2s;
+        }
+
+        .proceed-btn:hover {
+            background-color: #1f2c3b;
+        }
+
+        .proceed-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <i data-lucide="arrow-left" onclick="history.back()"></i>
+        Patient Information
+    </div>
+
+    <div class="container">
+        <div class="form-group">
+            <label class="form-label">Patient ID</label>
+            <input type="text" class="form-input" id="patient-id" placeholder="e.g. PT-12345">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-input" id="patient-name" placeholder="e.g. John Doe">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Age</label>
+            <input type="number" class="form-input" id="patient-age" placeholder="e.g. 45">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Gender</label>
+            <input type="text" class="form-input" id="patient-gender" placeholder="e.g. Male / Female">
+        </div>
+
+        <button class="proceed-btn" id="proceed-btn">Proceed</button>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        // For Local Testing on Wi-Fi: Use 'http://10.26.5.158:8000/analyze' (or whatever your laptop's current IP is)
+        // For Live Production: Use your deployed backend URL (e.g., 'https://oral-ai-backend.onrender.com/analyze')
+        const BACKEND_URL = 'https://oral-ai-backend.onrender.com/analyze';
+        // ---------------------
+
+        lucide.createIcons();
+
+        function dataURLtoFile(dataurl, filename) {
+            var arr = dataurl.split(','),
+                mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[arr.length - 1]), 
+                n = bstr.length, 
+                u8arr = new Uint8Array(n);
+                
+            while(n--){
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            
+            return new File([u8arr], filename, {type:mime});
+        }
+
+        // Initialize Supabase Client
+        const SUPABASE_URL = 'https://gduqgsxwcnrzdjqkextl.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_1V-1Pqu_6ZKe4I3MDadz1w_0fUURFdo';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const proceedBtn = document.getElementById('proceed-btn');
+
+        proceedBtn.addEventListener('click', async () => {
+            const scannedImage = sessionStorage.getItem('originalImageForMD5') || sessionStorage.getItem('scannedImage');
+            if (!scannedImage) {
+                alert("No image found. Please go back and upload an image.");
+                return;
+            }
+
+            proceedBtn.textContent = 'Analyzing... Please wait';
+            proceedBtn.disabled = true;
+
+            try {
+                const file = dataURLtoFile(scannedImage, 'scan.jpg');
+                const formData = new FormData();
+                formData.append('file', file);
+                
+                // Call local Python backend
+                const response = await fetch(BACKEND_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                let data;
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    throw new Error(`Server returned non-JSON response. Status: ${response.status} ${response.statusText}`);
+                }
+                
+                if (!response.ok) {
+                    throw new Error(`Server error: ${data.message || response.statusText}`);
+                }
+                
+                if (data.status === 'success') {
+                    // Save result for the next screen
+                    sessionStorage.setItem('apiResult', JSON.stringify(data));
+                    
+                    // Save patient info to sessionStorage
+                    const mrn = document.getElementById('patient-id').value;
+                    const name = document.getElementById('patient-name').value;
+                    const age = parseInt(document.getElementById('patient-age').value) || 0;
+                    const gender = document.getElementById('patient-gender').value;
+
+                    sessionStorage.setItem('patientInfo', JSON.stringify({
+                        id: mrn,
+                        name: name
+                    }));
+
+                    // Upsert Patient to Supabase
+                    let patientId = null;
+                    if (mrn && name) {
+                        const { data: existingPatients } = await supabaseClient.from('patients').select('id').eq('mrn', mrn);
+                        if (existingPatients && existingPatients.length > 0) {
+                            patientId = existingPatients[0].id;
+                        } else {
+                            const { data: newPatient } = await supabaseClient.from('patients').insert([{
+                                mrn: mrn,
+                                full_name: name,
+                                age: age,
+                                gender: gender
+                            }]).select();
+                            if (newPatient && newPatient.length > 0) {
+                                patientId = newPatient[0].id;
+                            }
+                        }
+                    }
+
+                    // Save Report to Supabase
+                    if (patientId) {
+                        await supabaseClient.from('reports').insert([{
+                            patient_id: patientId,
+                            scan_image_url: data.image_base64,
+                            risk_level: data.has_cancer ? 'High' : 'Low',
+                            risk_percentage: data.risk_percentage || (data.has_cancer ? 92 : 5),
+                            has_cancer: data.has_cancer
+                        }]);
+                    }
+
+                    window.location.href = 'result.html';
+                } else {
+                    alert("Error analyzing image: " + (data.message || 'Unknown error'));
+                    proceedBtn.textContent = 'Proceed';
+                    proceedBtn.disabled = false;
+                }
+            } catch (error) {
+                console.error("Analysis failed:", error);
+                alert("Network Error: " + error.message + "\n\nIf you are on a live Netlify link, your browser or Adblocker might be blocking the connection to the free Render server, or the image was too large and crashed the server. Try testing with a very small image.");
+                proceedBtn.textContent = 'Proceed';
+                proceedBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
