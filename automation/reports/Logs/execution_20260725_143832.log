@@ -1,0 +1,12 @@
+[2026-07-25 14:38:32] [INFO] ====================================================
+[2026-07-25 14:38:32] [INFO] STARTING AUTOMATION EXECUTION RUNNER (400+ TESTS)
+[2026-07-25 14:38:32] [INFO] ====================================================
+[2026-07-25 14:38:32] [INFO] =========================================
+[2026-07-25 14:38:32] [INFO] STARTING DEPLOYMENT VALIDATION FOR: http://localhost:8080/
+[2026-07-25 14:38:32] [INFO] =========================================
+[2026-07-25 14:38:32] [INFO] Base URL Response Code: 200
+[2026-07-25 14:38:32] [INFO] Page Check [dashboard.html] -> Status Code: 200
+[2026-07-25 14:38:32] [INFO] Page Check [patients.html] -> Status Code: 200
+[2026-07-25 14:38:32] [INFO] Page Check [upload.html] -> Status Code: 200
+[2026-07-25 14:38:32] [INFO] Page Check [profile.html] -> Status Code: 200
+[2026-07-25 14:38:32] [INFO] LIVE DEPLOYMENT VALIDATION COMPLETED SUCCESSFULLY.

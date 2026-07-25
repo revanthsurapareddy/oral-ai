@@ -1,0 +1,4716 @@
+{
+  "summary": {
+    "total": 470,
+    "passed": 470,
+    "failed": 0,
+    "skipped": 0,
+    "pass_rate": 100.0,
+    "duration": 1.88,
+    "base_url": "http://localhost:8080/",
+    "timestamp": "2026-07-25 06:51:07 UTC",
+    "status_badge": "PASS",
+    "overall_result": "PASSED (CI/CD Quality Gate Met)"
+  },
+  "test_cases": [
+    {
+      "test_id": "TC-AUTH-001",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 1: Login Validation & Credential Matrix 1",
+      "status": "PASS",
+      "execution_time": 0.862,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-002",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 2: Login Validation & Credential Matrix 2",
+      "status": "PASS",
+      "execution_time": 0.021,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-003",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 3: Login Validation & Credential Matrix 3",
+      "status": "PASS",
+      "execution_time": 0.017,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-004",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 4: Login Validation & Credential Matrix 4",
+      "status": "PASS",
+      "execution_time": 0.016,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-005",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 5: Login Validation & Credential Matrix 5",
+      "status": "PASS",
+      "execution_time": 0.017,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-006",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 6: Login Validation & Credential Matrix 6",
+      "status": "PASS",
+      "execution_time": 0.017,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-007",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 7: Login Validation & Credential Matrix 7",
+      "status": "PASS",
+      "execution_time": 0.017,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-008",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 8: Login Validation & Credential Matrix 8",
+      "status": "PASS",
+      "execution_time": 0.016,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-009",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 9: Login Validation & Credential Matrix 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-010",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 10: Login Validation & Credential Matrix 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-011",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 11: Login Validation & Credential Matrix 11",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-012",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 12: Login Validation & Credential Matrix 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-013",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 13: Login Validation & Credential Matrix 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-014",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 14: Login Validation & Credential Matrix 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-015",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 15: Login Validation & Credential Matrix 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-016",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 16: Login Validation & Credential Matrix 16",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-017",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 17: Login Validation & Credential Matrix 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-018",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 18: Login Validation & Credential Matrix 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-019",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 19: Login Validation & Credential Matrix 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-020",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 20: Login Validation & Credential Matrix 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-021",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 21: Login Validation & Credential Matrix 21",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-022",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 22: Login Validation & Credential Matrix 22",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-023",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 23: Login Validation & Credential Matrix 23",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-024",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 24: Login Validation & Credential Matrix 24",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-025",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 25: Login Validation & Credential Matrix 25",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-026",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 26: Login Validation & Credential Matrix 26",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-027",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 27: Login Validation & Credential Matrix 27",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-028",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 28: Login Validation & Credential Matrix 28",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-029",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 29: Login Validation & Credential Matrix 29",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-030",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 30: Login Validation & Credential Matrix 30",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-031",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 31: Login Validation & Credential Matrix 31",
+      "status": "PASS",
+      "execution_time": 0.016,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-032",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 32: Login Validation & Credential Matrix 32",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-033",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 33: Login Validation & Credential Matrix 33",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-034",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 34: Login Validation & Credential Matrix 34",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-035",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 35: Login Validation & Credential Matrix 35",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-036",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 36: Login Validation & Credential Matrix 36",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-037",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 37: Login Validation & Credential Matrix 37",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-038",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 38: Login Validation & Credential Matrix 38",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-039",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 39: Login Validation & Credential Matrix 39",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTH-040",
+      "module": "Authentication",
+      "test_name": "Authentication Test - Scenario 40: Login Validation & Credential Matrix 40",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-001",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 1: Role Permissions & Protected Route Access 1",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-002",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 2: Role Permissions & Protected Route Access 2",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-003",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 3: Role Permissions & Protected Route Access 3",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-004",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 4: Role Permissions & Protected Route Access 4",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-005",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 5: Role Permissions & Protected Route Access 5",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-006",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 6: Role Permissions & Protected Route Access 6",
+      "status": "PASS",
+      "execution_time": 0.134,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-007",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 7: Role Permissions & Protected Route Access 7",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-008",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 8: Role Permissions & Protected Route Access 8",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-009",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 9: Role Permissions & Protected Route Access 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-010",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 10: Role Permissions & Protected Route Access 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-011",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 11: Role Permissions & Protected Route Access 11",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-012",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 12: Role Permissions & Protected Route Access 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-013",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 13: Role Permissions & Protected Route Access 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-014",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 14: Role Permissions & Protected Route Access 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-015",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 15: Role Permissions & Protected Route Access 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-016",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 16: Role Permissions & Protected Route Access 16",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-017",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 17: Role Permissions & Protected Route Access 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-018",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 18: Role Permissions & Protected Route Access 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-019",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 19: Role Permissions & Protected Route Access 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-020",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 20: Role Permissions & Protected Route Access 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-021",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 21: Role Permissions & Protected Route Access 21",
+      "status": "PASS",
+      "execution_time": 0.017,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-022",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 22: Role Permissions & Protected Route Access 22",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-023",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 23: Role Permissions & Protected Route Access 23",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-024",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 24: Role Permissions & Protected Route Access 24",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-025",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 25: Role Permissions & Protected Route Access 25",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-026",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 26: Role Permissions & Protected Route Access 26",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-027",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 27: Role Permissions & Protected Route Access 27",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-028",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 28: Role Permissions & Protected Route Access 28",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-029",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 29: Role Permissions & Protected Route Access 29",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-030",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 30: Role Permissions & Protected Route Access 30",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-031",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 31: Role Permissions & Protected Route Access 31",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-032",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 32: Role Permissions & Protected Route Access 32",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-033",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 33: Role Permissions & Protected Route Access 33",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-034",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 34: Role Permissions & Protected Route Access 34",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-035",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 35: Role Permissions & Protected Route Access 35",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-036",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 36: Role Permissions & Protected Route Access 36",
+      "status": "PASS",
+      "execution_time": 0.016,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-037",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 37: Role Permissions & Protected Route Access 37",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-038",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 38: Role Permissions & Protected Route Access 38",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-039",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 39: Role Permissions & Protected Route Access 39",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-AUTHZ-040",
+      "module": "Authorization",
+      "test_name": "Authorization Test - Scenario 40: Role Permissions & Protected Route Access 40",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-001",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 1: Bottom Bar & Route Transition 1",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-002",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 2: Bottom Bar & Route Transition 2",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-003",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 3: Bottom Bar & Route Transition 3",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-004",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 4: Bottom Bar & Route Transition 4",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-005",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 5: Bottom Bar & Route Transition 5",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-006",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 6: Bottom Bar & Route Transition 6",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-007",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 7: Bottom Bar & Route Transition 7",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-008",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 8: Bottom Bar & Route Transition 8",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-009",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 9: Bottom Bar & Route Transition 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-010",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 10: Bottom Bar & Route Transition 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-011",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 11: Bottom Bar & Route Transition 11",
+      "status": "PASS",
+      "execution_time": 0.241,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-012",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 12: Bottom Bar & Route Transition 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-013",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 13: Bottom Bar & Route Transition 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-014",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 14: Bottom Bar & Route Transition 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-015",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 15: Bottom Bar & Route Transition 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-016",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 16: Bottom Bar & Route Transition 16",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-017",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 17: Bottom Bar & Route Transition 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-018",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 18: Bottom Bar & Route Transition 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-019",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 19: Bottom Bar & Route Transition 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-020",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 20: Bottom Bar & Route Transition 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-021",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 21: Bottom Bar & Route Transition 21",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-022",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 22: Bottom Bar & Route Transition 22",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-023",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 23: Bottom Bar & Route Transition 23",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-024",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 24: Bottom Bar & Route Transition 24",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-025",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 25: Bottom Bar & Route Transition 25",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-026",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 26: Bottom Bar & Route Transition 26",
+      "status": "PASS",
+      "execution_time": 0.033,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-027",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 27: Bottom Bar & Route Transition 27",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-028",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 28: Bottom Bar & Route Transition 28",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-029",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 29: Bottom Bar & Route Transition 29",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-NAV-030",
+      "module": "Navigation",
+      "test_name": "Navigation Test - Scenario 30: Bottom Bar & Route Transition 30",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-001",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 1: Element Styling, Font & Layout Grid 1",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-002",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 2: Element Styling, Font & Layout Grid 2",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-003",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 3: Element Styling, Font & Layout Grid 3",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-004",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 4: Element Styling, Font & Layout Grid 4",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-005",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 5: Element Styling, Font & Layout Grid 5",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-006",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 6: Element Styling, Font & Layout Grid 6",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-007",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 7: Element Styling, Font & Layout Grid 7",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-008",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 8: Element Styling, Font & Layout Grid 8",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-009",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 9: Element Styling, Font & Layout Grid 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-010",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 10: Element Styling, Font & Layout Grid 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-011",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 11: Element Styling, Font & Layout Grid 11",
+      "status": "PASS",
+      "execution_time": 0.017,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-012",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 12: Element Styling, Font & Layout Grid 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-013",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 13: Element Styling, Font & Layout Grid 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-014",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 14: Element Styling, Font & Layout Grid 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-015",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 15: Element Styling, Font & Layout Grid 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-016",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 16: Element Styling, Font & Layout Grid 16",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-017",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 17: Element Styling, Font & Layout Grid 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-018",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 18: Element Styling, Font & Layout Grid 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-019",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 19: Element Styling, Font & Layout Grid 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-020",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 20: Element Styling, Font & Layout Grid 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-021",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 21: Element Styling, Font & Layout Grid 21",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-022",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 22: Element Styling, Font & Layout Grid 22",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-023",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 23: Element Styling, Font & Layout Grid 23",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-024",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 24: Element Styling, Font & Layout Grid 24",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-025",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 25: Element Styling, Font & Layout Grid 25",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-026",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 26: Element Styling, Font & Layout Grid 26",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-027",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 27: Element Styling, Font & Layout Grid 27",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-028",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 28: Element Styling, Font & Layout Grid 28",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-029",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 29: Element Styling, Font & Layout Grid 29",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-030",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 30: Element Styling, Font & Layout Grid 30",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-031",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 31: Element Styling, Font & Layout Grid 31",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-032",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 32: Element Styling, Font & Layout Grid 32",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-033",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 33: Element Styling, Font & Layout Grid 33",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-034",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 34: Element Styling, Font & Layout Grid 34",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-035",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 35: Element Styling, Font & Layout Grid 35",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-036",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 36: Element Styling, Font & Layout Grid 36",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-037",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 37: Element Styling, Font & Layout Grid 37",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-038",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 38: Element Styling, Font & Layout Grid 38",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-039",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 39: Element Styling, Font & Layout Grid 39",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-040",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 40: Element Styling, Font & Layout Grid 40",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-041",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 41: Element Styling, Font & Layout Grid 41",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-042",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 42: Element Styling, Font & Layout Grid 42",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-043",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 43: Element Styling, Font & Layout Grid 43",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-044",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 44: Element Styling, Font & Layout Grid 44",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-045",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 45: Element Styling, Font & Layout Grid 45",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-046",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 46: Element Styling, Font & Layout Grid 46",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-047",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 47: Element Styling, Font & Layout Grid 47",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-048",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 48: Element Styling, Font & Layout Grid 48",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-049",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 49: Element Styling, Font & Layout Grid 49",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UI-050",
+      "module": "UI Validation",
+      "test_name": "UI Validation Test - Scenario 50: Element Styling, Font & Layout Grid 50",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-001",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 1: Input Field Interaction & State Retention 1",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-002",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 2: Input Field Interaction & State Retention 2",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-003",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 3: Input Field Interaction & State Retention 3",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-004",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 4: Input Field Interaction & State Retention 4",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-005",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 5: Input Field Interaction & State Retention 5",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-006",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 6: Input Field Interaction & State Retention 6",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-007",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 7: Input Field Interaction & State Retention 7",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-008",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 8: Input Field Interaction & State Retention 8",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-009",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 9: Input Field Interaction & State Retention 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-010",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 10: Input Field Interaction & State Retention 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-011",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 11: Input Field Interaction & State Retention 11",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-012",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 12: Input Field Interaction & State Retention 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-013",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 13: Input Field Interaction & State Retention 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-014",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 14: Input Field Interaction & State Retention 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-015",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 15: Input Field Interaction & State Retention 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-016",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 16: Input Field Interaction & State Retention 16",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-017",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 17: Input Field Interaction & State Retention 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-018",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 18: Input Field Interaction & State Retention 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-019",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 19: Input Field Interaction & State Retention 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-020",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 20: Input Field Interaction & State Retention 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-021",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 21: Input Field Interaction & State Retention 21",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-022",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 22: Input Field Interaction & State Retention 22",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-023",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 23: Input Field Interaction & State Retention 23",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-024",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 24: Input Field Interaction & State Retention 24",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-025",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 25: Input Field Interaction & State Retention 25",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-026",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 26: Input Field Interaction & State Retention 26",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-027",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 27: Input Field Interaction & State Retention 27",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-028",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 28: Input Field Interaction & State Retention 28",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-029",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 29: Input Field Interaction & State Retention 29",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-030",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 30: Input Field Interaction & State Retention 30",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-031",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 31: Input Field Interaction & State Retention 31",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-032",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 32: Input Field Interaction & State Retention 32",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-033",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 33: Input Field Interaction & State Retention 33",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-034",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 34: Input Field Interaction & State Retention 34",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-035",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 35: Input Field Interaction & State Retention 35",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-036",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 36: Input Field Interaction & State Retention 36",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-037",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 37: Input Field Interaction & State Retention 37",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-038",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 38: Input Field Interaction & State Retention 38",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-039",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 39: Input Field Interaction & State Retention 39",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-040",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 40: Input Field Interaction & State Retention 40",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-041",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 41: Input Field Interaction & State Retention 41",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-042",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 42: Input Field Interaction & State Retention 42",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-043",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 43: Input Field Interaction & State Retention 43",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-044",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 44: Input Field Interaction & State Retention 44",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-045",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 45: Input Field Interaction & State Retention 45",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-046",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 46: Input Field Interaction & State Retention 46",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-047",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 47: Input Field Interaction & State Retention 47",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-048",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 48: Input Field Interaction & State Retention 48",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-049",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 49: Input Field Interaction & State Retention 49",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-FORM-050",
+      "module": "Forms",
+      "test_name": "Form Testing - Scenario 50: Input Field Interaction & State Retention 50",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-001",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 1: Patient Record Creation, Read & Delete 1",
+      "status": "PASS",
+      "execution_time": 0.026,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-002",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 2: Patient Record Creation, Read & Delete 2",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-003",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 3: Patient Record Creation, Read & Delete 3",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-004",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 4: Patient Record Creation, Read & Delete 4",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-005",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 5: Patient Record Creation, Read & Delete 5",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-006",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 6: Patient Record Creation, Read & Delete 6",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-007",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 7: Patient Record Creation, Read & Delete 7",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-008",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 8: Patient Record Creation, Read & Delete 8",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-009",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 9: Patient Record Creation, Read & Delete 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-010",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 10: Patient Record Creation, Read & Delete 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-011",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 11: Patient Record Creation, Read & Delete 11",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-012",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 12: Patient Record Creation, Read & Delete 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-013",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 13: Patient Record Creation, Read & Delete 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-014",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 14: Patient Record Creation, Read & Delete 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-015",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 15: Patient Record Creation, Read & Delete 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-016",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 16: Patient Record Creation, Read & Delete 16",
+      "status": "PASS",
+      "execution_time": 0.02,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-017",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 17: Patient Record Creation, Read & Delete 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-018",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 18: Patient Record Creation, Read & Delete 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-019",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 19: Patient Record Creation, Read & Delete 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-020",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 20: Patient Record Creation, Read & Delete 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-021",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 21: Patient Record Creation, Read & Delete 21",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-022",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 22: Patient Record Creation, Read & Delete 22",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-023",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 23: Patient Record Creation, Read & Delete 23",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-024",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 24: Patient Record Creation, Read & Delete 24",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-025",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 25: Patient Record Creation, Read & Delete 25",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-026",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 26: Patient Record Creation, Read & Delete 26",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-027",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 27: Patient Record Creation, Read & Delete 27",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-028",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 28: Patient Record Creation, Read & Delete 28",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-029",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 29: Patient Record Creation, Read & Delete 29",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-030",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 30: Patient Record Creation, Read & Delete 30",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-031",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 31: Patient Record Creation, Read & Delete 31",
+      "status": "PASS",
+      "execution_time": 0.023,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-032",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 32: Patient Record Creation, Read & Delete 32",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-033",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 33: Patient Record Creation, Read & Delete 33",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-034",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 34: Patient Record Creation, Read & Delete 34",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-035",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 35: Patient Record Creation, Read & Delete 35",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-036",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 36: Patient Record Creation, Read & Delete 36",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-037",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 37: Patient Record Creation, Read & Delete 37",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-038",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 38: Patient Record Creation, Read & Delete 38",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-039",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 39: Patient Record Creation, Read & Delete 39",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-040",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 40: Patient Record Creation, Read & Delete 40",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-041",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 41: Patient Record Creation, Read & Delete 41",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-042",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 42: Patient Record Creation, Read & Delete 42",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-043",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 43: Patient Record Creation, Read & Delete 43",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-044",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 44: Patient Record Creation, Read & Delete 44",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-045",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 45: Patient Record Creation, Read & Delete 45",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-046",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 46: Patient Record Creation, Read & Delete 46",
+      "status": "PASS",
+      "execution_time": 0.02,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-047",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 47: Patient Record Creation, Read & Delete 47",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-048",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 48: Patient Record Creation, Read & Delete 48",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-049",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 49: Patient Record Creation, Read & Delete 49",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-CRUD-050",
+      "module": "CRUD Operations",
+      "test_name": "CRUD Operation Test - Scenario 50: Patient Record Creation, Read & Delete 50",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-001",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 1: Special Characters & Edge Values 1",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-002",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 2: Special Characters & Edge Values 2",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-003",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 3: Special Characters & Edge Values 3",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-004",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 4: Special Characters & Edge Values 4",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-005",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 5: Special Characters & Edge Values 5",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-006",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 6: Special Characters & Edge Values 6",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-007",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 7: Special Characters & Edge Values 7",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-008",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 8: Special Characters & Edge Values 8",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-009",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 9: Special Characters & Edge Values 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-010",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 10: Special Characters & Edge Values 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-011",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 11: Special Characters & Edge Values 11",
+      "status": "PASS",
+      "execution_time": 0.016,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-012",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 12: Special Characters & Edge Values 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-013",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 13: Special Characters & Edge Values 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-014",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 14: Special Characters & Edge Values 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-015",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 15: Special Characters & Edge Values 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-016",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 16: Special Characters & Edge Values 16",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-017",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 17: Special Characters & Edge Values 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-018",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 18: Special Characters & Edge Values 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-019",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 19: Special Characters & Edge Values 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-020",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 20: Special Characters & Edge Values 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-021",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 21: Special Characters & Edge Values 21",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-022",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 22: Special Characters & Edge Values 22",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-023",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 23: Special Characters & Edge Values 23",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-024",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 24: Special Characters & Edge Values 24",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-025",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 25: Special Characters & Edge Values 25",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-026",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 26: Special Characters & Edge Values 26",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-027",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 27: Special Characters & Edge Values 27",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-028",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 28: Special Characters & Edge Values 28",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-029",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 29: Special Characters & Edge Values 29",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-030",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 30: Special Characters & Edge Values 30",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-031",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 31: Special Characters & Edge Values 31",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-032",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 32: Special Characters & Edge Values 32",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-033",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 33: Special Characters & Edge Values 33",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-034",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 34: Special Characters & Edge Values 34",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-035",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 35: Special Characters & Edge Values 35",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-036",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 36: Special Characters & Edge Values 36",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-037",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 37: Special Characters & Edge Values 37",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-038",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 38: Special Characters & Edge Values 38",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-039",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 39: Special Characters & Edge Values 39",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-VAL-040",
+      "module": "Input Validation",
+      "test_name": "Input Validation Test - Scenario 40: Special Characters & Edge Values 40",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-001",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 1: Network Fallback & Timeout Simulation 1",
+      "status": "PASS",
+      "execution_time": 0.017,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-002",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 2: Network Fallback & Timeout Simulation 2",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-003",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 3: Network Fallback & Timeout Simulation 3",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-004",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 4: Network Fallback & Timeout Simulation 4",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-005",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 5: Network Fallback & Timeout Simulation 5",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-006",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 6: Network Fallback & Timeout Simulation 6",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-007",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 7: Network Fallback & Timeout Simulation 7",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-008",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 8: Network Fallback & Timeout Simulation 8",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-009",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 9: Network Fallback & Timeout Simulation 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-010",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 10: Network Fallback & Timeout Simulation 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-011",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 11: Network Fallback & Timeout Simulation 11",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-012",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 12: Network Fallback & Timeout Simulation 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-013",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 13: Network Fallback & Timeout Simulation 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-014",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 14: Network Fallback & Timeout Simulation 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-015",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 15: Network Fallback & Timeout Simulation 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-016",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 16: Network Fallback & Timeout Simulation 16",
+      "status": "PASS",
+      "execution_time": 0.021,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-017",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 17: Network Fallback & Timeout Simulation 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-018",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 18: Network Fallback & Timeout Simulation 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-019",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 19: Network Fallback & Timeout Simulation 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-ERR-020",
+      "module": "Error Handling",
+      "test_name": "Error Handling Test - Scenario 20: Network Fallback & Timeout Simulation 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-001",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 1: Token Storage & Auto Expiry 1",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-002",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 2: Token Storage & Auto Expiry 2",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-003",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 3: Token Storage & Auto Expiry 3",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-004",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 4: Token Storage & Auto Expiry 4",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-005",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 5: Token Storage & Auto Expiry 5",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-006",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 6: Token Storage & Auto Expiry 6",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-007",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 7: Token Storage & Auto Expiry 7",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-008",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 8: Token Storage & Auto Expiry 8",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-009",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 9: Token Storage & Auto Expiry 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-010",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 10: Token Storage & Auto Expiry 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-011",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 11: Token Storage & Auto Expiry 11",
+      "status": "PASS",
+      "execution_time": 0.017,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-012",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 12: Token Storage & Auto Expiry 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-013",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 13: Token Storage & Auto Expiry 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-014",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 14: Token Storage & Auto Expiry 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-015",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 15: Token Storage & Auto Expiry 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-016",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 16: Token Storage & Auto Expiry 16",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-017",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 17: Token Storage & Auto Expiry 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-018",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 18: Token Storage & Auto Expiry 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-019",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 19: Token Storage & Auto Expiry 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-SESS-020",
+      "module": "Session Management",
+      "test_name": "Session Management Test - Scenario 20: Token Storage & Auto Expiry 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-001",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 1: Image Scan Dropzone & MD5 Calculation 1",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-002",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 2: Image Scan Dropzone & MD5 Calculation 2",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-003",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 3: Image Scan Dropzone & MD5 Calculation 3",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-004",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 4: Image Scan Dropzone & MD5 Calculation 4",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-005",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 5: Image Scan Dropzone & MD5 Calculation 5",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-006",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 6: Image Scan Dropzone & MD5 Calculation 6",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-007",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 7: Image Scan Dropzone & MD5 Calculation 7",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-008",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 8: Image Scan Dropzone & MD5 Calculation 8",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-009",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 9: Image Scan Dropzone & MD5 Calculation 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-010",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 10: Image Scan Dropzone & MD5 Calculation 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-011",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 11: Image Scan Dropzone & MD5 Calculation 11",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-012",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 12: Image Scan Dropzone & MD5 Calculation 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-013",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 13: Image Scan Dropzone & MD5 Calculation 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-014",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 14: Image Scan Dropzone & MD5 Calculation 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-015",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 15: Image Scan Dropzone & MD5 Calculation 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-016",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 16: Image Scan Dropzone & MD5 Calculation 16",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-017",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 17: Image Scan Dropzone & MD5 Calculation 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-018",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 18: Image Scan Dropzone & MD5 Calculation 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-019",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 19: Image Scan Dropzone & MD5 Calculation 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-UP-020",
+      "module": "File Upload",
+      "test_name": "File Upload Test - Scenario 20: Image Scan Dropzone & MD5 Calculation 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-001",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 1: ARIA Labels, Contrast & Keyboard Navigation 1",
+      "status": "PASS",
+      "execution_time": 0.02,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-002",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 2: ARIA Labels, Contrast & Keyboard Navigation 2",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-003",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 3: ARIA Labels, Contrast & Keyboard Navigation 3",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-004",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 4: ARIA Labels, Contrast & Keyboard Navigation 4",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-005",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 5: ARIA Labels, Contrast & Keyboard Navigation 5",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-006",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 6: ARIA Labels, Contrast & Keyboard Navigation 6",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-007",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 7: ARIA Labels, Contrast & Keyboard Navigation 7",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-008",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 8: ARIA Labels, Contrast & Keyboard Navigation 8",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-009",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 9: ARIA Labels, Contrast & Keyboard Navigation 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-010",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 10: ARIA Labels, Contrast & Keyboard Navigation 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-011",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 11: ARIA Labels, Contrast & Keyboard Navigation 11",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-012",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 12: ARIA Labels, Contrast & Keyboard Navigation 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-013",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 13: ARIA Labels, Contrast & Keyboard Navigation 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-014",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 14: ARIA Labels, Contrast & Keyboard Navigation 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-015",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 15: ARIA Labels, Contrast & Keyboard Navigation 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-016",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 16: ARIA Labels, Contrast & Keyboard Navigation 16",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-017",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 17: ARIA Labels, Contrast & Keyboard Navigation 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-018",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 18: ARIA Labels, Contrast & Keyboard Navigation 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-019",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 19: ARIA Labels, Contrast & Keyboard Navigation 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-A11Y-020",
+      "module": "Accessibility",
+      "test_name": "Accessibility Test - Scenario 20: ARIA Labels, Contrast & Keyboard Navigation 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P3",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-001",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 1: Mobile, Tablet & Desktop Viewports 1",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-002",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 2: Mobile, Tablet & Desktop Viewports 2",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-003",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 3: Mobile, Tablet & Desktop Viewports 3",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-004",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 4: Mobile, Tablet & Desktop Viewports 4",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-005",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 5: Mobile, Tablet & Desktop Viewports 5",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-006",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 6: Mobile, Tablet & Desktop Viewports 6",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-007",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 7: Mobile, Tablet & Desktop Viewports 7",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-008",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 8: Mobile, Tablet & Desktop Viewports 8",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-009",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 9: Mobile, Tablet & Desktop Viewports 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-010",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 10: Mobile, Tablet & Desktop Viewports 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-011",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 11: Mobile, Tablet & Desktop Viewports 11",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-012",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 12: Mobile, Tablet & Desktop Viewports 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-013",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 13: Mobile, Tablet & Desktop Viewports 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-014",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 14: Mobile, Tablet & Desktop Viewports 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-015",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 15: Mobile, Tablet & Desktop Viewports 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-016",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 16: Mobile, Tablet & Desktop Viewports 16",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-017",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 17: Mobile, Tablet & Desktop Viewports 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-018",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 18: Mobile, Tablet & Desktop Viewports 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-019",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 19: Mobile, Tablet & Desktop Viewports 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-RESP-020",
+      "module": "Responsive Design",
+      "test_name": "Responsive Design Test - Scenario 20: Mobile, Tablet & Desktop Viewports 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-001",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 1: Page Render Speed & Resource Size 1",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-002",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 2: Page Render Speed & Resource Size 2",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-003",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 3: Page Render Speed & Resource Size 3",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-004",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 4: Page Render Speed & Resource Size 4",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-005",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 5: Page Render Speed & Resource Size 5",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-006",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 6: Page Render Speed & Resource Size 6",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-007",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 7: Page Render Speed & Resource Size 7",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-008",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 8: Page Render Speed & Resource Size 8",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-009",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 9: Page Render Speed & Resource Size 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-010",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 10: Page Render Speed & Resource Size 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-011",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 11: Page Render Speed & Resource Size 11",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-012",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 12: Page Render Speed & Resource Size 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-013",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 13: Page Render Speed & Resource Size 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-014",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 14: Page Render Speed & Resource Size 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-015",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 15: Page Render Speed & Resource Size 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-016",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 16: Page Render Speed & Resource Size 16",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-017",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 17: Page Render Speed & Resource Size 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-018",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 18: Page Render Speed & Resource Size 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-019",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 19: Page Render Speed & Resource Size 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-PERF-020",
+      "module": "Performance Smoke Tests",
+      "test_name": "Performance Smoke Test - Scenario 20: Page Render Speed & Resource Size 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-001",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 1: End-to-End Workflow Check 1",
+      "status": "PASS",
+      "execution_time": 0.016,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-002",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 2: End-to-End Workflow Check 2",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-003",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 3: End-to-End Workflow Check 3",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-004",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 4: End-to-End Workflow Check 4",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-005",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 5: End-to-End Workflow Check 5",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-006",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 6: End-to-End Workflow Check 6",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-007",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 7: End-to-End Workflow Check 7",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-008",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 8: End-to-End Workflow Check 8",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-009",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 9: End-to-End Workflow Check 9",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-010",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 10: End-to-End Workflow Check 10",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-011",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 11: End-to-End Workflow Check 11",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-012",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 12: End-to-End Workflow Check 12",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-013",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 13: End-to-End Workflow Check 13",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-014",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 14: End-to-End Workflow Check 14",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-015",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 15: End-to-End Workflow Check 15",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P1",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-016",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 16: End-to-End Workflow Check 16",
+      "status": "PASS",
+      "execution_time": 0.016,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-017",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 17: End-to-End Workflow Check 17",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-018",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 18: End-to-End Workflow Check 18",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-019",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 19: End-to-End Workflow Check 19",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-020",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 20: End-to-End Workflow Check 20",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-021",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 21: End-to-End Workflow Check 21",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-022",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 22: End-to-End Workflow Check 22",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-023",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 23: End-to-End Workflow Check 23",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-024",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 24: End-to-End Workflow Check 24",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-025",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 25: End-to-End Workflow Check 25",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-026",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 26: End-to-End Workflow Check 26",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-027",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 27: End-to-End Workflow Check 27",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-028",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 28: End-to-End Workflow Check 28",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-029",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 29: End-to-End Workflow Check 29",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-030",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 30: End-to-End Workflow Check 30",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-031",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 31: End-to-End Workflow Check 31",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-032",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 32: End-to-End Workflow Check 32",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-033",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 33: End-to-End Workflow Check 33",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-034",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 34: End-to-End Workflow Check 34",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-035",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 35: End-to-End Workflow Check 35",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-036",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 36: End-to-End Workflow Check 36",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-037",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 37: End-to-End Workflow Check 37",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-038",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 38: End-to-End Workflow Check 38",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-039",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 39: End-to-End Workflow Check 39",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-040",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 40: End-to-End Workflow Check 40",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-041",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 41: End-to-End Workflow Check 41",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-042",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 42: End-to-End Workflow Check 42",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-043",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 43: End-to-End Workflow Check 43",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-044",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 44: End-to-End Workflow Check 44",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-045",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 45: End-to-End Workflow Check 45",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-046",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 46: End-to-End Workflow Check 46",
+      "status": "PASS",
+      "execution_time": 0.016,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-047",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 47: End-to-End Workflow Check 47",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-048",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 48: End-to-End Workflow Check 48",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-049",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 49: End-to-End Workflow Check 49",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    },
+    {
+      "test_id": "TC-REG-050",
+      "module": "Regression",
+      "test_name": "Full System Regression Test - Scenario 50: End-to-End Workflow Check 50",
+      "status": "PASS",
+      "execution_time": 0.015,
+      "priority": "P2",
+      "failure_reason": "",
+      "stack_trace": ""
+    }
+  ]
+}
