@@ -2,8 +2,8 @@ import os
 
 class Config:
     # Mandatory requirement: BASE_URL must be configurable via environment variable
-    # Default is the live server or live deployment URL (never hardcoded)
-    BASE_URL = os.environ.get("BASE_URL", "http://localhost:8080/").rstrip('/') + '/'
+    # Default is the live deployment URL
+    BASE_URL = os.environ.get("BASE_URL", "https://revanthsurapareddy.github.io/oral-ai/").rstrip('/') + '/'
     
     # Headless Chrome configuration
     HEADLESS = os.environ.get("HEADLESS", "true").lower() == "true"

@@ -5,9 +5,9 @@
     "failed": 0,
     "skipped": 0,
     "pass_rate": 100.0,
-    "duration": 1.88,
+    "duration": 5.11,
     "base_url": "http://localhost:8080/",
-    "timestamp": "2026-07-25 06:51:07 UTC",
+    "timestamp": "2026-07-25 09:12:08 UTC",
     "status_badge": "PASS",
     "overall_result": "PASSED (CI/CD Quality Gate Met)"
   },
@@ -17,7 +17,7 @@
       "module": "Authentication",
       "test_name": "Authentication Test - Scenario 1: Login Validation & Credential Matrix 1",
       "status": "PASS",
-      "execution_time": 0.862,
+      "execution_time": 2.541,
       "priority": "P1",
       "failure_reason": "",
       "stack_trace": ""
@@ -27,7 +27,7 @@
       "module": "Authentication",
       "test_name": "Authentication Test - Scenario 2: Login Validation & Credential Matrix 2",
       "status": "PASS",
-      "execution_time": 0.021,
+      "execution_time": 0.03,
       "priority": "P1",
       "failure_reason": "",
       "stack_trace": ""
@@ -37,7 +37,7 @@
       "module": "Authentication",
       "test_name": "Authentication Test - Scenario 3: Login Validation & Credential Matrix 3",
       "status": "PASS",
-      "execution_time": 0.017,
+      "execution_time": 0.028,
       "priority": "P1",
       "failure_reason": "",
       "stack_trace": ""
@@ -47,7 +47,7 @@
       "module": "Authentication",
       "test_name": "Authentication Test - Scenario 4: Login Validation & Credential Matrix 4",
       "status": "PASS",
-      "execution_time": 0.016,
+      "execution_time": 0.019,
       "priority": "P1",
       "failure_reason": "",
       "stack_trace": ""
@@ -57,7 +57,7 @@
       "module": "Authentication",
       "test_name": "Authentication Test - Scenario 5: Login Validation & Credential Matrix 5",
       "status": "PASS",
-      "execution_time": 0.017,
+      "execution_time": 0.02,
       "priority": "P1",
       "failure_reason": "",
       "stack_trace": ""
@@ -67,7 +67,7 @@
       "module": "Authentication",
       "test_name": "Authentication Test - Scenario 6: Login Validation & Credential Matrix 6",
       "status": "PASS",
-      "execution_time": 0.017,
+      "execution_time": 0.022,
       "priority": "P1",
       "failure_reason": "",
       "stack_trace": ""
@@ -77,7 +77,7 @@
       "module": "Authentication",
       "test_name": "Authentication Test - Scenario 7: Login Validation & Credential Matrix 7",
       "status": "PASS",
-      "execution_time": 0.017,
+      "execution_time": 0.019,
       "priority": "P1",
       "failure_reason": "",
       "stack_trace": ""
@@ -87,7 +87,7 @@
       "module": "Authentication",
       "test_name": "Authentication Test - Scenario 8: Login Validation & Credential Matrix 8",
       "status": "PASS",
-      "execution_time": 0.016,
+      "execution_time": 0.021,
       "priority": "P1",
       "failure_reason": "",
       "stack_trace": ""
@@ -97,7 +97,7 @@
       "module": "Authentication",
       "test_name": "Authentication Test - Scenario 9: Login Validation & Credential Matrix 9",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.02,
       "priority": "P1",
       "failure_reason": "",
       "stack_trace": ""
@@ -107,7 +107,7 @@
       "module": "Authentication",
       "test_name": "Authentication Test - Scenario 10: Login Validation & Credential Matrix 10",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.019,
       "priority": "P1",
       "failure_reason": "",
       "stack_trace": ""
@@ -167,7 +167,7 @@
       "module": "Authentication",
       "test_name": "Authentication Test - Scenario 16: Login Validation & Credential Matrix 16",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.022,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -317,7 +317,7 @@
       "module": "Authentication",
       "test_name": "Authentication Test - Scenario 31: Login Validation & Credential Matrix 31",
       "status": "PASS",
-      "execution_time": 0.016,
+      "execution_time": 0.018,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -467,7 +467,7 @@
       "module": "Authorization",
       "test_name": "Authorization Test - Scenario 6: Role Permissions & Protected Route Access 6",
       "status": "PASS",
-      "execution_time": 0.134,
+      "execution_time": 0.233,
       "priority": "P1",
       "failure_reason": "",
       "stack_trace": ""
@@ -617,7 +617,7 @@
       "module": "Authorization",
       "test_name": "Authorization Test - Scenario 21: Role Permissions & Protected Route Access 21",
       "status": "PASS",
-      "execution_time": 0.017,
+      "execution_time": 0.025,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -767,7 +767,7 @@
       "module": "Authorization",
       "test_name": "Authorization Test - Scenario 36: Role Permissions & Protected Route Access 36",
       "status": "PASS",
-      "execution_time": 0.016,
+      "execution_time": 0.023,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -917,7 +917,7 @@
       "module": "Navigation",
       "test_name": "Navigation Test - Scenario 11: Bottom Bar & Route Transition 11",
       "status": "PASS",
-      "execution_time": 0.241,
+      "execution_time": 1.262,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -1067,7 +1067,7 @@
       "module": "Navigation",
       "test_name": "Navigation Test - Scenario 26: Bottom Bar & Route Transition 26",
       "status": "PASS",
-      "execution_time": 0.033,
+      "execution_time": 0.044,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -1217,7 +1217,7 @@
       "module": "UI Validation",
       "test_name": "UI Validation Test - Scenario 11: Element Styling, Font & Layout Grid 11",
       "status": "PASS",
-      "execution_time": 0.017,
+      "execution_time": 0.021,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -1367,7 +1367,7 @@
       "module": "UI Validation",
       "test_name": "UI Validation Test - Scenario 26: Element Styling, Font & Layout Grid 26",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.024,
       "priority": "P3",
       "failure_reason": "",
       "stack_trace": ""
@@ -1517,7 +1517,7 @@
       "module": "UI Validation",
       "test_name": "UI Validation Test - Scenario 41: Element Styling, Font & Layout Grid 41",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.027,
       "priority": "P3",
       "failure_reason": "",
       "stack_trace": ""
@@ -1667,7 +1667,7 @@
       "module": "Forms",
       "test_name": "Form Testing - Scenario 6: Input Field Interaction & State Retention 6",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.02,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -1817,7 +1817,7 @@
       "module": "Forms",
       "test_name": "Form Testing - Scenario 21: Input Field Interaction & State Retention 21",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.02,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -1967,7 +1967,7 @@
       "module": "Forms",
       "test_name": "Form Testing - Scenario 36: Input Field Interaction & State Retention 36",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.017,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -2117,7 +2117,7 @@
       "module": "CRUD Operations",
       "test_name": "CRUD Operation Test - Scenario 1: Patient Record Creation, Read & Delete 1",
       "status": "PASS",
-      "execution_time": 0.026,
+      "execution_time": 0.033,
       "priority": "P1",
       "failure_reason": "",
       "stack_trace": ""
@@ -2267,7 +2267,7 @@
       "module": "CRUD Operations",
       "test_name": "CRUD Operation Test - Scenario 16: Patient Record Creation, Read & Delete 16",
       "status": "PASS",
-      "execution_time": 0.02,
+      "execution_time": 0.025,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -2417,7 +2417,7 @@
       "module": "CRUD Operations",
       "test_name": "CRUD Operation Test - Scenario 31: Patient Record Creation, Read & Delete 31",
       "status": "PASS",
-      "execution_time": 0.023,
+      "execution_time": 0.032,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -2567,7 +2567,7 @@
       "module": "CRUD Operations",
       "test_name": "CRUD Operation Test - Scenario 46: Patient Record Creation, Read & Delete 46",
       "status": "PASS",
-      "execution_time": 0.02,
+      "execution_time": 0.038,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -2717,7 +2717,7 @@
       "module": "Input Validation",
       "test_name": "Input Validation Test - Scenario 11: Special Characters & Edge Values 11",
       "status": "PASS",
-      "execution_time": 0.016,
+      "execution_time": 0.03,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -2867,7 +2867,7 @@
       "module": "Input Validation",
       "test_name": "Input Validation Test - Scenario 26: Special Characters & Edge Values 26",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.033,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -3017,7 +3017,7 @@
       "module": "Error Handling",
       "test_name": "Error Handling Test - Scenario 1: Network Fallback & Timeout Simulation 1",
       "status": "PASS",
-      "execution_time": 0.017,
+      "execution_time": 0.038,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -3167,7 +3167,7 @@
       "module": "Error Handling",
       "test_name": "Error Handling Test - Scenario 16: Network Fallback & Timeout Simulation 16",
       "status": "PASS",
-      "execution_time": 0.021,
+      "execution_time": 0.036,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -3317,7 +3317,7 @@
       "module": "Session Management",
       "test_name": "Session Management Test - Scenario 11: Token Storage & Auto Expiry 11",
       "status": "PASS",
-      "execution_time": 0.017,
+      "execution_time": 0.025,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -3467,7 +3467,7 @@
       "module": "File Upload",
       "test_name": "File Upload Test - Scenario 6: Image Scan Dropzone & MD5 Calculation 6",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.035,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -3617,7 +3617,7 @@
       "module": "Accessibility",
       "test_name": "Accessibility Test - Scenario 1: ARIA Labels, Contrast & Keyboard Navigation 1",
       "status": "PASS",
-      "execution_time": 0.02,
+      "execution_time": 0.035,
       "priority": "P3",
       "failure_reason": "",
       "stack_trace": ""
@@ -3767,7 +3767,7 @@
       "module": "Accessibility",
       "test_name": "Accessibility Test - Scenario 16: ARIA Labels, Contrast & Keyboard Navigation 16",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.052,
       "priority": "P3",
       "failure_reason": "",
       "stack_trace": ""
@@ -3917,7 +3917,7 @@
       "module": "Responsive Design",
       "test_name": "Responsive Design Test - Scenario 11: Mobile, Tablet & Desktop Viewports 11",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.045,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -4067,7 +4067,7 @@
       "module": "Performance Smoke Tests",
       "test_name": "Performance Smoke Test - Scenario 6: Page Render Speed & Resource Size 6",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.034,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -4217,7 +4217,7 @@
       "module": "Regression",
       "test_name": "Full System Regression Test - Scenario 1: End-to-End Workflow Check 1",
       "status": "PASS",
-      "execution_time": 0.016,
+      "execution_time": 0.033,
       "priority": "P1",
       "failure_reason": "",
       "stack_trace": ""
@@ -4367,7 +4367,7 @@
       "module": "Regression",
       "test_name": "Full System Regression Test - Scenario 16: End-to-End Workflow Check 16",
       "status": "PASS",
-      "execution_time": 0.016,
+      "execution_time": 0.03,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -4517,7 +4517,7 @@
       "module": "Regression",
       "test_name": "Full System Regression Test - Scenario 31: End-to-End Workflow Check 31",
       "status": "PASS",
-      "execution_time": 0.015,
+      "execution_time": 0.032,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
@@ -4667,7 +4667,7 @@
       "module": "Regression",
       "test_name": "Full System Regression Test - Scenario 46: End-to-End Workflow Check 46",
       "status": "PASS",
-      "execution_time": 0.016,
+      "execution_time": 0.031,
       "priority": "P2",
       "failure_reason": "",
       "stack_trace": ""
