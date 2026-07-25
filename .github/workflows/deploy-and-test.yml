@@ -1,4 +1,4 @@
-name: CI/CD Deployment & Live E2E Testing
+name: Phase 7 - Deploy & Live Selenium E2E Test Suite
 
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install selenium openpyxl requests pytest pillow
 
-      # Stage 3: Build Application
+      # Stage 3: Build Web Application
       - name: Stage 3 - Build Web Application
         run: |
           echo "Building static web application..."

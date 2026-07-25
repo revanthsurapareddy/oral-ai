@@ -134,27 +134,41 @@
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         const backendBase = isLocal ? 'http://localhost:8000' : 'https://oral-ai-backend.onrender.com';
 
-        fetch(backendBase + '/api/patients')
-            .then(res => res.json())
-            .then(remotePatients => {
-                if (Array.isArray(remotePatients) && remotePatients.length > 0) {
-                    const localPatients = JSON.parse(localStorage.getItem(STORAGE_PATIENTS_KEY) || '[]');
-                    const map = new Map();
-                    localPatients.forEach(p => map.set(p.mrn || p.id, p));
-                    remotePatients.forEach(p => map.set(p.mrn || p.id, p));
-                    localStorage.setItem(STORAGE_PATIENTS_KEY, JSON.stringify(Array.from(map.values())));
-                }
-            }).catch(e => {});
+        const localPatients = JSON.parse(localStorage.getItem(STORAGE_PATIENTS_KEY) || '[]');
+        const localReports = JSON.parse(localStorage.getItem(STORAGE_REPORTS_KEY) || '[]');
 
+        // 1. Upload ALL existing local browser reports to Backend Server so Android gets them!
+        localReports.forEach(report => {
+            fetch(backendBase + '/api/reports', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(report)
+            }).catch(e => {});
+        });
+
+        // 2. Fetch all reports from Backend Server
         fetch(backendBase + '/api/reports')
             .then(res => res.json())
             .then(remoteReports => {
                 if (Array.isArray(remoteReports) && remoteReports.length > 0) {
-                    const localReports = JSON.parse(localStorage.getItem(STORAGE_REPORTS_KEY) || '[]');
+                    const currentLocal = JSON.parse(localStorage.getItem(STORAGE_REPORTS_KEY) || '[]');
                     const map = new Map();
-                    localReports.forEach(r => map.set(r.id, r));
+                    currentLocal.forEach(r => map.set(r.id, r));
                     remoteReports.forEach(r => map.set(r.id, r));
                     localStorage.setItem(STORAGE_REPORTS_KEY, JSON.stringify(Array.from(map.values())));
+                }
+            }).catch(e => {});
+
+        // 3. Fetch all patients from Backend Server
+        fetch(backendBase + '/api/patients')
+            .then(res => res.json())
+            .then(remotePatients => {
+                if (Array.isArray(remotePatients) && remotePatients.length > 0) {
+                    const currentPatients = JSON.parse(localStorage.getItem(STORAGE_PATIENTS_KEY) || '[]');
+                    const map = new Map();
+                    currentPatients.forEach(p => map.set(p.mrn || p.id, p));
+                    remotePatients.forEach(p => map.set(p.mrn || p.id, p));
+                    localStorage.setItem(STORAGE_PATIENTS_KEY, JSON.stringify(Array.from(map.values())));
                 }
             }).catch(e => {});
     }
