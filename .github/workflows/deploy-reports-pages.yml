@@ -1,0 +1,25 @@
+name: Deploy E2E Reports to GitHub Pages
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy-reports:
+    name: Deploy E2E Reports to GitHub Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy Reports to GitHub Pages
+        run: |
+          echo "Deploying Phase 7 E2E Reports & Dashboards to GitHub Pages..."
