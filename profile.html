@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OralAI - Profile</title>
+    <title>OralAI - Profile & Activity Stats</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -21,6 +21,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            padding-bottom: 40px;
         }
 
         .header {
@@ -29,6 +30,7 @@
             padding: 20px;
             font-size: 20px;
             font-weight: 600;
+            border-bottom: 1px solid #1f2c3b;
         }
 
         .header i {
@@ -40,37 +42,40 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .profile-card {
             background-color: #151e2b;
             border-radius: 12px;
             width: 100%;
-            padding: 40px 20px;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 30px;
+            border: 1px solid #1f2c3b;
         }
 
         .profile-avatar-large {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
-            background-color: #ffe0b2; /* Base skin tone for emoji bg */
+            background-color: #ffe0b2;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 60px;
-            margin-bottom: 20px;
+            font-size: 50px;
+            margin-bottom: 15px;
             border: 4px solid #1f2c3b;
         }
 
         .profile-name {
             font-size: 22px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-align: center;
         }
 
@@ -78,31 +83,171 @@
             font-size: 14px;
             color: #7b8e9f;
             text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .badge-active {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .dot-green {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #10b981;
+        }
+
+        /* Stats Grid */
+        .stats-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            width: 100%;
+        }
+
+        .stat-box {
+            background-color: #151e2b;
+            border: 1px solid #1f2c3b;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stat-box .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-blue { background: rgba(0, 198, 255, 0.15); color: #00c6ff; }
+        .icon-green { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+        .icon-red { background: rgba(255, 75, 75, 0.15); color: #ff4b4b; }
+        .icon-purple { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+
+        .stat-val {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .stat-lbl {
+            font-size: 13px;
+            color: #7b8e9f;
+        }
+
+        /* Activities Section */
+        .activity-card {
+            background-color: #151e2b;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #1f2c3b;
+            width: 100%;
+        }
+
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background-color: #0b111a;
+            border-radius: 8px;
+            border-left: 4px solid #00c6ff;
+        }
+
+        .activity-item.high_risk {
+            border-left-color: #ff4b4b;
+        }
+
+        .activity-item.low_risk {
+            border-left-color: #10b981;
+        }
+
+        .activity-icon {
+            margin-top: 2px;
+            color: #7b8e9f;
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .activity-desc {
+            font-size: 13px;
+            color: #7b8e9f;
+            margin-bottom: 4px;
+        }
+
+        .activity-time {
+            font-size: 11px;
+            color: #526377;
         }
 
         .btn-delete {
             width: 100%;
-            background-color: #ff4b4b;
-            color: white;
-            border: none;
+            background-color: #151e2b;
+            color: #ff4b4b;
+            border: 1px solid #ff4b4b33;
             border-radius: 8px;
-            padding: 18px;
-            font-size: 16px;
+            padding: 14px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            margin-bottom: 15px;
-            transition: opacity 0.2s;
+            transition: all 0.2s;
+            margin-top: 10px;
         }
         
         .btn-delete:hover {
-            opacity: 0.8;
+            background-color: #ff4b4b22;
         }
 
         .warning-text {
-            color: #7b8e9f;
-            font-size: 13px;
+            color: #526377;
+            font-size: 12px;
             text-align: center;
-            line-height: 1.6;
+            line-height: 1.5;
         }
     </style>
 </head>
@@ -110,27 +255,77 @@
 
     <div class="header">
         <i data-lucide="arrow-left" onclick="history.back()"></i>
-        Profile
+        Doctor Profile & Stats
     </div>
 
     <div class="container">
+        <!-- Profile Identity Card -->
         <div class="profile-card">
             <div class="profile-avatar-large">
                 👨‍⚕️
             </div>
-            <div class="profile-name" id="user-name">Loading...</div>
+            <div class="profile-name" id="user-name">Loading Profile...</div>
             <div class="profile-email" id="user-email">--</div>
+            <div class="badge-active">
+                <span class="dot-green"></span> Localhost & Online Active
+            </div>
         </div>
 
-        <button class="btn-delete" id="btn-delete">Delete Account</button>
+        <!-- Profile Statistics Grid -->
+        <div>
+            <div class="stats-section-title">
+                <i data-lucide="bar-chart-2"></i> Clinical Activity Summary
+            </div>
+            <div class="profile-stats-grid">
+                <div class="stat-box">
+                    <div class="icon icon-blue"><i data-lucide="scan"></i></div>
+                    <div class="stat-val" id="stat-total-scans">0</div>
+                    <div class="stat-lbl">Total AI Scans</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="icon icon-purple"><i data-lucide="users"></i></div>
+                    <div class="stat-val" id="stat-total-patients">0</div>
+                    <div class="stat-lbl">Total Patients</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="icon icon-red"><i data-lucide="alert-triangle"></i></div>
+                    <div class="stat-val" id="stat-high-risk">0</div>
+                    <div class="stat-lbl">High Risk Cases</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="icon icon-green"><i data-lucide="check-circle"></i></div>
+                    <div class="stat-val" id="stat-normal-cases">0</div>
+                    <div class="stat-lbl">Normal Scans</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activities Feed -->
+        <div class="activity-card">
+            <div class="activity-header">
+                <div class="stats-section-title" style="margin-bottom:0;">
+                    <i data-lucide="activity"></i> Recent Local Activities
+                </div>
+                <button onclick="clearActivityLog()" style="background:none; border:none; color:#7b8e9f; font-size:12px; cursor:pointer; text-decoration:underline;">Clear Log</button>
+            </div>
+            
+            <div class="activity-list" id="activity-list">
+                <div style="color: #7b8e9f; font-size: 13px; text-align: center; padding: 15px;">Loading activity history...</div>
+            </div>
+        </div>
+
+        <!-- Account Actions -->
+        <button class="btn-delete" id="btn-delete">Delete Account Data</button>
         
         <div class="warning-text">
-            Deleting your account will permanently remove all your data.<br>
-            This action cannot be undone.
+            Deleting account data will remove your local cached reports and session credentials.
         </div>
-    </div>
-
-    <script>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="data_store.js?v=2.0"></script>
+        <script>
         lucide.createIcons();
 
         // Initialize Supabase Client
@@ -138,15 +333,20 @@
         const SUPABASE_ANON_KEY = 'sb_publishable_1V-1Pqu_6ZKe4I3MDadz1w_0fUURFdo';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        async function loadProfile() {
+        async function loadProfileAndStats() {
             try {
+                // User info logic
                 let doctorName = localStorage.getItem('oralai_user_name');
                 let doctorEmail = localStorage.getItem('oralai_user_email');
                 
-                const { data: { session } } = await supabaseClient.auth.getSession();
-                if (session && session.user) {
-                    doctorName = session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || doctorName;
-                    doctorEmail = session.user.email || doctorEmail;
+                try {
+                    const { data: { session } } = await supabaseClient.auth.getSession();
+                    if (session && session.user) {
+                        doctorName = session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || doctorName;
+                        doctorEmail = session.user.email || doctorEmail;
+                    }
+                } catch (e) {
+                    console.warn("Supabase session check skipped:", e);
                 }
                 
                 if (!doctorName) doctorName = "Doctor";
@@ -155,41 +355,82 @@
                 const displayName = doctorName.toLowerCase().startsWith('dr') ? doctorName : `Dr. ${doctorName}`;
                 document.getElementById('user-name').innerText = displayName;
                 document.getElementById('user-email').innerText = doctorEmail;
+
+                // Load Stats via OralAIDataStore
+                const stats = OralAIDataStore.getStats();
+
+                // Render Stats Cards
+                document.getElementById('stat-total-scans').innerText = stats.totalScans;
+                document.getElementById('stat-total-patients').innerText = stats.totalPatients;
+                document.getElementById('stat-high-risk').innerText = stats.highRiskCount;
+                document.getElementById('stat-normal-cases').innerText = Math.max(0, stats.normalCount);
+
+                // Render Activity List
+                const activityContainer = document.getElementById('activity-list');
+                const combinedActivities = OralAIDataStore.getActivities();
+                const localReports = JSON.parse(localStorage.getItem('oralai_local_reports') || '[]');
+
+                if (combinedActivities.length === 0 && localReports.length > 0) {
+                    localReports.forEach(rep => {
+                        combinedActivities.push({
+                            title: `AI Scan: ${rep.patient_name || rep.patient_id}`,
+                            description: rep.has_cancer ? `High Risk (${rep.risk_percentage}%) - Malignant signs` : `Low Risk (${rep.risk_percentage}%) - Normal`,
+                            timestamp: new Date(rep.analysis_date || Date.now()).toLocaleString(),
+                            type: rep.has_cancer ? 'high_risk' : 'low_risk'
+                        });
+                    });
+                }
+
+                if (combinedActivities.length === 0) {
+                    activityContainer.innerHTML = `
+                        <div style="color: #7b8e9f; font-size: 13px; text-align: center; padding: 20px;">
+                            No activity recorded yet.<br>Perform an AI scan to see live activity updates here!
+                        </div>`;
+                } else {
+                    activityContainer.innerHTML = '';
+                    combinedActivities.slice(0, 15).forEach(act => {
+                        const actDiv = document.createElement('div');
+                        const isHigh = act.type === 'high_risk' || (act.description && act.description.includes('High Risk'));
+                        actDiv.className = `activity-item ${isHigh ? 'high_risk' : 'low_risk'}`;
+                        actDiv.innerHTML = `
+                            <div class="activity-icon">
+                                <i data-lucide="${isHigh ? 'alert-triangle' : 'check-circle'}"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">${act.title}</div>
+                                <div class="activity-desc">${act.description}</div>
+                                <div class="activity-time">${act.timestamp || 'Recently'}</div>
+                            </div>
+                        `;
+                        activityContainer.appendChild(actDiv);
+                    });
+                    lucide.createIcons();
+                }
+
             } catch (error) {
-                console.error("Error loading profile:", error);
+                console.error("Error loading profile stats:", error);
             }
         }
 
-        loadProfile();
+        function clearActivityLog() {
+            if (confirm("Clear local activity log?")) {
+                localStorage.removeItem('oralai_activity_log');
+                loadProfileAndStats();
+            }
+        }
+
+        loadProfileAndStats();
+        window.addEventListener('pageshow', loadProfileAndStats);
+        window.addEventListener('focus', loadProfileAndStats);
 
         document.getElementById('btn-delete').addEventListener('click', async () => {
-            const confirm1 = confirm("Are you sure you want to permanently delete your account?");
+            const confirm1 = confirm("Are you sure you want to clear your local data and sign out?");
             if (confirm1) {
-                const confirm2 = confirm("This action CANNOT BE UNDONE. All your data will be wiped. Proceed?");
-                if (confirm2) {
-                    try {
-                        // Note: Delete user usually requires an edge function or admin key. 
-                        // For this hackathon scope, we'll try to call an RPC or just sign them out if admin isn't exposed.
-                        // We will just do RPC if available, otherwise fake it and log out.
-                        
-                        document.getElementById('btn-delete').textContent = "Deleting...";
-                        
-                        // Fake delay to simulate deletion for frontend UX
-                        await new Promise(r => setTimeout(r, 1000));
-                        
-                        // Attempting to delete using an RPC if they have one configured, or just log out.
-                        const { error } = await supabaseClient.rpc('delete_user');
-                        
-                        // Regardless of whether they actually set up the RPC backend correctly for hackathon, log them out.
-                        await supabaseClient.auth.signOut();
-                        window.location.href = 'login.html';
-                        
-                    } catch (error) {
-                        console.error("Error deleting account:", error);
-                        alert("Failed to delete account. Contact support.");
-                        document.getElementById('btn-delete').textContent = "Delete Account";
-                    }
-                }
+                OralAIDataStore.resetStore();
+                try {
+                    await supabaseClient.auth.signOut();
+                } catch(e){}
+                window.location.href = 'login.html';
             }
         });
     </script>

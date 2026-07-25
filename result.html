@@ -197,13 +197,18 @@
                 </div>
             </div>
 
+            <div style="margin-bottom: 12px; font-size: 13px; color: #00c6ff; font-weight: 600;" id="patient-summary-tag">
+                Patient: Loading...
+            </div>
+
             <div class="details-title">Details</div>
             <div class="details-text" id="details-text">
                 Waiting for AI analysis results...
             </div>
         </div>
 
-        <a href="dashboard.html" class="action-btn btn-dashboard">Dashboard</a>
+        <button class="action-btn btn-dashboard" onclick="window.location.href='dashboard.html'">Return to Dashboard</button>
+        <button class="action-btn" style="background:#00c6ff; color:#ffffff; border:none; margin-top: 10px;" onclick="window.location.href='patients.html'">View Patients List</button>
         
         <div class="btn-row">
             <button class="action-btn btn-save">Save PDF</button>
@@ -217,23 +222,27 @@
         // Load data from sessionStorage
         const scannedImage = sessionStorage.getItem('scannedImage');
         const apiResultStr = sessionStorage.getItem('apiResult');
+        const patientInfoStr = sessionStorage.getItem('patientInfo');
 
         if (scannedImage) {
             document.getElementById('original-scan').src = scannedImage;
-        } else {
-            alert("No image data found. Redirecting to upload.");
-            window.location.href = 'upload.html';
+        }
+
+        if (patientInfoStr) {
+            try {
+                const pat = JSON.parse(patientInfoStr);
+                document.getElementById('patient-summary-tag').textContent = `Patient: ${pat.name || 'Anonymous'} (MRN: ${pat.id || 'N/A'})`;
+            } catch(e){}
         }
 
         if (apiResultStr) {
             const result = JSON.parse(apiResultStr);
-            document.getElementById('analyzed-scan').src = result.image_base64;
+            document.getElementById('analyzed-scan').src = result.image_base64 || scannedImage;
             
             const riskIcon = document.getElementById('risk-icon');
             const riskTitle = document.getElementById('risk-title');
             
             if (result.has_cancer) {
-                // High Risk Styling
                 riskIcon.className = 'risk-icon high';
                 riskIcon.innerHTML = '<i data-lucide="alert-triangle"></i>';
                 
@@ -241,11 +250,9 @@
                 riskTitle.textContent = 'Cancer Detected';
                 
                 document.getElementById('risk-subtitle').textContent = `High Risk (${result.risk_percentage || 96}%)`;
-                
                 document.getElementById('details-text').textContent = 
                     result.message || "The AI model has detected anomalous tissue structures in the highlighted region. Based on the confidence score, this represents a High risk. Immediate clinical evaluation and biopsy are recommended.";
             } else {
-                // Low Risk Styling
                 riskIcon.className = 'risk-icon low';
                 riskIcon.innerHTML = '<i data-lucide="check-circle"></i>';
                 
@@ -253,12 +260,11 @@
                 riskTitle.textContent = 'No Anomalies Detected';
                 
                 document.getElementById('risk-subtitle').textContent = `Low Risk (${result.risk_percentage || 5}%)`;
-                
                 document.getElementById('details-text').textContent = 
                     result.message || "The AI model did not detect any immediate signs of oral cancer in the provided scan. Routine checkups are recommended to maintain oral health.";
             }
             
-            lucide.createIcons(); // Re-render icons if we changed innerHTML
+            lucide.createIcons();
         }
 
         // PDF Save functionality
@@ -274,14 +280,15 @@
                     const details = document.getElementById('details-text').textContent;
                     await navigator.share({
                         title: 'OralAI Scan Result',
-                        text: `Scan Result: ${title}\n\n${details}`,
+                        text: `OralAI Diagnostic Result: ${title}\n${details}`,
                         url: window.location.href
                     });
                 } catch (error) {
                     console.log('Error sharing:', error);
                 }
             } else {
-                alert("The Web Share API is not supported on this browser. Try copying the URL instead.");
+                navigator.clipboard.writeText(window.location.href);
+                alert("Result link copied to clipboard!");
             }
         });
     </script>

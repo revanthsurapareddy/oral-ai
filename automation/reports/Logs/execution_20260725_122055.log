@@ -1,0 +1,27 @@
+[2026-07-25 12:20:55] [INFO] ====================================================
+[2026-07-25 12:20:55] [INFO] STARTING AUTOMATION EXECUTION RUNNER (400+ TESTS)
+[2026-07-25 12:20:55] [INFO] ====================================================
+[2026-07-25 12:20:55] [INFO] =========================================
+[2026-07-25 12:20:55] [INFO] STARTING DEPLOYMENT VALIDATION FOR: http://localhost:8080/
+[2026-07-25 12:20:55] [INFO] =========================================
+[2026-07-25 12:20:55] [INFO] Base URL Response Code: 200
+[2026-07-25 12:20:55] [INFO] Page Check [dashboard.html] -> Status Code: 200
+[2026-07-25 12:20:55] [INFO] Page Check [patients.html] -> Status Code: 200
+[2026-07-25 12:20:55] [INFO] Page Check [upload.html] -> Status Code: 200
+[2026-07-25 12:20:55] [INFO] Page Check [profile.html] -> Status Code: 200
+[2026-07-25 12:20:55] [INFO] LIVE DEPLOYMENT VALIDATION COMPLETED SUCCESSFULLY.
+[2026-07-25 12:21:05] [INFO] Chrome WebDriver initialized successfully (Headless Mode: True)
+[2026-07-25 12:21:05] [INFO] Executing Complete 440 Test Case Enterprise Suite against LIVE URL: http://localhost:8080/
+[2026-07-25 12:21:07] [INFO] Suite Execution Summary: Total=470, Passed=470, Failed=0, PassRate=100.00%, Duration=1.88s
+[2026-07-25 12:21:09] [INFO] Generating Enterprise Excel Reports...
+[2026-07-25 12:21:09] [INFO] Saved Automation_Test_Report.xlsx
+[2026-07-25 12:21:09] [INFO] All 4 Excel reports generated successfully.
+[2026-07-25 12:21:09] [INFO] Generating Professional HTML Reports...
+[2026-07-25 12:21:09] [INFO] HTML Reports generated at D:\project files\web_project\oral cancer web\automation\reports\HTML
+[2026-07-25 12:21:09] [INFO] JSON Execution Report generated at D:\project files\web_project\oral cancer web\automation\reports\JSON\execution-results.json
+[2026-07-25 12:21:09] [INFO] Summary Markdown generated at D:\project files\web_project\oral cancer web\automation\reports\Summary\summary.md
+[2026-07-25 12:21:09] [INFO] Creating Downloadable ZIP Artifact Bundle at D:\project files\web_project\oral cancer web\oral-ai-automation-reports.zip...
+[2026-07-25 12:21:09] [INFO] DOWNLOADABLE ZIP ARCHIVE CREATED SUCCESSFULLY: D:\project files\web_project\oral cancer web\oral-ai-automation-reports.zip
+[2026-07-25 12:21:09] [INFO] ====================================================
+[2026-07-25 12:21:09] [INFO] AUTOMATION TEST SUITE RUN COMPLETED: PASSED (CI/CD Quality Gate Met)
+[2026-07-25 12:21:09] [INFO] ====================================================

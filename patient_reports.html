@@ -127,6 +127,8 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="data_store.js"></script>
     <script>
         lucide.createIcons();
 
@@ -146,49 +148,68 @@
             }
 
             try {
-                // Fetch patient name
-                const { data: patientData } = await supabaseClient
-                    .from('patients')
-                    .select('full_name')
-                    .eq('id', patientId)
-                    .single();
-
-                if (patientData) {
-                    document.getElementById('page-title').textContent = `${patientData.full_name}'s Reports`;
-                } else {
-                    document.getElementById('page-title').textContent = `Patient Reports`;
+                let patientName = "Patient";
+                
+                const localPatients = OralAIDataStore.getPatients();
+                const foundLocalPat = localPatients.find(p => p.id === patientId || p.mrn === patientId);
+                if (foundLocalPat) {
+                    patientName = foundLocalPat.full_name;
                 }
 
-                // Fetch reports
-                const { data: reports, error } = await supabaseClient
-                    .from('reports')
-                    .select('*')
-                    .eq('patient_id', patientId)
-                    .order('analysis_date', { ascending: false });
+                try {
+                    const { data: patientData } = await supabaseClient
+                        .from('patients')
+                        .select('full_name')
+                        .eq('id', patientId)
+                        .single();
 
+                    if (patientData && patientData.full_name) {
+                        patientName = patientData.full_name;
+                    }
+                } catch(e){}
+
+                document.getElementById('page-title').textContent = `${patientName}'s Reports`;
+
+                // Fetch reports using OralAIDataStore
+                const matchingLocalReports = OralAIDataStore.getReports(patientId);
+
+                // Fetch reports from Supabase if available
+                let sbReports = [];
+                try {
+                    const { data: reports } = await supabaseClient
+                        .from('reports')
+                        .select('*')
+                        .eq('patient_id', patientId)
+                        .order('analysis_date', { ascending: false });
+                    if (reports) sbReports = reports;
+                } catch(e){}
+
+                // Combine local & remote reports
+                const reportMap = new Map();
+                matchingLocalReports.forEach(r => reportMap.set(r.id, r));
+                sbReports.forEach(r => reportMap.set(r.id, r));
+
+                const allCombinedReports = Array.from(reportMap.values());
                 const listContainer = document.getElementById('report-list');
 
-                if (error) throw error;
-
-                if (!reports || reports.length === 0) {
+                if (allCombinedReports.length === 0) {
                     listContainer.innerHTML = '<div class="loading-text">No reports saved for this patient.</div>';
                     return;
                 }
 
                 listContainer.innerHTML = '';
 
-                reports.forEach(report => {
-                    const dateObj = new Date(report.analysis_date);
+                allCombinedReports.forEach(report => {
+                    const dateObj = new Date(report.analysis_date || Date.now());
                     const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                     
-                    // Short ID for display
-                    const shortId = report.id.substring(0, 8);
-                    
+                    const shortId = (report.id || '').substring(0, 8);
                     const statusClass = (report.has_cancer || report.risk_level === 'High') ? 'status-high' : 'status-low';
 
                     const item = document.createElement('div');
                     item.className = 'report-item';
                     item.onclick = () => {
+                        sessionStorage.setItem('currentViewReport', JSON.stringify(report));
                         window.location.href = `view_report.html?report_id=${report.id}`;
                     };
 
@@ -198,7 +219,7 @@
                         </div>
                         <div class="report-details">
                             <div class="report-date">${formattedDate}</div>
-                            <div class="report-id">${shortId}</div>
+                            <div class="report-id">${shortId} (${report.risk_level || 'Scanned'})</div>
                         </div>
                         <div class="status-dot ${statusClass}"></div>
                     `;
