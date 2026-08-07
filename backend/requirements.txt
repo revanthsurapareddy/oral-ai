@@ -4,3 +4,7 @@ python-multipart
 ultralytics
 Pillow
 opencv-python-headless
+requests
+numpy
+tensorflow-cpu
+torch
