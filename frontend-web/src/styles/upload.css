@@ -2,10 +2,17 @@
 .upload-card {
     background-color: #151e2b;
     border: 1px solid #1f2c3b;
-    border-radius: 12px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
+    border-radius: 16px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+@media (max-width: 900px) {
+    .upload-card {
+        grid-template-columns: 1fr;
+    }
 }
 
 .drag-drop-area {
