@@ -1,29 +1,22 @@
-/* Centering body mobile frame on desktop for static web portal */
 html,
 body {
   width: 100% !important;
+  max-width: 100% !important;
   min-height: 100vh !important;
-  background-color: #05080e !important; /* Dark outer background */
+  background-color: #0b111a !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
 body {
   width: 100% !important;
+  max-width: 100% !important;
   min-height: 100vh !important;
-  margin: 0 auto !important;
+  margin: 0 !important;
   position: relative !important;
   background-color: #0b111a !important;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6) !important;
   display: flex !important;
   flex-direction: column !important;
-}
-
-@media (min-width: 768px) {
-  body {
-    width: 100% !important;
-    max-width: 1400px !important;
-  }
 }
 
 /* Sizing & Alignment fixes for fixed bottom navigation bar */
