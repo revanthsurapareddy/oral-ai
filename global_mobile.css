@@ -19,9 +19,10 @@ body {
   flex-direction: column !important;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   body {
-    width: 600px !important;
+    width: 100% !important;
+    max-width: 1400px !important;
   }
 }
 
