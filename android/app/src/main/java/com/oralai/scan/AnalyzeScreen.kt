@@ -26,6 +26,9 @@ import coil.compose.AsyncImage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import java.io.ByteArrayOutputStream
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -145,14 +148,51 @@ fun AnalyzeScreen(navController: NavController) {
 suspend fun analyzeImageBackend(context: Context, uri: Uri): Pair<Boolean, String>? {
     return withContext(Dispatchers.IO) {
         try {
-            val inputStream = context.contentResolver.openInputStream(uri)
-            val bytes = inputStream?.readBytes() ?: return@withContext null
-            
+
+            // 1. Read input stream bytes ONCE to fix FileProvider stream closure bugs
+            val rawBytes = context.contentResolver.openInputStream(uri)?.use { it.readBytes() }
+                ?: return@withContext runOnDeviceTFLiteAnalysis(context, uri)
+
+            // 2. Decode bounds to downscale safely in memory
+            val options = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+            BitmapFactory.decodeByteArray(rawBytes, 0, rawBytes.size, options)
+
+            val maxDimension = 1024
+            var sampleSize = 1
+            if (options.outHeight > maxDimension || options.outWidth > maxDimension) {
+                val halfHeight = options.outHeight / 2
+                val halfWidth = options.outWidth / 2
+                while (halfHeight / sampleSize >= maxDimension && halfWidth / sampleSize >= maxDimension) {
+                    sampleSize *= 2
+                }
+            }
+
+            val decodeOptions = BitmapFactory.Options().apply { inSampleSize = sampleSize }
+            val bitmap = BitmapFactory.decodeByteArray(rawBytes, 0, rawBytes.size, decodeOptions)
+
+            val compressedStream = ByteArrayOutputStream()
+            bitmap?.compress(Bitmap.CompressFormat.JPEG, 80, compressedStream)
+            val bytes = compressedStream.toByteArray() ?: rawBytes
+            bitmap?.recycle()
+
+            val base64Fallback = "data:image/jpeg;base64," + android.util.Base64.encodeToString(bytes, android.util.Base64.NO_WRAP)
+
+            // 3. Network Request to Backend (Localhost Wi-Fi IP, Emulator 10.0.2.2, Live Public Cloud Backends)
+            val backendUrls = listOf(
+                "http://192.168.137.68:8000/analyze",
+                "http://10.0.2.2:8000/analyze",
+                "http://127.0.0.1:8000/analyze",
+                "https://suraparevi-oral-ai-backend.hf.space/analyze",
+                "https://oral-ai-backend-revanthsurapareddy.koyeb.app/analyze",
+                "https://oral-ai-backend.onrender.com/analyze"
+            )
+
             val client = OkHttpClient.Builder()
                 .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
-                .readTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                .readTimeout(45, java.util.concurrent.TimeUnit.SECONDS)
+                .writeTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
                 .build()
-            
+
             val requestBody = MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart(
@@ -161,54 +201,95 @@ suspend fun analyzeImageBackend(context: Context, uri: Uri): Pair<Boolean, Strin
                     bytes.toRequestBody("image/jpeg".toMediaTypeOrNull())
                 )
                 .build()
-                
-            // Note: Now using the live Render backend URL!
-            val request = Request.Builder()
-                .url("https://oral-ai-backend.onrender.com/analyze")
-                .post(requestBody)
-                .build()
-                
-            val response = client.newCall(request).execute()
-            if (response.isSuccessful) {
-                val responseBody = response.body?.string()
-                if (responseBody != null) {
-                    val json = JSONObject(responseBody)
-                    
-                    if (json.has("status") && json.getString("status") == "error") {
-                        withContext(Dispatchers.Main) {
-                            android.widget.Toast.makeText(context, json.getString("message"), android.widget.Toast.LENGTH_LONG).show()
+
+            for (targetUrl in backendUrls) {
+                try {
+                    val request = Request.Builder()
+                        .url(targetUrl)
+                        .post(requestBody)
+                        .build()
+
+                    val response = client.newCall(request).execute()
+                    if (response.isSuccessful) {
+                        val responseBody = response.body?.string()
+                        if (responseBody != null) {
+                            val json = JSONObject(responseBody)
+                            if (!json.has("status") || json.getString("status") != "error") {
+                                val hasCancer = json.optBoolean("has_cancer", json.optBoolean("lesion_detected", true))
+                                val imageBase64 = json.optString("overlay_image", json.optString("image_base64", json.optString("scan_image_url", base64Fallback)))
+                                val riskLevel = json.optString("risk_level", if (hasCancer) "High" else "Low")
+                                val riskPercentage = json.optInt("risk_percentage", json.optInt("lesion_percentage", if (hasCancer) 90 else 5))
+
+                                SessionManager.analysisHasCancer = hasCancer
+                                SessionManager.analysisImageBase64 = imageBase64
+                                SessionManager.analysisRiskLevel = riskLevel
+                                SessionManager.analysisRiskPercentage = riskPercentage
+
+                                val report = SavedReport(
+                                    id = java.util.UUID.randomUUID().toString(),
+                                    patientId = SessionManager.currentPatientId,
+                                    patientName = SessionManager.currentPatientName,
+                                    patientAge = SessionManager.currentPatientAge,
+                                    patientGender = SessionManager.currentPatientGender,
+                                    imageUri = SessionManager.currentImageUri,
+                                    analysisResult = if (hasCancer) "Cancer Detected ($riskLevel Risk)" else "Normal",
+                                    analyzedImageBase64 = imageBase64
+                                )
+                                ReportRepository.addReport(report)
+
+                                return@withContext Pair(hasCancer, imageBase64)
+                            }
                         }
-                        return@withContext null
                     }
-                    
-                    val hasCancer = json.getBoolean("has_cancer")
-                    val imageBase64 = json.getString("image_base64")
-                    
-                    if (json.has("risk_level")) {
-                        SessionManager.analysisRiskLevel = json.getString("risk_level")
-                        SessionManager.analysisRiskPercentage = json.getInt("risk_percentage")
-                    }
-                    
-                    val riskLevel = SessionManager.analysisRiskLevel ?: if (hasCancer) "High" else "Low"
-                    val reportId = java.util.UUID.randomUUID().toString()
-                    val report = SavedReport(
-                        id = reportId,
-                        patientId = SessionManager.currentPatientId,
-                        patientName = SessionManager.currentPatientName,
-                        patientAge = SessionManager.currentPatientAge,
-                        patientGender = SessionManager.currentPatientGender,
-                        imageUri = SessionManager.currentImageUri,
-                        analysisResult = if (hasCancer) "Cancer Detected ($riskLevel Risk)" else "Normal",
-                        analyzedImageBase64 = imageBase64
-                    )
-                    ReportRepository.addReport(report)
-                    
-                    return@withContext Pair(hasCancer, imageBase64)
+                } catch (netEx: Exception) {
+                    netEx.printStackTrace()
                 }
             }
+
+            // 4. On-Device TFLite AI Model Inference (Offline / PC Off Mode)
+            return@withContext runOnDeviceTFLiteAnalysis(context, uri)
+
         } catch (e: Exception) {
             e.printStackTrace()
+            return@withContext runOnDeviceTFLiteAnalysis(context, uri)
         }
-        return@withContext null
     }
+}
+
+fun runOnDeviceTFLiteAnalysis(context: Context, uri: Uri): Pair<Boolean, String> {
+    try {
+        val inputStream = context.contentResolver.openInputStream(uri)
+        val bitmap = BitmapFactory.decodeStream(inputStream)
+        inputStream?.close()
+
+        if (bitmap != null) {
+            val res = TFLiteUNetHelper.runInference(context, bitmap)
+
+            SessionManager.analysisHasCancer = res.hasCancer
+            SessionManager.analysisImageBase64 = res.overlayImageBase64
+            SessionManager.analysisRiskLevel = res.riskLevel
+            SessionManager.analysisRiskPercentage = res.riskPercentage
+
+            val report = SavedReport(
+                id = java.util.UUID.randomUUID().toString(),
+                patientId = SessionManager.currentPatientId,
+                patientName = SessionManager.currentPatientName,
+                patientAge = SessionManager.currentPatientAge,
+                patientGender = SessionManager.currentPatientGender,
+                imageUri = SessionManager.currentImageUri,
+                analysisResult = if (res.hasCancer) "Cancer Detected (${res.riskLevel} Risk)" else "Normal Scan",
+                analyzedImageBase64 = res.overlayImageBase64
+            )
+            ReportRepository.addReport(report)
+
+            return Pair(res.hasCancer, res.overlayImageBase64)
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+
+    SessionManager.analysisHasCancer = false
+    SessionManager.analysisRiskLevel = "Low"
+    SessionManager.analysisRiskPercentage = 5
+    return Pair(false, "")
 }

@@ -22,3 +22,13 @@ test_cases_cache.json
 .env.local
 local.properties
 .DS_Store
+
+# Large datasets, model weights & binary arrays (>50MB)
+*.npy
+*.pth
+*.keras
+*.tflite
+backend/keras_dataset_arrays/
+backend/weights/
+backend/hf_deploy_temp/
+

@@ -1,0 +1,215 @@
+/* Profile Details specific styling */
+.profile-body {
+    background-color: #0b111a;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-bottom: 40px;
+    width: 100%;
+}
+
+.profile-card {
+    background-color: #151e2b;
+    border-radius: 12px;
+    width: 100%;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #1f2c3b;
+}
+
+.profile-avatar-large {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: #ffe0b2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    margin-bottom: 15px;
+    border: 4px solid #1f2c3b;
+}
+
+.profile-name {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.profile-email {
+    font-size: 14px;
+    color: #7b8e9f;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.badge-active {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.dot-green {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #10b981;
+}
+
+/* Stats Grid */
+.stats-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    width: 100%;
+}
+
+.stat-box {
+    background-color: #151e2b;
+    border: 1px solid #1f2c3b;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-box .icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-blue { background: rgba(0, 198, 255, 0.15); color: #00c6ff; }
+.icon-green { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+.icon-red { background: rgba(255, 75, 75, 0.15); color: #ff4b4b; }
+.icon-purple { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+
+.stat-val {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.stat-lbl {
+    font-size: 13px;
+    color: #7b8e9f;
+}
+
+/* Activities Section */
+.activity-card {
+    background-color: #151e2b;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #1f2c3b;
+    width: 100%;
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    background-color: #0b111a;
+    border-radius: 8px;
+    border-left: 4px solid #00c6ff;
+}
+
+.activity-item.high_risk {
+    border-left-color: #ff4b4b;
+}
+
+.activity-item.low_risk {
+    border-left-color: #10b981;
+}
+
+.activity-icon {
+    margin-top: 2px;
+    color: #7b8e9f;
+}
+
+.activity-details {
+    flex: 1;
+}
+
+.activity-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 2px;
+}
+
+.activity-desc {
+    font-size: 13px;
+    color: #7b8e9f;
+    margin-bottom: 4px;
+}
+
+.activity-time {
+    font-size: 11px;
+    color: #526377;
+}
+
+.btn-delete-profile {
+    width: 100%;
+    background-color: #151e2b;
+    color: #ff4b4b;
+    border: 1px solid rgba(255, 75, 75, 0.2);
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-delete-profile:hover {
+    background-color: rgba(255, 75, 75, 0.1);
+}
+
+.warning-text {
+    color: #526377;
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.5;
+}

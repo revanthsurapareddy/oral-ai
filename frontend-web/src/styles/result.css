@@ -1,0 +1,154 @@
+/* Result Page specific styling */
+.result-body {
+    background-color: #0b111a;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-bottom: 30px;
+    width: 100%;
+}
+
+.header-result {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.header-result svg {
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.container-result {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.scan-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.scan-label {
+    color: #7b8e9f;
+    font-size: 13px;
+}
+
+.scan-image {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.result-card {
+    background-color: #151e2b;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+.risk-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.risk-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.risk-icon.high {
+    background-color: rgba(255, 75, 75, 0.15);
+    color: #ff4b4b;
+}
+
+.risk-icon.low {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+}
+
+.risk-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.risk-title.high { color: #ff4b4b; }
+.risk-title.low { color: #10b981; }
+
+.risk-subtitle {
+    font-size: 13px;
+    color: #7b8e9f;
+    margin-top: 2px;
+}
+
+.details-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.details-text {
+    font-size: 14px;
+    color: #7b8e9f;
+    line-height: 1.6;
+}
+
+.action-btn {
+    width: 100%;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-dashboard {
+    background-color: #0b111a;
+    color: #ffffff;
+    border: 1px solid #1f2c3b;
+    margin-top: 10px;
+}
+
+.btn-row {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.btn-save {
+    flex: 1;
+    background-color: #4ade80;
+    color: white;
+    border: none;
+}
+
+.btn-share {
+    flex: 1;
+    background-color: #f59e0b;
+    color: white;
+    border: none;
+}
+
+@media print {
+    .action-btn, .btn-row, .header-result svg {
+        display: none !important;
+    }
+    body {
+        padding-bottom: 0;
+    }
+}

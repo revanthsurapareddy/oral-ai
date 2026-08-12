@@ -1,0 +1,77 @@
+name: k6 Load Testing & Vulnerability Scan
+
+on:
+  push:
+    branches: [ main, master, dev ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  load-test-and-security:
+    name: Run k6 Load Test & Vulnerability Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python Dependencies & Security Scanner
+        run: |
+          python -m pip install --upgrade pip
+          pip install fastapi uvicorn requests pillow numpy opencv-python-headless bandit
+          npm install -g audit-ci || true
+
+      - name: Start FastAPI Backend Service
+        run: |
+          nohup python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 > backend.log 2>&1 &
+          echo "Waiting for backend to start..."
+          sleep 5
+          curl -I http://localhost:8000/ || true
+
+      - name: Install Grafana k6
+        run: |
+          sudo gpg -k
+          sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install -y k6 zip
+
+      - name: Run Vulnerability Analysis (SAST & Security Scan)
+        run: |
+          mkdir -p reports
+          echo "=== RUNNING PYTHON BANDIT SECURITY SCAN ===" > reports/vulnerability-report.txt
+          bandit -r backend/ -f txt >> reports/vulnerability-report.txt || true
+          echo "=== SECURITY SCAN COMPLETED ===" >> reports/vulnerability-report.txt
+
+      - name: Execute k6 Baseline Load Test
+        run: |
+          mkdir -p reports
+          k6 run --out json=reports/k6-metrics.json load-tests/baseline.js
+        env:
+          BASE_URL: "http://localhost:8000"
+
+      - name: Execute k6 Full API Suite Load Test
+        run: |
+          k6 run load-tests/suite.js
+        env:
+          BASE_URL: "http://localhost:8000"
+
+      - name: Package Reports into ZIP Artifact
+        run: |
+          mkdir -p artifact-bundle
+          cp -r load-test-report.html reports/ artifact-bundle/ 2>/dev/null || true
+          cp backend.log artifact-bundle/ 2>/dev/null || true
+          cd artifact-bundle && zip -r ../load-test-artifacts.zip . && cd ..
+          echo "Artifact ZIP Created Successfully."
+
+      - name: Upload Test Artifacts (ZIP Archive)
+        uses: actions/upload-artifact@v4
+        with:
+          name: load-test-and-vulnerability-artifacts
+          path: load-test-artifacts.zip
+          retention-days: 14

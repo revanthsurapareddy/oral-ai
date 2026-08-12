@@ -9,7 +9,6 @@ from ultralytics import YOLO
 from PIL import Image
 import io
 import base64
-import os
 import hashlib
 import cv2
 import numpy as np
@@ -17,6 +16,9 @@ import math
 import random
 import gc
 import torch
+import urllib.request
+import urllib.parse
+import json
 
 torch.set_num_threads(1)
 
@@ -66,7 +68,6 @@ async def predict_endpoint(file: UploadFile = File(...)):
 @app.post("/analyze")
 async def analyze_image(file: UploadFile = File(...)):
     contents = await file.read()
-    # Use predict_lesion for full compatibility
     res = predict_lesion(contents)
     return res
 
@@ -85,11 +86,10 @@ def supabase_headers():
     }
 
 def supabase_get_patients():
-    import urllib.request, json
     try:
-        url = f"{SUPABASE_URL}/rest/v1/patients?select=*"
+        url = f"{SUPABASE_URL}/rest/v1/patients?select=id,mrn,full_name,age,gender,created_at&order=created_at.desc&limit=5000"
         req = urllib.request.Request(url, headers=supabase_headers())
-        with urllib.request.urlopen(req, timeout=5) as resp:
+        with urllib.request.urlopen(req, timeout=10) as resp:
             if resp.status == 200:
                 data = json.loads(resp.read().decode())
                 return data
@@ -98,7 +98,6 @@ def supabase_get_patients():
     return list(patients_db.values())
 
 def supabase_save_patient(patient: dict):
-    import urllib.request, json
     mrn = patient.get("mrn") or patient.get("id")
     full_name = patient.get("full_name") or patient.get("name") or "Patient"
     age = patient.get("age", 30)
@@ -112,23 +111,51 @@ def supabase_save_patient(patient: dict):
     }
     
     try:
-        check_url = f"{SUPABASE_URL}/rest/v1/patients?mrn=eq.{mrn}&select=id"
+        check_url = f"{SUPABASE_URL}/rest/v1/patients?mrn=eq.{urllib.parse.quote(str(mrn))}&select=id,full_name"
         req_check = urllib.request.Request(check_url, headers=supabase_headers())
         with urllib.request.urlopen(req_check, timeout=5) as check_resp:
             existing = json.loads(check_resp.read().decode())
             if existing:
+                existing_name = existing[0].get("full_name", "").strip().lower()
+                new_name = str(full_name).strip().lower()
                 p_id = existing[0]["id"]
-                upd_url = f"{SUPABASE_URL}/rest/v1/patients?id=eq.{p_id}"
-                req_upd = urllib.request.Request(upd_url, data=json.dumps(payload).encode(), headers=supabase_headers(), method="PATCH")
-                with urllib.request.urlopen(req_upd, timeout=5) as resp_upd:
-                    return json.loads(resp_upd.read().decode())
+                
+                # If same MRN but different name -> new patient with modified MRN
+                if existing_name and new_name and existing_name != new_name:
+                    new_mrn = str(mrn) + "-" + str(random.randint(100, 999))
+                    payload["mrn"] = new_mrn
+                    ins_url = f"{SUPABASE_URL}/rest/v1/patients"
+                    req_ins = urllib.request.Request(ins_url, data=json.dumps(payload).encode(), headers=supabase_headers(), method="POST")
+                    with urllib.request.urlopen(req_ins, timeout=5) as resp_ins:
+                        return json.loads(resp_ins.read().decode())
+                else:
+                    # Same patient -> update
+                    upd_url = f"{SUPABASE_URL}/rest/v1/patients?id=eq.{urllib.parse.quote(str(p_id))}"
+                    req_upd = urllib.request.Request(upd_url, data=json.dumps(payload).encode(), headers=supabase_headers(), method="PATCH")
+                    with urllib.request.urlopen(req_upd, timeout=5) as resp_upd:
+                        return json.loads(resp_upd.read().decode())
             else:
                 ins_url = f"{SUPABASE_URL}/rest/v1/patients"
                 req_ins = urllib.request.Request(ins_url, data=json.dumps(payload).encode(), headers=supabase_headers(), method="POST")
                 with urllib.request.urlopen(req_ins, timeout=5) as resp_ins:
                     return json.loads(resp_ins.read().decode())
     except Exception as e:
-        print("Supabase save_patient error:", e)
+        if hasattr(e, "code") and e.code == 409:
+            try:
+                check_url = f"{SUPABASE_URL}/rest/v1/patients?mrn=eq.{urllib.parse.quote(str(mrn))}&select=id,full_name"
+                req_check = urllib.request.Request(check_url, headers=supabase_headers())
+                with urllib.request.urlopen(req_check, timeout=5) as check_resp:
+                    existing = json.loads(check_resp.read().decode())
+                    if existing:
+                        p_id = existing[0]["id"]
+                        upd_url = f"{SUPABASE_URL}/rest/v1/patients?id=eq.{urllib.parse.quote(str(p_id))}"
+                        req_upd = urllib.request.Request(upd_url, data=json.dumps(payload).encode(), headers=supabase_headers(), method="PATCH")
+                        with urllib.request.urlopen(req_upd, timeout=5) as resp_upd:
+                            return json.loads(resp_upd.read().decode())
+            except Exception as inner_e:
+                print("Supabase save_patient conflict self-healing error:", inner_e)
+        else:
+            print("Supabase save_patient error:", e)
     
     pid = patient.get("id") or patient.get("mrn")
     if pid:
@@ -136,20 +163,29 @@ def supabase_save_patient(patient: dict):
     return patient
 
 def supabase_get_reports():
-    import urllib.request, json
     try:
-        url = f"{SUPABASE_URL}/rest/v1/reports?select=*"
+        url = f"{SUPABASE_URL}/rest/v1/reports?select=id,patient_id,mrn,patient_name,age,gender,risk_level,risk_percentage,has_cancer,message,analysis_date&order=analysis_date.desc&limit=5000"
         req = urllib.request.Request(url, headers=supabase_headers())
-        with urllib.request.urlopen(req, timeout=5) as resp:
+        with urllib.request.urlopen(req, timeout=10) as resp:
             if resp.status == 200:
                 data = json.loads(resp.read().decode())
+                for rep in data:
+                    msg = rep.get("message", "")
+                    if msg and " ||CONTOURS||" in msg:
+                        parts = msg.split(" ||CONTOURS||")
+                        rep["message"] = parts[0]
+                        try:
+                            cdata = json.loads(parts[1])
+                            rep["inner_lesion_pts"] = cdata.get("inner", [])
+                            rep["outer_safety_pts"] = cdata.get("outer", [])
+                        except:
+                            pass
                 return data
     except Exception as e:
         print("Supabase get_reports error:", e)
     return list(reports_db.values())
 
 def supabase_save_report(report: dict):
-    import urllib.request, json
     try:
         mrn = report.get("mrn") or report.get("patient_id")
         p_name = report.get("patient_name") or report.get("name") or "Patient"
@@ -169,6 +205,14 @@ def supabase_save_report(report: dict):
         elif isinstance(patient_record, dict):
             patient_id = patient_record.get("id")
             
+        message_str = str(report.get("message", ""))
+        if "inner_lesion_pts" in report or "outer_safety_pts" in report:
+            contour_data = {
+                "inner": report.get("inner_lesion_pts", []),
+                "outer": report.get("outer_safety_pts", [])
+            }
+            message_str += " ||CONTOURS||" + json.dumps(contour_data)
+
         payload = {
             "risk_level": str(report.get("risk_level", "Low")),
             "risk_percentage": int(report.get("risk_percentage", 0)),
@@ -177,7 +221,7 @@ def supabase_save_report(report: dict):
             "patient_name": str(p_name),
             "age": str(age),
             "gender": str(gender),
-            "message": str(report.get("message", ""))
+            "message": message_str
         }
         
         if patient_id:
@@ -209,21 +253,40 @@ async def get_patients():
 
 @app.delete("/api/patients/{patient_id}")
 async def delete_patient(patient_id: str):
-    import urllib.request
+    pid = urllib.parse.quote(str(patient_id).strip())
+    # 1. Delete patient from Supabase patients table by MRN or UUID ID
     try:
-        req = urllib.request.Request(f"{SUPABASE_URL}/rest/v1/patients?mrn=eq.{patient_id}", headers=supabase_headers(), method="DELETE")
+        req = urllib.request.Request(
+            f"{SUPABASE_URL}/rest/v1/patients?or=(mrn.eq.{pid},id.eq.{pid})",
+            headers=supabase_headers(),
+            method="DELETE"
+        )
         with urllib.request.urlopen(req, timeout=5):
             pass
     except Exception as e:
         print("Supabase delete_patient error:", e)
-        
+
+    # 2. Delete all reports for this patient from Supabase reports table by MRN, patient_id or ID
+    try:
+        req_rep = urllib.request.Request(
+            f"{SUPABASE_URL}/rest/v1/reports?or=(mrn.eq.{pid},patient_id.eq.{pid},id.eq.{pid})",
+            headers=supabase_headers(),
+            method="DELETE"
+        )
+        with urllib.request.urlopen(req_rep, timeout=5):
+            pass
+    except Exception as e:
+        print("Supabase delete_patient reports error:", e)
+
+    # 3. Clean up local memory stores
     p_keys = [k for k, v in patients_db.items() if k == patient_id or v.get("mrn") == patient_id or v.get("id") == patient_id]
     for k in p_keys:
         del patients_db[k]
-    
-    r_keys = [k for k, v in reports_db.items() if v.get("patient_id") == patient_id or v.get("mrn") == patient_id]
+
+    r_keys = [k for k, v in reports_db.items() if v.get("patient_id") == patient_id or v.get("mrn") == patient_id or v.get("id") == patient_id]
     for k in r_keys:
         del reports_db[k]
+
     return {"status": "success", "patient_id": patient_id}
 
 @app.post("/api/reports")
@@ -235,11 +298,35 @@ async def save_report(report: dict):
 async def get_reports():
     return supabase_get_reports()
 
+@app.get("/api/reports/{report_id}")
+async def get_single_report(report_id: str):
+    try:
+        url = f"{SUPABASE_URL}/rest/v1/reports?id=eq.{urllib.parse.quote(str(report_id))}&select=*"
+        req = urllib.request.Request(url, headers=supabase_headers())
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            if resp.status == 200:
+                data = json.loads(resp.read().decode())
+                if data:
+                    rep = data[0]
+                    msg = rep.get("message", "")
+                    if msg and " ||CONTOURS||" in msg:
+                        parts = msg.split(" ||CONTOURS||")
+                        rep["message"] = parts[0]
+                        try:
+                            cdata = json.loads(parts[1])
+                            rep["inner_lesion_pts"] = cdata.get("inner", [])
+                            rep["outer_safety_pts"] = cdata.get("outer", [])
+                        except:
+                            pass
+                    return rep
+    except Exception as e:
+        print("Supabase get_single_report error:", e)
+    return reports_db.get(report_id, {})
+
 @app.delete("/api/reports/{report_id}")
 async def delete_report(report_id: str):
-    import urllib.request
     try:
-        req = urllib.request.Request(f"{SUPABASE_URL}/rest/v1/reports?id=eq.{report_id}", headers=supabase_headers(), method="DELETE")
+        req = urllib.request.Request(f"{SUPABASE_URL}/rest/v1/reports?id=eq.{urllib.parse.quote(str(report_id))}", headers=supabase_headers(), method="DELETE")
         with urllib.request.urlopen(req, timeout=5):
             pass
     except Exception as e:
@@ -252,4 +339,3 @@ async def delete_report(report_id: str):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
-

@@ -7,10 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="patients.css">
-    <link rel="stylesheet" href="patients.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="data_store.js?v=2.0"></script>
+    <script src="data_store.js?v=3.0"></script>
+    <link rel="stylesheet" href="global_mobile.css">
 </head>
 <body>
 
@@ -78,7 +78,7 @@
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="data_store.js"></script>
+    <script src="data_store.js?v=3.0"></script>
     <script>
         lucide.createIcons();
 
@@ -138,15 +138,35 @@
 
         async function loadPatients() {
             let sbPatients = [];
+            let reportPatients = [];
             try {
                 const { data: patients } = await supabaseClient.from('patients').select('*').order('created_at', { ascending: false });
-                if (patients) sbPatients = patients;
+                if (patients) {
+                    sbPatients = patients;
+                }
+                const { data: reps } = await supabaseClient.from('reports').select('mrn, patient_name, age, gender').order('analysis_date', { ascending: false });
+                if (reps) {
+                    const seenMrns = new Set();
+                    reps.forEach(r => {
+                        if (r.mrn && !seenMrns.has(r.mrn)) {
+                            seenMrns.add(r.mrn);
+                            reportPatients.push({
+                                id: r.mrn,
+                                mrn: r.mrn,
+                                full_name: r.patient_name || 'Patient',
+                                age: r.age || 30,
+                                gender: r.gender || 'Unspecified'
+                            });
+                        }
+                    });
+                }
             } catch (err) {}
 
             const localPatients = OralAIDataStore.getPatients();
             
             const combinedMap = new Map();
             localPatients.forEach(p => combinedMap.set(p.mrn || p.id, p));
+            reportPatients.forEach(p => combinedMap.set(p.mrn || p.id, p));
             sbPatients.forEach(p => combinedMap.set(p.mrn || p.id, p));
 
             allPatients = Array.from(combinedMap.values());
@@ -189,7 +209,8 @@
                 try {
                     OralAIDataStore.deletePatient(patientId);
                     try {
-                        await supabaseClient.from('patients').delete().eq('id', patientId);
+                        await supabaseClient.from('patients').delete().or(`id.eq.${patientId},mrn.eq.${patientId}`);
+                        await supabaseClient.from('reports').delete().or(`patient_id.eq.${patientId},mrn.eq.${patientId}`);
                     } catch(e){}
                     loadPatients();
                 } catch (err) {

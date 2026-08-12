@@ -111,6 +111,7 @@
             padding: 20px;
         }
     </style>
+    <link rel="stylesheet" href="global_mobile.css">
 </head>
 <body>
 
@@ -176,10 +177,12 @@
                 // Fetch reports from Supabase if available
                 let sbReports = [];
                 try {
+                    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(patientId);
+                    const filter = isUuid ? `patient_id.eq.${patientId},id.eq.${patientId}` : `mrn.eq.${patientId}`;
                     const { data: reports } = await supabaseClient
                         .from('reports')
                         .select('*')
-                        .eq('patient_id', patientId)
+                        .or(filter)
                         .order('analysis_date', { ascending: false });
                     if (reports) sbReports = reports;
                 } catch(e){}

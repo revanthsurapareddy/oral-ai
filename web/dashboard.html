@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="dashboard.css">
     <!-- Using Lucide Icons for clean SVGs -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="global_mobile.css">
 </head>
 <body>
 
@@ -106,7 +107,7 @@
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="data_store.js?v=2.0"></script>
+    <script src="data_store.js?v=3.0"></script>
     <script>
         lucide.createIcons();
 
@@ -114,6 +115,21 @@
         const supabaseUrl = 'https://gduqgsxwcnrzdjqkextl.supabase.co';
         const supabaseKey = 'sb_publishable_1V-1Pqu_6ZKe4I3MDadz1w_0fUURFdo';
         const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+        function formatDate(dateString) {
+            if (!dateString) return 'Recently';
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMins / 60);
+            
+            if (diffMins < 1) return 'Just now';
+            if (diffMins < 60) return diffMins + 'm ago';
+            if (diffHours < 24) return diffHours + 'h ago';
+            
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
 
         async function fetchDashboardStats() {
             try {
@@ -133,39 +149,97 @@
                 const displayName = doctorName.toLowerCase().startsWith('dr') ? doctorName : `Dr. ${doctorName}`;
                 document.getElementById('welcome-user-name').innerText = `Welcome back, ${displayName}`;
 
-                // Fetch unified stats from OralAIDataStore
+                // Fetch live counts directly from Supabase
+                let sbPatientCount = null;
+                let sbReportCount = null;
+                let liveReports = [];
+                try {
+                    // Count unique patients from patients and reports tables
+                    const { count: pCount } = await supabaseClient
+                        .from('patients')
+                        .select('*', { count: 'exact', head: true });
+
+                    const { data: patMrns } = await supabaseClient
+                        .from('patients')
+                        .select('mrn, id, full_name');
+
+                    const { data: repMrns } = await supabaseClient
+                        .from('reports')
+                        .select('mrn, patient_name');
+
+                    const uniquePatientsSet = new Set();
+                    if (patMrns) patMrns.forEach(p => { const k = (p.mrn || p.id || p.full_name || '').trim().toLowerCase(); if (k) uniquePatientsSet.add(k); });
+                    if (repMrns) repMrns.forEach(r => { const k = (r.mrn || r.patient_name || '').trim().toLowerCase(); if (k) uniquePatientsSet.add(k); });
+
+                    sbPatientCount = Math.max(pCount || 0, uniquePatientsSet.size);
+                    
+                    const { count: rCount } = await supabaseClient.from('reports').select('*', { count: 'exact', head: true });
+                    if (rCount !== null && rCount !== undefined) sbReportCount = rCount;
+
+                    // Fetch latest 20 reports from Supabase for activity feed
+                    const { data: recentReps } = await supabaseClient
+                        .from('reports')
+                        .select('id, mrn, patient_name, risk_level, risk_percentage, has_cancer, message, analysis_date')
+                        .order('analysis_date', { ascending: false })
+                        .limit(20);
+                    if (recentReps) liveReports = recentReps;
+                } catch(e){ console.warn('Supabase fetch error:', e); }
+
                 const stats = OralAIDataStore.getStats();
-                document.getElementById('total-patients-value').innerText = stats.totalPatients.toLocaleString();
-                document.getElementById('scans-today-value').innerText = stats.totalScans.toLocaleString();
+                const displayPatients = (sbPatientCount !== null && sbPatientCount > 0) ? sbPatientCount : stats.totalPatients;
+                const displayScans = (sbReportCount !== null && sbReportCount > 0) ? sbReportCount : stats.totalScans;
 
-                // Render Dashboard Activity Feed
+                document.getElementById('total-patients-value').innerText = displayPatients.toLocaleString();
+                document.getElementById('scans-today-value').innerText = displayScans.toLocaleString();
+
+                // Render Dashboard Activity Feed from LIVE Supabase data
                 const activityContainer = document.getElementById('dashboard-activity-list');
-                const activitiesToDisplay = OralAIDataStore.getActivities();
 
-                if (activitiesToDisplay.length === 0) {
-                    activityContainer.innerHTML = `
-                        <div style="color: #7b8e9f; font-size: 13px; text-align: center; padding: 10px;">
-                            No recent activities on localhost. Start an AI scan!
-                        </div>`;
-                } else {
+                if (liveReports.length > 0) {
                     activityContainer.innerHTML = '';
-                    activitiesToDisplay.slice(0, 5).forEach(act => {
+                    liveReports.forEach(rep => {
+                        const isHigh = rep.has_cancer || rep.risk_level === 'High';
+                        const dateStr = formatDate(rep.analysis_date);
                         const actDiv = document.createElement('div');
-                        const isHigh = act.type === 'high_risk' || (act.description && act.description.includes('High Risk'));
                         actDiv.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: #0b111a; border-radius: 8px; font-size: 13px;';
                         actDiv.innerHTML = `
                             <div style="display: flex; align-items: center; gap: 10px;">
                                 <i data-lucide="${isHigh ? 'alert-triangle' : 'check-circle'}" style="color: ${isHigh ? '#ff4b4b' : '#10b981'}; width: 18px; height: 18px;"></i>
                                 <div>
-                                    <div style="color: #ffffff; font-weight: 600;">${act.title}</div>
-                                    <div style="color: #7b8e9f; font-size: 12px;">${act.description}</div>
+                                    <div style="color: #ffffff; font-weight: 600;">AI Scan: ${rep.patient_name || 'Patient'} (MRN: ${rep.mrn || '?'})</div>
+                                    <div style="color: #7b8e9f; font-size: 12px;">${isHigh ? 'High Risk (' + (rep.risk_percentage || '?') + '%) - Action Recommended' : 'Low Risk (' + (rep.risk_percentage || '?') + '%) - Normal Scan'}</div>
                                 </div>
                             </div>
-                            <div style="color: #526377; font-size: 11px;">${act.timestamp || 'Recently'}</div>
+                            <div style="color: #526377; font-size: 11px;">${dateStr}</div>
                         `;
                         activityContainer.appendChild(actDiv);
                     });
                     lucide.createIcons();
+                } else {
+                    // Fallback to local activities
+                    const activitiesToDisplay = OralAIDataStore.getActivities();
+                    if (activitiesToDisplay.length === 0) {
+                        activityContainer.innerHTML = `<div style="color: #7b8e9f; font-size: 13px; text-align: center; padding: 10px;">No recent activities. Start an AI scan!</div>`;
+                    } else {
+                        activityContainer.innerHTML = '';
+                        activitiesToDisplay.slice(0, 10).forEach(act => {
+                            const actDiv = document.createElement('div');
+                            const isHigh = act.type === 'high_risk';
+                            actDiv.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: #0b111a; border-radius: 8px; font-size: 13px;';
+                            actDiv.innerHTML = `
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <i data-lucide="${isHigh ? 'alert-triangle' : 'check-circle'}" style="color: ${isHigh ? '#ff4b4b' : '#10b981'}; width: 18px; height: 18px;"></i>
+                                    <div>
+                                        <div style="color: #ffffff; font-weight: 600;">${act.title}</div>
+                                        <div style="color: #7b8e9f; font-size: 12px;">${act.description}</div>
+                                    </div>
+                                </div>
+                                <div style="color: #526377; font-size: 11px;">${formatDate(act.timestamp)}</div>
+                            `;
+                            activityContainer.appendChild(actDiv);
+                        });
+                        lucide.createIcons();
+                    }
                 }
 
             } catch (error) {

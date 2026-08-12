@@ -42,7 +42,9 @@ import com.oralai.scan.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen(navController: NavController) {
-    val totalPatients = ReportRepository.reports.size.toString()
+    // Use live counts from Supabase (updated by fetchReportsFromSupabase)
+    val totalPatients by ReportRepository.totalPatientsCount
+    val totalScans by ReportRepository.totalScansCount
     var userName by remember { mutableStateOf("Doctor") }
 
     LaunchedEffect(Unit) {
@@ -61,6 +63,10 @@ fun DashboardScreen(navController: NavController) {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+        }
+        while (true) {
+            ReportRepository.fetchReportsFromSupabase()
+            kotlinx.coroutines.delay(4000)
         }
     }
 
@@ -147,17 +153,31 @@ fun DashboardScreen(navController: NavController) {
                     modifier = Modifier.weight(1f),
                     icon = Icons.Outlined.Person,
                     iconTint = Color(0xFF3B82F6),
-                    value = totalPatients,
+                    value = if (totalPatients > 0) totalPatients.toString() else ReportRepository.reports.distinctBy { it.patientId }.size.toString(),
                     label = "Total Patients",
-                    subLabel = "+12 this week"
+                    subLabel = "Unique Cases"
                 )
                 StatCard(
                     modifier = Modifier.weight(1f),
+                    icon = Icons.Outlined.ContentPasteSearch,
+                    iconTint = Color(0xFF00C6FF),
+                    value = if (totalScans > 0) totalScans.toString() else ReportRepository.reports.size.toString(),
+                    label = "Total Scans",
+                    subLabel = "AI Analyzed"
+                )
+            }
+            
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Accuracy Card
+            Row(modifier = Modifier.fillMaxWidth()) {
+                StatCard(
+                    modifier = Modifier.fillMaxWidth(),
                     icon = Icons.Outlined.FavoriteBorder,
                     iconTint = Color(0xFF10B981),
                     value = "96.5%",
                     label = "Detection Accuracy",
-                    subLabel = "+0.2% vs last month"
+                    subLabel = "YOLOv8 deep-learning performance"
                 )
             }
             

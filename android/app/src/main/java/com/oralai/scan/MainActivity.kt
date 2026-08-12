@@ -7,29 +7,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import io.github.jan.supabase.createSupabaseClient
-import io.github.jan.supabase.auth.Auth
-
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-
-import kotlin.time.Duration.Companion.seconds
-
-val supabase = createSupabaseClient(
-    supabaseUrl = "https://gduqgsxwcnrzdjqkextl.supabase.co",
-    supabaseKey = "sb_publishable_1V-1Pqu_6ZKe4I3MDadz1w_0fUURFdo"
-) {
-    requestTimeout = 60.seconds
-    install(Auth)
-    install(Postgrest)
-}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        // Initialize persistent repository
+        // Initialize persistent repository & sync with Supabase
         ReportRepository.init(this)
         
         setContent {

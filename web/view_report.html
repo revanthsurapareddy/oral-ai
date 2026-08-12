@@ -183,6 +183,7 @@
             font-weight: 600;
         }
     </style>
+    <link rel="stylesheet" href="global_mobile.css">
 </head>
 <body>
 
@@ -246,6 +247,70 @@
         const SUPABASE_ANON_KEY = 'sb_publishable_1V-1Pqu_6ZKe4I3MDadz1w_0fUURFdo';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+        function createAnnotatedScanOverlay(imgSrc, result, callback) {
+            if (!imgSrc) return callback('');
+            const img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+
+                ctx.drawImage(img, 0, 0);
+
+                const w = img.width;
+                const h = img.height;
+
+                // Only draw outlines if AI result with cancer detected
+                if (!result || result.has_cancer === false) {
+                    return callback(canvas.toDataURL('image/jpeg', 0.85));
+                }
+
+                const innerLesionPts = (result.inner_lesion_pts && result.inner_lesion_pts.length >= 3)
+                    ? result.inner_lesion_pts : [];
+                const outerSafetyPts = (result.outer_safety_pts && result.outer_safety_pts.length >= 3)
+                    ? result.outer_safety_pts : [];
+
+                function drawPolygon(pts, strokeColor, fillColor, lineWidth, dashArray) {
+                    if (!pts || pts.length < 3) return;
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.moveTo(pts[0][0] * w, pts[0][1] * h);
+                    for (let i = 1; i < pts.length; i++) {
+                        ctx.lineTo(pts[i][0] * w, pts[i][1] * h);
+                    }
+                    ctx.closePath();
+                    if (fillColor) { ctx.fillStyle = fillColor; ctx.fill(); }
+                    ctx.strokeStyle = strokeColor;
+                    ctx.lineWidth = lineWidth;
+                    ctx.setLineDash(dashArray || []);
+                    ctx.lineCap = 'round';
+                    ctx.lineJoin = 'round';
+                    ctx.stroke();
+                    ctx.restore();
+                }
+
+                // Draw Outer Safety Margin — bright lime green dashed
+                if (outerSafetyPts.length >= 3) {
+                    drawPolygon(outerSafetyPts, '#00FF88', 'rgba(0,255,136,0.08)',
+                        Math.max(3, w * 0.012), [Math.max(14, w * 0.025), Math.max(7, w * 0.012)]);
+                }
+
+                // Draw Inner Lesion Boundary — bright yellow screening outline matching 034.jpeg
+                if (innerLesionPts.length >= 3) {
+                    drawPolygon(innerLesionPts, '#FFFF00', 'rgba(255,255,0,0.12)',
+                        Math.max(3.5, w * 0.016), []);
+                }
+
+                callback(canvas.toDataURL('image/jpeg', 0.85));
+            };
+            img.onerror = function() {
+                callback(imgSrc);
+            };
+            img.src = imgSrc;
+        }
+
         async function fetchReport() {
             const params = new URLSearchParams(window.location.search);
             const reportId = params.get('report_id');
@@ -276,15 +341,25 @@
                     report = allLocalReports.find(r => r.id === reportId || r.mrn === reportId);
                 }
 
-                // 3. Try fetching from Supabase if not found locally
-                if (!report) {
+                // 3. Try fetching from Supabase if not found locally OR if scan_image_url is missing
+                if (!report || !report.scan_image_url) {
                     try {
-                        const { data: sbReport } = await supabaseClient
-                            .from('reports')
-                            .select('*, patients(mrn, full_name, age, gender)')
-                            .eq('id', reportId)
-                            .single();
-                        if (sbReport) report = sbReport;
+                        const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(reportId);
+                        let query = supabaseClient.from('reports').select('*, patients(mrn, full_name, age, gender)');
+                        if (isUuid) {
+                            query = query.eq('id', reportId);
+                        } else {
+                            query = query.eq('mrn', reportId).order('analysis_date', { ascending: false });
+                        }
+                        const { data: sbData } = await query;
+                        const sbReport = Array.isArray(sbData) ? sbData[0] : sbData;
+                        if (sbReport) {
+                            if (report) {
+                                report.scan_image_url = sbReport.scan_image_url || report.scan_image_url;
+                            } else {
+                                report = sbReport;
+                            }
+                        }
                     } catch(e){}
                 }
 
@@ -296,8 +371,9 @@
                     return;
                 }
 
-                if (report.scan_image_url) {
-                    document.getElementById('analyzed-scan').src = report.scan_image_url;
+                const rawImage = report.scan_image_url || report.image_base64 || report.analyzedImageBase64;
+                if (rawImage) {
+                    document.getElementById('analyzed-scan').src = rawImage;
                 }
 
                 const riskIcon = document.getElementById('risk-icon');

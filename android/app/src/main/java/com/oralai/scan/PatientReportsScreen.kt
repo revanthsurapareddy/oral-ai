@@ -102,6 +102,18 @@ fun PatientReportsScreen(navController: NavController, patientId: String?) {
                                         .size(8.dp)
                                         .background(if (report.analysisResult.contains("Cancer")) Color.Red else Color.Green, CircleShape)
                                 )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                IconButton(
+                                    onClick = {
+                                        ReportRepository.removeReport(report.id)
+                                    }
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Outlined.Delete,
+                                        contentDescription = "Delete Report",
+                                        tint = Color(0xFFFF4B4B)
+                                    )
+                                }
                             }
                         }
                     }

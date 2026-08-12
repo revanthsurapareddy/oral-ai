@@ -1,0 +1,9 @@
+- [x] Backend Optimization (`backend/main.py`)
+    - [x] Move heavy imports to `get_model`
+    - [x] Add aggressive garbage collection
+    - [x] Limit torch threads
+- [x] Android Client Optimization (`AnalyzeScreen.kt`)
+    - [x] Implement "Smart Upload" (Raw vs Compressed)
+- [x] Verification
+    - [x] Build Android app
+    - [x] Confirm backend connectivity

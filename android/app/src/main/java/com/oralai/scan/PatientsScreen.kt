@@ -12,6 +12,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -25,8 +29,24 @@ import androidx.navigation.NavController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PatientsScreen(navController: NavController) {
+    androidx.compose.runtime.LaunchedEffect(Unit) {
+        while (true) {
+            ReportRepository.fetchReportsFromSupabase()
+            kotlinx.coroutines.delay(4000)
+        }
+    }
     val reports = ReportRepository.reports
-    val patients = reports.distinctBy { it.patientId }
+    val allPatients = reports.distinctBy { (it.patientId.takeIf { id -> id.isNotBlank() } ?: it.patientName.takeIf { n -> n.isNotBlank() } ?: it.id).lowercase() }
+    var searchQuery by remember { mutableStateOf("") }
+    var sortAsc by remember { mutableStateOf(true) }
+
+    val filteredPatients = allPatients.filter { p ->
+        searchQuery.isBlank() ||
+        p.patientName.contains(searchQuery, ignoreCase = true) ||
+        p.patientId.contains(searchQuery, ignoreCase = true)
+    }.let { list ->
+        if (sortAsc) list.sortedBy { it.patientName.lowercase() } else list.sortedByDescending { it.patientName.lowercase() }
+    }
 
     Scaffold(
         bottomBar = { PatientsBottomNav(navController) },
@@ -63,8 +83,10 @@ fun PatientsScreen(navController: NavController) {
                 }
                 
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    // Notification icon removed
-                    
+                    IconButton(onClick = { ReportRepository.fetchReportsFromSupabase() }) {
+                        Icon(imageVector = Icons.Outlined.Refresh, contentDescription = "Refresh", tint = Color.White)
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
                     
                     Box(
                         modifier = Modifier
@@ -90,20 +112,32 @@ fun PatientsScreen(navController: NavController) {
                     .border(1.dp, Color(0xFF1F2C3B), RoundedCornerShape(12.dp))
                     .padding(24.dp)
             ) {
-                Text("Saved Patients", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                Text("Saved Patients (${filteredPatients.size})", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     OutlinedTextField(
-                        value = "",
-                        onValueChange = {},
-                        placeholder = { Text("Search MRN or name...", color = Color(0xFF7B8E9F)) },
+                        value = searchQuery,
+                        onValueChange = { searchQuery = it },
+                        textStyle = androidx.compose.ui.text.TextStyle(color = Color.White, fontSize = 15.sp, fontWeight = FontWeight.Normal),
+                        placeholder = { Text("Search MRN or name...", color = Color(0xFF7B8E9F), fontSize = 15.sp) },
                         leadingIcon = { Icon(Icons.Outlined.Search, contentDescription = null, tint = Color(0xFF7B8E9F)) },
-                        colors = TextFieldDefaults.outlinedTextFieldColors(
-                            containerColor = Color(0xFF151E2B),
-                            focusedBorderColor = Color.White,
-                            unfocusedBorderColor = Color.White,
-                            cursorColor = Color.White
+                        trailingIcon = {
+                            if (searchQuery.isNotEmpty()) {
+                                IconButton(onClick = { searchQuery = "" }) {
+                                    Icon(Icons.Outlined.Close, contentDescription = "Clear", tint = Color(0xFF7B8E9F))
+                                }
+                            }
+                        },
+                        singleLine = true,
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedTextColor = Color.White,
+                            unfocusedTextColor = Color.White,
+                            focusedContainerColor = Color(0xFF0B111A),
+                            unfocusedContainerColor = Color(0xFF0B111A),
+                            focusedBorderColor = Color(0xFF3B82F6),
+                            unfocusedBorderColor = Color(0xFF1F2C3B),
+                            cursorColor = Color(0xFF3B82F6)
                         ),
                         shape = RoundedCornerShape(8.dp),
                         modifier = Modifier
@@ -114,10 +148,11 @@ fun PatientsScreen(navController: NavController) {
                     Box(
                         modifier = Modifier
                             .size(56.dp)
-                            .border(1.dp, Color.White, RoundedCornerShape(8.dp)),
+                            .border(1.dp, Color.White, RoundedCornerShape(8.dp))
+                            .clickable { sortAsc = !sortAsc },
                         contentAlignment = Alignment.Center
                     ) {
-                        Icon(imageVector = Icons.Outlined.FilterAlt, contentDescription = "Filter", tint = Color.White)
+                        Icon(imageVector = Icons.Outlined.SwapVert, contentDescription = "Sort", tint = Color.White)
                     }
                 }
 
@@ -125,13 +160,13 @@ fun PatientsScreen(navController: NavController) {
                 Divider(color = Color.White)
                 Spacer(modifier = Modifier.height(12.dp))
 
-                if (patients.isEmpty()) {
+                if (filteredPatients.isEmpty()) {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text("No patients saved yet.", color = Color.Gray)
+                        Text(if (searchQuery.isBlank()) "No patients saved yet." else "No patients match '$searchQuery'", color = Color.Gray)
                     }
                 } else {
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
-                        items(patients) { patient ->
+                        items(filteredPatients) { patient ->
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -158,6 +193,18 @@ fun PatientsScreen(navController: NavController) {
                                         .size(8.dp)
                                         .background(if (patient.analysisResult.contains("Cancer")) Color.Red else Color.Green, CircleShape)
                                 )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                IconButton(
+                                    onClick = {
+                                        ReportRepository.deletePatient(patient.patientId)
+                                    }
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Outlined.Delete,
+                                        contentDescription = "Delete Patient",
+                                        tint = Color(0xFFFF4B4B)
+                                    )
+                                }
                             }
                         }
                     }

@@ -1,0 +1,132 @@
+/* patients.css */
+.patients-card {
+    background-color: #151e2b;
+    border: 1px solid #1f2c3b;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 160px); /* Adjust height to fit screen */
+}
+
+.patients-header {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.search-filter-container {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: #151e2b;
+    border: 1px solid #2a3b4c;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #7b8e9f;
+}
+
+.search-bar i {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+    width: 100%;
+    outline: none;
+}
+
+.search-bar input::placeholder {
+    color: #7b8e9f;
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #151e2b;
+    border: 1px solid #2a3b4c;
+    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.patients-divider {
+    border-bottom: 1px solid #1f2c3b;
+    margin-bottom: 20px;
+}
+
+.patients-list {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 8px; /* For scrollbar */
+}
+
+/* Custom scrollbar for webkit */
+.patients-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.patients-list::-webkit-scrollbar-thumb {
+    background-color: #1f2c3b;
+    border-radius: 4px;
+}
+
+.patient-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    margin-bottom: 8px;
+}
+
+.patient-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #e2e8f0;
+    margin-right: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    overflow: hidden;
+}
+
+.patient-info {
+    flex: 1;
+}
+
+.patient-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.patient-mrn {
+    font-size: 13px;
+    color: #7b8e9f;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status-red { background-color: #ef4444; }
+.status-green { background-color: #10b981; }
+.status-yellow { background-color: #f59e0b; }

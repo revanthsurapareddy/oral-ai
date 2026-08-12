@@ -8,11 +8,14 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.ArrowBack
-import androidx.compose.material.icons.outlined.Warning
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,6 +32,8 @@ import android.graphics.BitmapFactory
 import android.util.Base64
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.foundation.Image
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,6 +46,18 @@ fun ViewReportScreen(navController: NavController, reportId: String?) {
             navController.popBackStack()
         }
         return
+    }
+
+    var imageBase64 by remember { mutableStateOf(report.analyzedImageBase64) }
+    var isLoadingImage by remember { mutableStateOf(imageBase64 == null && report.imageUri == null && !report.id.startsWith("PAT-STUB")) }
+
+    LaunchedEffect(reportId) {
+        if (imageBase64 == null && report.imageUri == null && reportId != null && !reportId.startsWith("PAT-STUB")) {
+            ReportRepository.fetchReportImage(reportId) { imgStr ->
+                imageBase64 = imgStr
+                isLoadingImage = false
+            }
+        }
     }
 
     Scaffold(
@@ -71,8 +88,21 @@ fun ViewReportScreen(navController: NavController, reportId: String?) {
                     text = "Saved Report: ${report.patientName}",
                     color = Color.White,
                     fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1f)
                 )
+                IconButton(
+                    onClick = {
+                        ReportRepository.removeReport(report.id)
+                        navController.popBackStack()
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.Delete,
+                        contentDescription = "Delete Report",
+                        tint = Color(0xFFFF4B4B)
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -88,10 +118,12 @@ fun ViewReportScreen(navController: NavController, reportId: String?) {
                     .border(1.dp, Color(0xFF1F2C3B), RoundedCornerShape(16.dp)),
                 contentAlignment = Alignment.Center
             ) {
-                if (report.analyzedImageBase64 != null) {
+                if (isLoadingImage) {
+                    CircularProgressIndicator(color = Color(0xFF3B82F6))
+                } else if (imageBase64 != null) {
                     var bitmap: android.graphics.Bitmap? = null
                     try {
-                        val base64String = report.analyzedImageBase64.substringAfter("base64,")
+                        val base64String = imageBase64!!.substringAfter("base64,")
                         val imageBytes = Base64.decode(base64String, Base64.DEFAULT)
                         bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
                     } catch (e: Exception) {
@@ -109,12 +141,38 @@ fun ViewReportScreen(navController: NavController, reportId: String?) {
                         Text("Error loading analyzed image", color = Color.Gray)
                     }
                 } else if (report.imageUri != null) {
-                    AsyncImage(
-                        model = report.imageUri,
-                        contentDescription = "Original Scan",
-                        modifier = Modifier.fillMaxSize(),
-                        contentScale = ContentScale.Crop
-                    )
+                    var uriBitmap by remember(report.imageUri) { mutableStateOf<android.graphics.Bitmap?>(null) }
+                    val contextLocal = LocalContext.current
+                    LaunchedEffect(report.imageUri) {
+                        withContext(Dispatchers.IO) {
+                            try {
+                                val inputStream = contextLocal.contentResolver.openInputStream(report.imageUri)
+                                val rawBmp = BitmapFactory.decodeStream(inputStream)
+                                inputStream?.close()
+                                if (rawBmp != null) {
+                                    uriBitmap = rawBmp
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
+                    }
+
+                    if (uriBitmap != null) {
+                        Image(
+                            bitmap = uriBitmap!!.asImageBitmap(),
+                            contentDescription = "Analyzed Scan",
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = ContentScale.Crop
+                        )
+                    } else {
+                        AsyncImage(
+                            model = report.imageUri,
+                            contentDescription = "Original Scan",
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = ContentScale.Crop
+                        )
+                    }
                 } else {
                     Text("No Image Found", color = Color.Gray)
                 }

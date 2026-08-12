@@ -1,0 +1,8 @@
+- [x] Create `ImageOverlayUtils.kt` with irregular contour drawing logic
+- [x] Update `AnalyzeScreen.kt` to apply outlines during fallback/processing
+- [x] Refactor `ResultScreen.kt` to use `ImageOverlayUtils`
+- [x] Verify persistence in `ViewReportScreen`
+- [x] Verify PDF generation output
+- [x] Refine line thickness in `ImageOverlayUtils.kt`
+- [x] Add coordinate extraction and logging to `AnalyzeScreen.kt`
+- [x] Update `SessionManager.kt` and `ResultScreen.kt` for dynamic focus
