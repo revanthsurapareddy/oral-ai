@@ -24,7 +24,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install fastapi uvicorn requests pillow numpy opencv-python-headless bandit
-          sudo apt-get update && sudo apt-get install -y zip
 
       - name: Start FastAPI Backend Service
         run: |
@@ -59,19 +58,18 @@ jobs:
         run: |
           k6 run load-tests/suite.js || true
 
-      - name: Package Reports into ZIP Artifact
+      - name: Prepare Test Report Files
         if: always()
         run: |
-          mkdir -p artifact-bundle
-          cp -r load-test-report.html reports/ artifact-bundle/ 2>/dev/null || true
-          cp backend.log artifact-bundle/ 2>/dev/null || true
-          cd artifact-bundle && zip -r ../load-test-artifacts.zip . && cd ..
-          echo "Artifact ZIP Created Successfully."
+          mkdir -p load-test-reports-bundle
+          cp load-test-report.html load-test-reports-bundle/ 2>/dev/null || true
+          cp -r reports/ load-test-reports-bundle/ 2>/dev/null || true
+          cp backend.log load-test-reports-bundle/ 2>/dev/null || true
 
-      - name: Upload Test Artifacts (ZIP Archive)
+      - name: Upload Load Test & Vulnerability ZIP Artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: load-test-and-vulnerability-artifacts
-          path: load-test-artifacts.zip
+          name: load-test-reports.zip
+          path: load-test-reports-bundle/
           retention-days: 14
