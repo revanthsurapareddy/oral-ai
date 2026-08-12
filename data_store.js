@@ -4,153 +4,80 @@
     const STORAGE_REPORTS_KEY = 'oralai_local_reports';
     const STORAGE_ACTIVITIES_KEY = 'oralai_activity_log';
 
-    // Default Seed Data so Localhost is never empty on first load
-    const DEFAULT_PATIENTS = [
-        {
-            id: 'PAT-10482',
-            mrn: 'PT-10482',
-            full_name: 'Rajesh Kumar',
-            age: 48,
-            gender: 'Male',
-            created_at: new Date(Date.now() - 86400000 * 3).toISOString()
-        },
-        {
-            id: 'PAT-10483',
-            mrn: 'PT-10483',
-            full_name: 'Priya Sharma',
-            age: 36,
-            gender: 'Female',
-            created_at: new Date(Date.now() - 86400000 * 2).toISOString()
-        },
-        {
-            id: 'PAT-10484',
-            mrn: 'PT-10484',
-            full_name: 'Amit Patel',
-            age: 52,
-            gender: 'Male',
-            created_at: new Date(Date.now() - 86400000 * 1).toISOString()
-        },
-        {
-            id: 'PAT-10485',
-            mrn: 'PT-10485',
-            full_name: 'Sunita Verma',
-            age: 29,
-            gender: 'Female',
-            created_at: new Date().toISOString()
-        }
-    ];
-
-    const DEFAULT_REPORTS = [
-        {
-            id: 'REP-1001',
-            patient_id: 'PAT-10482',
-            mrn: 'PT-10482',
-            patient_name: 'Rajesh Kumar',
-            risk_level: 'High',
-            risk_percentage: 94,
-            has_cancer: true,
-            message: 'High risk squamous cell carcinoma signs detected on lateral tongue.',
-            scan_image_url: '',
-            analysis_date: new Date(Date.now() - 86400000 * 3).toISOString()
-        },
-        {
-            id: 'REP-1002',
-            patient_id: 'PAT-10483',
-            mrn: 'PT-10483',
-            patient_name: 'Priya Sharma',
-            risk_level: 'Low',
-            risk_percentage: 4,
-            has_cancer: false,
-            message: 'Normal oral mucosa. No malignant structures detected.',
-            scan_image_url: '',
-            analysis_date: new Date(Date.now() - 86400000 * 2).toISOString()
-        },
-        {
-            id: 'REP-1003',
-            patient_id: 'PAT-10484',
-            mrn: 'PT-10484',
-            patient_name: 'Amit Patel',
-            risk_level: 'High',
-            risk_percentage: 91,
-            has_cancer: true,
-            message: 'Leukoplakia lesion with elevated risk profile detected.',
-            scan_image_url: '',
-            analysis_date: new Date(Date.now() - 86400000 * 1).toISOString()
-        },
-        {
-            id: 'REP-1004',
-            patient_id: 'PAT-10485',
-            mrn: 'PT-10485',
-            patient_name: 'Sunita Verma',
-            risk_level: 'Low',
-            risk_percentage: 3,
-            has_cancer: false,
-            message: 'Normal oral tissue examination.',
-            scan_image_url: '',
-            analysis_date: new Date().toISOString()
-        }
-    ];
-
-    const DEFAULT_ACTIVITIES = [
-        {
-            id: 'ACT-1',
-            title: 'AI Scan: Sunita Verma (PT-10485)',
-            description: 'Low Risk (3%) - Normal oral scan',
-            timestamp: 'Today, ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            type: 'low_risk'
-        },
-        {
-            id: 'ACT-2',
-            title: 'AI Scan: Amit Patel (PT-10484)',
-            description: 'High Risk (91%) - Action Recommended',
-            timestamp: 'Yesterday',
-            type: 'high_risk'
-        },
-        {
-            id: 'ACT-3',
-            title: 'AI Scan: Priya Sharma (PT-10483)',
-            description: 'Low Risk (4%) - Normal oral scan',
-            timestamp: '2 days ago',
-            type: 'low_risk'
-        }
-    ];
+    const DEFAULT_PATIENTS = [];
+    const DEFAULT_REPORTS = [];
+    const DEFAULT_ACTIVITIES = [];
 
     function initStore() {
         let p = localStorage.getItem(STORAGE_PATIENTS_KEY);
-        if (!p || p === '[]' || p === 'null' || p === 'undefined') {
-            localStorage.setItem(STORAGE_PATIENTS_KEY, JSON.stringify(DEFAULT_PATIENTS));
+        if (p && (p.includes('PAT-10482') || p.includes('Rajesh Kumar'))) {
+            localStorage.removeItem(STORAGE_PATIENTS_KEY);
+            localStorage.removeItem(STORAGE_REPORTS_KEY);
+            localStorage.removeItem(STORAGE_ACTIVITIES_KEY);
+        }
+        
+        p = localStorage.getItem(STORAGE_PATIENTS_KEY);
+        if (!p || p === 'null' || p === 'undefined') {
+            localStorage.setItem(STORAGE_PATIENTS_KEY, JSON.stringify([]));
         }
         let r = localStorage.getItem(STORAGE_REPORTS_KEY);
-        if (!r || r === '[]' || r === 'null' || r === 'undefined') {
-            localStorage.setItem(STORAGE_REPORTS_KEY, JSON.stringify(DEFAULT_REPORTS));
+        if (!r || r === 'null' || r === 'undefined') {
+            localStorage.setItem(STORAGE_REPORTS_KEY, JSON.stringify([]));
         }
         let a = localStorage.getItem(STORAGE_ACTIVITIES_KEY);
-        if (!a || a === '[]' || a === 'null' || a === 'undefined') {
-            localStorage.setItem(STORAGE_ACTIVITIES_KEY, JSON.stringify(DEFAULT_ACTIVITIES));
+        if (!a || a === 'null' || a === 'undefined') {
+            localStorage.setItem(STORAGE_ACTIVITIES_KEY, JSON.stringify([]));
         }
+    }
+
+    function unpackReportContours(report) {
+        if (report && report.message && report.message.includes(" ||CONTOURS||")) {
+            const parts = report.message.split(" ||CONTOURS||");
+            report.message = parts[0];
+            try {
+                const cdata = JSON.parse(parts[1]);
+                report.inner_lesion_pts = cdata.inner || [];
+                report.outer_safety_pts = cdata.outer || [];
+            } catch(e){}
+        }
+        return report;
     }
 
     function syncWithBackend() {
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.') || window.location.hostname.startsWith('172.');
-        const backendBase = isLocal ? 'http://' + window.location.hostname + ':8000' : 'https://oral-ai-backend.onrender.com';
+        const backendBase = isLocal ? 'http://' + window.location.hostname + ':8000' : 'https://49d6b344d4e664.lhr.life';
 
         const localPatients = JSON.parse(localStorage.getItem(STORAGE_PATIENTS_KEY) || '[]');
         const localReports = JSON.parse(localStorage.getItem(STORAGE_REPORTS_KEY) || '[]');
 
-        // 1. Upload ALL existing local browser reports to Backend Server so Android gets them!
-        localReports.forEach(report => {
+        // 1. Upload unsynced local reports to Backend
+        const unsyncedReports = localReports.filter(r => r.synced !== true);
+        unsyncedReports.forEach(report => {
             fetch(backendBase + '/api/reports', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(report)
+            }).then(res => {
+                if (res.ok) {
+                    const currentLocal = JSON.parse(localStorage.getItem(STORAGE_REPORTS_KEY) || '[]');
+                    const idx = currentLocal.findIndex(r => r.id === report.id);
+                    if (idx >= 0) {
+                        currentLocal[idx].synced = true;
+                        localStorage.setItem(STORAGE_REPORTS_KEY, JSON.stringify(currentLocal));
+                    }
+                }
             }).catch(e => {});
         });
 
-        // 2. Fetch all reports from Backend Server
+        // 2. Fetch all reports from Backend / Supabase
         fetch(backendBase + '/api/reports')
             .then(res => res.json())
             .then(remoteReports => {
                 if (Array.isArray(remoteReports) && remoteReports.length > 0) {
+                    remoteReports.forEach(r => {
+                        unpackReportContours(r);
+                        r.synced = true;
+                    });
                     const currentLocal = JSON.parse(localStorage.getItem(STORAGE_REPORTS_KEY) || '[]');
                     const map = new Map();
                     currentLocal.forEach(r => map.set(r.id, r));
@@ -159,7 +86,7 @@
                 }
             }).catch(e => {});
 
-        // 3. Fetch all patients from Backend Server
+        // 3. Fetch all patients from Backend / Supabase
         fetch(backendBase + '/api/patients')
             .then(res => res.json())
             .then(remotePatients => {
@@ -180,13 +107,15 @@
         getPatients: function() {
             initStore();
             syncWithBackend();
-            return JSON.parse(localStorage.getItem(STORAGE_PATIENTS_KEY) || JSON.stringify(DEFAULT_PATIENTS));
+            const list = JSON.parse(localStorage.getItem(STORAGE_PATIENTS_KEY) || '[]');
+            return list;
         },
 
         getReports: function(patientIdOrMrn) {
             initStore();
             syncWithBackend();
-            const reports = JSON.parse(localStorage.getItem(STORAGE_REPORTS_KEY) || JSON.stringify(DEFAULT_REPORTS));
+            const reports = JSON.parse(localStorage.getItem(STORAGE_REPORTS_KEY) || '[]');
+            
             if (!patientIdOrMrn) return reports;
 
             return reports.filter(r => 
@@ -198,7 +127,8 @@
 
         getActivities: function() {
             initStore();
-            return JSON.parse(localStorage.getItem(STORAGE_ACTIVITIES_KEY) || JSON.stringify(DEFAULT_ACTIVITIES));
+            const acts = JSON.parse(localStorage.getItem(STORAGE_ACTIVITIES_KEY) || '[]');
+            return acts.filter(a => !a.title.includes('PT-1048') && !['Rajesh Kumar', 'Priya Sharma', 'Amit Patel', 'Sunita Verma'].some(n => a.title.includes(n)));
         },
 
         getStats: function() {
@@ -206,10 +136,16 @@
             const reports = this.getReports();
 
             const uniquePatients = new Set();
-            patients.forEach(p => uniquePatients.add(p.mrn || p.id));
-            reports.forEach(r => uniquePatients.add(r.mrn || r.patient_id || r.patient_name));
+            patients.forEach(p => {
+                const key = (p.mrn || p.id || p.full_name || '').toString().trim().toLowerCase();
+                if (key) uniquePatients.add(key);
+            });
+            reports.forEach(r => {
+                const key = (r.mrn || r.patient_id || r.patient_name || '').toString().trim().toLowerCase();
+                if (key) uniquePatients.add(key);
+            });
 
-            const totalPatients = Math.max(patients.length, uniquePatients.size);
+            const totalPatients = uniquePatients.size;
             const totalScans = reports.length;
             const highRiskCount = reports.filter(r => r.has_cancer || r.risk_level === 'High').length;
             const normalCount = totalScans - highRiskCount;
@@ -264,7 +200,10 @@
                 risk_percentage: resultObj.risk_percentage || (resultObj.has_cancer ? 92 : 5),
                 has_cancer: resultObj.has_cancer,
                 message: resultObj.message || (resultObj.has_cancer ? "Cancer Detected!" : "Normal Oral Scan"),
-                analysis_date: isoNow
+                analysis_date: isoNow,
+                inner_lesion_pts: resultObj.inner_lesion_pts || [],
+                outer_safety_pts: resultObj.outer_safety_pts || [],
+                synced: false
             };
 
             localReports.unshift(newReport);
@@ -283,12 +222,21 @@
 
             // POST TO SHARED BACKEND SERVER FOR ANDROID SYNC
             const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.') || window.location.hostname.startsWith('172.');
-            const backendBase = isLocal ? 'http://' + window.location.hostname + ':8000' : 'https://oral-ai-backend.onrender.com';
+            const backendBase = isLocal ? 'http://' + window.location.hostname + ':8000' : 'https://49d6b344d4e664.lhr.life';
             
             fetch(backendBase + '/api/reports', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newReport)
+            }).then(res => {
+                if (res.ok) {
+                    const currentLocal = JSON.parse(localStorage.getItem(STORAGE_REPORTS_KEY) || '[]');
+                    const idx = currentLocal.findIndex(r => r.id === newReport.id);
+                    if (idx >= 0) {
+                        currentLocal[idx].synced = true;
+                        localStorage.setItem(STORAGE_REPORTS_KEY, JSON.stringify(currentLocal));
+                    }
+                }
             }).catch(e => console.warn("Backend report sync skipped:", e));
 
             return { patientId, report: newReport };
@@ -296,18 +244,34 @@
 
         deletePatient: function(patientIdOrMrn) {
             initStore();
-            let localPatients = this.getPatients();
-            let localReports = this.getReports();
+            if (!patientIdOrMrn) return;
+            const key = String(patientIdOrMrn).trim();
 
-            localPatients = localPatients.filter(p => p.id !== patientIdOrMrn && p.mrn !== patientIdOrMrn);
-            localReports = localReports.filter(r => r.patient_id !== patientIdOrMrn && r.mrn !== patientIdOrMrn);
+            let localPatients = JSON.parse(localStorage.getItem(STORAGE_PATIENTS_KEY) || '[]');
+            let localReports = JSON.parse(localStorage.getItem(STORAGE_REPORTS_KEY) || '[]');
+            let localActivities = JSON.parse(localStorage.getItem(STORAGE_ACTIVITIES_KEY) || '[]');
+
+            localPatients = localPatients.filter(p => p.id !== key && p.mrn !== key && p.full_name !== key);
+            localReports = localReports.filter(r => r.patient_id !== key && r.mrn !== key && r.patient_name !== key);
+            localActivities = localActivities.filter(a => !a.title.includes(key));
 
             localStorage.setItem(STORAGE_PATIENTS_KEY, JSON.stringify(localPatients));
             localStorage.setItem(STORAGE_REPORTS_KEY, JSON.stringify(localReports));
+            localStorage.setItem(STORAGE_ACTIVITIES_KEY, JSON.stringify(localActivities));
+
+            if (window.supabase) {
+                try {
+                    const SUPABASE_URL = 'https://gduqgsxwcnrzdjqkextl.supabase.co';
+                    const SUPABASE_ANON_KEY = 'sb_publishable_1V-1Pqu_6ZKe4I3MDadz1w_0fUURFdo';
+                    const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                    client.from('patients').delete().or('id.eq.' + key + ',mrn.eq.' + key).then(() => {});
+                    client.from('reports').delete().or('patient_id.eq.' + key + ',mrn.eq.' + key).then(() => {});
+                } catch(e){}
+            }
 
             const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-            const backendBase = isLocal ? 'http://localhost:8000' : 'https://oral-ai-backend.onrender.com';
-            fetch(backendBase + '/api/patients/' + patientIdOrMrn, { method: 'DELETE' }).catch(e => {});
+            const backendBase = isLocal ? 'http://' + window.location.hostname + ':8000' : 'https://oral-ai-backend.onrender.com';
+            fetch(backendBase + '/api/patients/' + encodeURIComponent(key), { method: 'DELETE' }).catch(e => {});
         },
 
         resetStore: function() {

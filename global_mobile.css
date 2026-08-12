@@ -1,0 +1,82 @@
+/* Centering body mobile frame on desktop for static web portal */
+html,
+body {
+  width: 100% !important;
+  min-height: 100vh !important;
+  background-color: #05080e !important; /* Dark outer background */
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body {
+  width: 100% !important;
+  min-height: 100vh !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  background-color: #0b111a !important;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6) !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+@media (min-width: 600px) {
+  body {
+    width: 600px !important;
+  }
+}
+
+/* Sizing & Alignment fixes for fixed bottom navigation bar */
+.bottom-nav {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 100% !important;
+  max-width: 600px !important;
+}
+
+.modal-overlay {
+  max-width: 600px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+/* Form inputs and label legibility enhancements */
+.form-label, .input-label {
+    color: #a0aec0 !important; /* Lighter highly-legible text */
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+}
+
+.form-input, .input-field, .search-bar, .filter-btn {
+    border-color: #2a3b4c !important; /* Premium subtle border */
+    background-color: #0b111a !important;
+    color: #ffffff !important;
+}
+
+.form-input::placeholder, .input-field::placeholder {
+    color: #4a5d73 !important;
+}
+
+.form-input:focus, .input-wrapper:focus-within {
+    border-color: #00c6ff !important;
+}
+
+.patients-divider {
+    border-bottom: 1px solid #1f2c3b !important;
+}
+
+.btn-delete {
+    background-color: rgba(239, 68, 68, 0.1) !important;
+    color: #ef4444 !important;
+    border: 1px solid rgba(239, 68, 68, 0.2) !important;
+}
+
+/* Dashboard Stats Grid Sizing */
+.stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+    gap: 16px !important;
+}

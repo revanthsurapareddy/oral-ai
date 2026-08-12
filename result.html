@@ -167,6 +167,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="global_mobile.css">
 </head>
 <body>
 
@@ -182,7 +183,9 @@
         </div>
 
         <div class="scan-section">
-            <div class="scan-label">Analyzed Scan</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <div class="scan-label">Analyzed Scan</div>
+            </div>
             <img id="analyzed-scan" class="scan-image" src="" alt="Analyzed">
         </div>
 
@@ -219,10 +222,75 @@
     <script>
         lucide.createIcons();
 
-        // Load data from sessionStorage
-        const scannedImage = sessionStorage.getItem('scannedImage');
-        const apiResultStr = sessionStorage.getItem('apiResult');
-        const patientInfoStr = sessionStorage.getItem('patientInfo');
+        // Canvas Overlay Generator for Lesion Margin & 5mm Safety Boundary
+        function createAnnotatedScanOverlay(imgSrc, result, callback) {
+            if (!imgSrc) return callback('');
+            const img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+
+                // Draw Base Image
+                ctx.drawImage(img, 0, 0);
+
+                const w = img.width;
+                const h = img.height;
+
+                // Only draw outlines if AI result with cancer detected
+                if (!result || result.has_cancer === false) {
+                    return callback(canvas.toDataURL('image/jpeg', 0.85));
+                }
+
+                const innerLesionPts = (result.inner_lesion_pts && result.inner_lesion_pts.length >= 3)
+                    ? result.inner_lesion_pts : [];
+                const outerSafetyPts = (result.outer_safety_pts && result.outer_safety_pts.length >= 3)
+                    ? result.outer_safety_pts : [];
+
+                function drawPolygon(pts, strokeColor, fillColor, lineWidth, dashArray) {
+                    if (!pts || pts.length < 3) return;
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.moveTo(pts[0][0] * w, pts[0][1] * h);
+                    for (let i = 1; i < pts.length; i++) {
+                        ctx.lineTo(pts[i][0] * w, pts[i][1] * h);
+                    }
+                    ctx.closePath();
+                    if (fillColor) { ctx.fillStyle = fillColor; ctx.fill(); }
+                    ctx.strokeStyle = strokeColor;
+                    ctx.lineWidth = lineWidth;
+                    ctx.setLineDash(dashArray || []);
+                    ctx.lineCap = 'round';
+                    ctx.lineJoin = 'round';
+                    ctx.stroke();
+                    ctx.restore();
+                }
+
+                // Draw Outer Safety Margin — bright lime green dashed
+                if (outerSafetyPts.length >= 3) {
+                    drawPolygon(outerSafetyPts, '#00FF88', 'rgba(0,255,136,0.08)',
+                        Math.max(3, w * 0.012), [Math.max(14, w * 0.025), Math.max(7, w * 0.012)]);
+                }
+
+                // Draw Inner Lesion Boundary — bright yellow screening outline matching 034.jpeg
+                if (innerLesionPts.length >= 3) {
+                    drawPolygon(innerLesionPts, '#FFFF00', 'rgba(255,255,0,0.12)',
+                        Math.max(3.5, w * 0.016), []);
+                }
+
+                callback(canvas.toDataURL('image/jpeg', 0.85));
+            };
+            img.onerror = function() {
+                callback(imgSrc);
+            };
+            img.src = imgSrc;
+        }
+
+        const scannedImage = localStorage.getItem('oralai_scanned_image');
+        const patientInfoStr = localStorage.getItem('oralai_current_patient');
+        const apiResultStr = localStorage.getItem('oralai_api_result');
 
         if (scannedImage) {
             document.getElementById('original-scan').src = scannedImage;
@@ -236,8 +304,10 @@
         }
 
         if (apiResultStr) {
-            const result = JSON.parse(apiResultStr);
-            document.getElementById('analyzed-scan').src = result.image_base64 || scannedImage;
+            const rawImage = result.overlay_image || result.image_base64 || result.scan_image_url || scannedImage;
+            if (rawImage) {
+                document.getElementById('analyzed-scan').src = rawImage;
+            }
             
             const riskIcon = document.getElementById('risk-icon');
             const riskTitle = document.getElementById('risk-title');
@@ -264,6 +334,26 @@
                     result.message || "The AI model did not detect any immediate signs of oral cancer in the provided scan. Routine checkups are recommended to maintain oral health.";
             }
             
+            lucide.createIcons();
+        } else {
+            const riskIcon = document.getElementById('risk-icon');
+            const riskTitle = document.getElementById('risk-title');
+            riskIcon.className = 'risk-icon';
+            riskIcon.style.background = 'rgba(245, 158, 11, 0.15)';
+            riskIcon.style.color = '#f59e0b';
+            riskIcon.innerHTML = '<i data-lucide="alert-triangle"></i>';
+            
+            riskTitle.textContent = 'No AI Analysis Result Found';
+            riskTitle.style.color = '#f59e0b';
+            
+            document.getElementById('risk-subtitle').textContent = 'Result Expired or Not Processed';
+            document.getElementById('details-text').innerHTML = 'We could not retrieve the diagnostic analysis result for this scan. The session may have expired or the image analysis was interrupted. Please re-upload the scan image to run the AI screening model again.<br><br><button onclick="window.location.href=\'patient_info.html\'" style="background:#f59e0b; color:#ffffff; border:none; padding:10px 16px; border-radius:8px; width:100%; font-weight:600; cursor:pointer;">Re-upload Image & Run AI Analysis</button>';
+            
+            if (scannedImage) {
+                createAnnotatedScanOverlay(scannedImage, null, function(annotatedDataUrl) {
+                    document.getElementById('analyzed-scan').src = annotatedDataUrl;
+                });
+            }
             lucide.createIcons();
         }
 

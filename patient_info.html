@@ -95,6 +95,7 @@
             cursor: not-allowed;
         }
     </style>
+    <link rel="stylesheet" href="global_mobile.css">
 </head>
 <body>
 
@@ -158,7 +159,7 @@
 
         const proceedBtn = document.getElementById('proceed-btn');
 
-        async function fetchWithTimeout(url, formData, timeoutMs = 6000) {
+        async function fetchWithTimeout(url, formData, timeoutMs = 30000) {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
             try {
@@ -194,14 +195,14 @@
                 formData.append('file', file);
                 
                 try {
-                    const response = await fetchWithTimeout(PRIMARY_BACKEND_URL, formData, 6000);
+                    const response = await fetchWithTimeout(PRIMARY_BACKEND_URL, formData, 30000);
                     if (response.ok) {
                         data = await response.json();
                     }
                 } catch (err) {
                     console.warn("Primary backend fetch failed/timed out, attempting fallback...", err);
                     try {
-                        const response = await fetchWithTimeout(FALLBACK_BACKEND_URL, formData, 6000);
+                        const response = await fetchWithTimeout(FALLBACK_BACKEND_URL, formData, 30000);
                         if (response.ok) {
                             data = await response.json();
                         }
