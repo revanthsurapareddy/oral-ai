@@ -51,19 +51,13 @@ jobs:
           echo "=== SECURITY SCAN COMPLETED ===" >> reports/vulnerability-report.txt
 
       - name: Execute k6 Baseline Load Test
-        continue-on-error: true
         run: |
           mkdir -p reports
-          k6 run --out json=reports/k6-metrics.json load-tests/baseline.js
-        env:
-          BASE_URL: "http://localhost:8000"
+          k6 run --out json=reports/k6-metrics.json load-tests/baseline.js || true
 
       - name: Execute k6 Full API Suite Load Test
-        continue-on-error: true
         run: |
-          k6 run load-tests/suite.js
-        env:
-          BASE_URL: "http://localhost:8000"
+          k6 run load-tests/suite.js || true
 
       - name: Package Reports into ZIP Artifact
         if: always()

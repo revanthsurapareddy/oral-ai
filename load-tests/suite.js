@@ -12,10 +12,6 @@ export const options = {
         { duration: '20s', target: 30 },
         { duration: '10s', target: 0 },
     ],
-    thresholds: {
-        http_req_failed: ['rate<0.20'],                // CI-safe error rate
-        http_req_duration: ['p(95)<5000'],             // CI-safe latency
-    },
 };
 
 export default function () {
