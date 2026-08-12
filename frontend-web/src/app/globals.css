@@ -23,7 +23,6 @@ body {
 
 .app-container {
   width: 100%;
-  max-width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -31,6 +30,20 @@ body {
   background-color: #0b111a;
   display: flex;
   flex-direction: column;
+}
+
+.content-area {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    flex: 1;
+}
+
+@media (max-width: 767px) {
+    .content-area {
+        padding: 20px 16px;
+    }
 }
 
 @media (max-width: 767px) {
