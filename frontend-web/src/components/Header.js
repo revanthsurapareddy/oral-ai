@@ -10,8 +10,8 @@ export default function Header() {
     const pathname = usePathname();
 
     return (
-        <header className="top-bar">
-            <div className="top-bar-inner" style={{ width: '100%', maxWidth: '1280px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <header className="top-bar" style={{ width: '100%', padding: '16px 48px' }}>
+            <div className="top-bar-inner" style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div className="brand" style={{ cursor: 'pointer' }} onClick={() => router.push('/dashboard')}>
                     <div className="logo-circle">
                         <svg viewBox="0 0 100 100" style={{ width: '60%', height: '60%' }}>
