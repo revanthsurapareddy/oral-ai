@@ -8,7 +8,7 @@ html,
 body {
   width: 100%;
   min-height: 100vh;
-  background-color: #05080e; /* Dark fallback background outside container */
+  background-color: #0b111a;
   margin: 0;
   padding: 0;
 }
@@ -23,14 +23,14 @@ body {
 
 .app-container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 100%;
   min-height: 100vh;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
   position: relative;
   background-color: #0b111a;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
 }
 
 @media (max-width: 767px) {
